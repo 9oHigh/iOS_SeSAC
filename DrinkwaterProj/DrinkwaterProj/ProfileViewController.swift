@@ -5,10 +5,23 @@
 //  Created by 이경후 on 2021/10/11.
 //
 
+/*해야하는 것
+ 1. 초기화 버튼 클릭시
+ - 마신 물의 양 초기화
+ 
+ 2. 마신 물의 양 입력 + button 클릭시
+ - 키보드 올라간 만큼 화면 올리기
+ - 입력 후 마신물의 양 변화 밑 목표치 변화시키기
+ 
+ 3.유저의 닉네임 설정, 키 설정, 몸무게 저장시
+ - UserDefaluts로 저장 밑 DrinkView와 profileView에 표시
+ */
+
+
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     //imageView
     @IBOutlet var profileImageView: UIImageView!
     
@@ -26,9 +39,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet var heightTextfield: UITextField!
     @IBOutlet var weightTextfield: UITextField!
     
-    //textField에 바텀라인 넣기
-    var bottmLine = CALayer()
-    
     var imageArray : [UIImage]  = [
         UIImage(named: "1-1")!,
         UIImage(named: "1-2")!,
@@ -43,9 +53,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initialPage()
-       
     }
     func initialPage(){
         
@@ -61,30 +69,33 @@ class ProfileViewController: UIViewController {
         profileImageView.image = imageArray[myImageIndex]
         
         nickNameLabel =  nickNameLabel.myLabelStyle(label: nickNameLabel)
-        if let nick = UserDefaults.standard.string(forKey: "nickname"){
-            nickNameLabel.text = nick
-        }else{
-            //입력받은 것을 userDefaluts에 넣고 저장하기
-            
-        }
         heightLabel = heightLabel.myLabelStyle(label: heightLabel)
-        if let height = UserDefaults.standard.string(forKey: "height") {
-            nickNameLabel.text = height
-        }else{
-            //입력받은 것을 userDefaluts에 넣고 저장하기
-            
-        }
         weightLabel =  weightLabel.myLabelStyle(label: weightLabel)
-        if let weight = UserDefaults.standard.string(forKey: "nickname"){
-            nickNameLabel.text = String(weight)
-        }else{
-            //입력받은 것을 userDefaluts에 넣고 저장하기
-            
-        }
-        nickNameTextfield.addBottomBorder()
-        heightTextfield.addBottomBorder()
-        weightTextfield.addBottomBorder()
         
+        nickNameTextfield.addBottomBorder()
+        nickNameTextfield.text = UserDefaults.standard.string(forKey: "nickname") ?? ""
+        
+        heightTextfield.addBottomBorder()
+        heightTextfield.text = UserDefaults.standard.string(forKey: "height") ?? ""
+        
+        weightTextfield.addBottomBorder()
+        weightTextfield.text = UserDefaults.standard.string(forKey: "weight") ?? ""
+        
+    }
+    
+    @IBAction func checkButtonAction(_ sender: UIBarButtonItem) {
+        UserDefaults.standard.set(nickNameTextfield.text, forKey: "nickname")
+        UserDefaults.standard.set(heightTextfield.text, forKey: "height")
+        UserDefaults.standard.set(weightTextfield.text, forKey: "weight")
+        UserDefaults.standard.set(intakeWater(),forKey: "intakewater")
+    }
+    
+    func intakeWater () -> Int{
+        let myHeight = UserDefaults.standard.string(forKey: "height") ?? "0"
+        let myWeight = UserDefaults.standard.string(forKey: "weight") ?? "0"
+        let totalWater = (Int(myHeight) ?? 0) + (Int(myWeight) ?? 0)
+        print((totalWater) / 100)
+        return (totalWater) / 100
     }
 }
 //텍스트필드 바텀라인

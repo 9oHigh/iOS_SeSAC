@@ -5,6 +5,20 @@
 //  Created by 이경후 on 2021/10/11.
 //
 
+
+/*해야하는 것
+ 1. 초기화 버튼 클릭시
+ - 마신 물의 양 초기화
+ 
+ 2. 마신 물의 양 입력 + button 클릭시
+ - 키보드 올라간 만큼 화면 올리기
+ - 입력 후 마신물의 양 변화 밑 목표치 변화시키기
+ 
+ 3.유저의 닉네임 설정, 키 설정, 몸무게 저장시
+ - UserDefaluts로 저장 밑 DrinkView와 profileView에 표시
+ */
+
+
 import UIKit
 
 class DrinkViewController: UIViewController,UITextFieldDelegate {
@@ -42,14 +56,15 @@ class DrinkViewController: UIViewController,UITextFieldDelegate {
         UIImage(named: "1-8")!,
         UIImage(named: "1-9")!
     ]
+    var myImageIdx : Int = 0
     var howDrinkValue : Int = 0
     var goalPercent : Int = 0
-    var myImageIdx : Int = 0
+    var intakeWater : Int = 0
+    var nickname : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initialPage()
-        
     }
     
     func initialPage(){
@@ -90,11 +105,39 @@ class DrinkViewController: UIViewController,UITextFieldDelegate {
         intakeLabel.textColor = .white
         intakeLabel.font = UIFont.systemFont(ofSize: 13)
         //변수로 설정하기 UserDefault
-        intakeLabel.text = "안녕하세요님의 하루 물 권장 섭취량은 0L입니다."
+        intakeLabel.text = (UserDefaults.standard.string(forKey: "nickname") ?? "") + "님의 하루 물 권장 섭취량은 " + String(UserDefaults.standard.integer(forKey: "intakewater")) + "L입니다."
         
         //물마시기버튼
         drinkButton.backgroundColor = .white
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        intakeLabel.text = (UserDefaults.standard.string(forKey: "nickname") ?? "") + "님의 하루 물 권장 섭취량은 " + String(UserDefaults.standard.integer(forKey: "intakewater")) + "L입니다."
+    }
+    
+    @IBAction func refreshButtonAction(_ sender: UIBarButtonItem) {
+        howDrinkValue = 0
+        goalPercent = 0
+    }
+    @IBAction func drinkWaterButtonAction(_ sender: UIButton) {
+        howDrinkValue = howDrinkValue + Int(mlTextField.text!)!
+        howDrinkLabel.text = String(howDrinkValue) + "ml"
+        
+        goalPercent = (howDrinkValue/10) / UserDefaults.standard.integer(forKey: "intakewater")
+        goalLabel.text = "목표의 " + String(goalPercent) + "%"
+        
+        if 0 <= goalPercent && goalPercent < 10 { myImageIdx = 0}
+        else if 10 <= goalPercent && goalPercent < 20 { myImageIdx = 1}
+        else if 20 <= goalPercent && goalPercent < 30 { myImageIdx = 2}
+        else if 30 <= goalPercent && goalPercent < 40 { myImageIdx = 3}
+        else if 40 <= goalPercent && goalPercent < 50 { myImageIdx = 4}
+        else if 50 <= goalPercent && goalPercent < 60 { myImageIdx = 5}
+        else if 60 <= goalPercent && goalPercent < 70 { myImageIdx = 6}
+        else if 70 <= goalPercent && goalPercent < 80 { myImageIdx = 7}
+        else {myImageIdx = 8}
+        
+        myPlantImageView.image = imageArray[myImageIdx]
+        UserDefaults.standard.set(myImageIdx, forKey: "imageNumber")
         
     }
     
