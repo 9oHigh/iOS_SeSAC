@@ -7,15 +7,7 @@
 
 
 /*해야하는 것
- 1. 초기화 버튼 클릭시
- - 마신 물의 양 초기화
- 
- 2. 마신 물의 양 입력 + button 클릭시
- - 키보드 올라간 만큼 화면 올리기
- - 입력 후 마신물의 양 변화 밑 목표치 변화시키기
- 
- 3.유저의 닉네임 설정, 키 설정, 몸무게 저장시
- - UserDefaluts로 저장 밑 DrinkView와 profileView에 표시
+UserDefaults를 이용해서 
  */
 
 
@@ -111,20 +103,35 @@ class DrinkViewController: UIViewController,UITextFieldDelegate {
         drinkButton.backgroundColor = .white
         
     }
+    
+    //viewWillAppear 돌아올 때
     override func viewWillAppear(_ animated: Bool) {
         intakeLabel.text = (UserDefaults.standard.string(forKey: "nickname") ?? "") + "님의 하루 물 권장 섭취량은 " + String(UserDefaults.standard.integer(forKey: "intakewater")) + "L입니다."
     }
     
+    //리프레시 버튼 클릭시 초기화 함수
     @IBAction func refreshButtonAction(_ sender: UIBarButtonItem) {
         howDrinkValue = 0
+        howDrinkLabel.text = String(howDrinkValue) + "ml"
         goalPercent = 0
+        goalLabel.text = "목표의 " + String(goalPercent) + "%"
+        //이미지 다시픽
+        pickImage(goalPercent)
     }
+    
+    //물마시기 버튼 클릭시
     @IBAction func drinkWaterButtonAction(_ sender: UIButton) {
         howDrinkValue = howDrinkValue + Int(mlTextField.text!)!
         howDrinkLabel.text = String(howDrinkValue) + "ml"
         
         goalPercent = (howDrinkValue/10) / UserDefaults.standard.integer(forKey: "intakewater")
         goalLabel.text = "목표의 " + String(goalPercent) + "%"
+        //이미지 다시픽
+        pickImage(goalPercent)
+        //텍스트 초기화
+        mlTextField.text = ""
+    }
+    func pickImage(_ goalPercent : Int){
         
         if 0 <= goalPercent && goalPercent < 10 { myImageIdx = 0}
         else if 10 <= goalPercent && goalPercent < 20 { myImageIdx = 1}
@@ -138,10 +145,9 @@ class DrinkViewController: UIViewController,UITextFieldDelegate {
         
         myPlantImageView.image = imageArray[myImageIdx]
         UserDefaults.standard.set(myImageIdx, forKey: "imageNumber")
-        
     }
     
-    //키보드 함수
+    //키보드 함수 오르락 내리락~
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

@@ -72,24 +72,28 @@ class ProfileViewController: UIViewController {
         heightLabel = heightLabel.myLabelStyle(label: heightLabel)
         weightLabel =  weightLabel.myLabelStyle(label: weightLabel)
         
+        //각 텍스트필드에 값이 저장되어있다면 보여주기, 초기화면이라 없음...
         nickNameTextfield.addBottomBorder()
+        nickNameTextfield.textColor = .white
         nickNameTextfield.text = UserDefaults.standard.string(forKey: "nickname") ?? ""
         
         heightTextfield.addBottomBorder()
+        heightTextfield.textColor = .white
         heightTextfield.text = UserDefaults.standard.string(forKey: "height") ?? ""
         
         weightTextfield.addBottomBorder()
+        weightTextfield.textColor = .white
         weightTextfield.text = UserDefaults.standard.string(forKey: "weight") ?? ""
         
     }
-    
+    // 저장 클릭시 유저디포트로 저장해둘 것
     @IBAction func checkButtonAction(_ sender: UIBarButtonItem) {
         UserDefaults.standard.set(nickNameTextfield.text, forKey: "nickname")
         UserDefaults.standard.set(heightTextfield.text, forKey: "height")
         UserDefaults.standard.set(weightTextfield.text, forKey: "weight")
         UserDefaults.standard.set(intakeWater(),forKey: "intakewater")
     }
-    
+    // 물 섭취량 목표치 계산 함수
     func intakeWater () -> Int{
         let myHeight = UserDefaults.standard.string(forKey: "height") ?? "0"
         let myWeight = UserDefaults.standard.string(forKey: "weight") ?? "0"
@@ -98,7 +102,7 @@ class ProfileViewController: UIViewController {
         return (totalWater) / 100
     }
 }
-//텍스트필드 바텀라인
+//텍스트필드 바텀라인 익스텐션
 extension UITextField {
     func addBottomBorder(){
         let bottomLine = CALayer()
@@ -108,7 +112,7 @@ extension UITextField {
         layer.addSublayer(bottomLine)
     }
 }
-//라벨 스타일
+//라벨 스타일 익스텐션
 extension UILabel{
     func myLabelStyle(label : UILabel) -> UILabel{
         label.font = UIFont.systemFont(ofSize: 15)
