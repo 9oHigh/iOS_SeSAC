@@ -21,9 +21,10 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addShopListTextField.placeholder = "    무엇을 구매하실 예정인가요?"
+        addShopListTextField.placeholder = "무엇을 구매하실 예정인가요?"
         addShopListTextField.layer.cornerRadius = 10
         addShopListTextField.borderStyle = .none
+        addShopListTextField.addLeftPadding()
         
         addButton.layer.cornerRadius = 10
         addButton.tintColor = .black
@@ -63,10 +64,17 @@ class TableViewController: UITableViewController {
         if let newList = addShopListTextField.text {
             myShopList.append(newList)
             addShopListTextField.text = .none
-            addShopListTextField.placeholder = "    무엇을 구매하실 예정인가요?"
+            addShopListTextField.placeholder = "무엇을 구매하실 예정인가요?"
 
         } else {
             print("새로운 리스트를 추가할 수 없음.")
         }
+    }
+}
+extension UITextField {
+    func addLeftPadding(){
+        let padding = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.frame.height))
+        self.leftView = padding
+        self.leftViewMode = ViewMode.always
     }
 }
