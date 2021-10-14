@@ -36,17 +36,20 @@ class ShoppingListTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0))
-        contentView.layer.cornerRadius = 10
+        contentView.layer.cornerRadius = 15
+        
     }
     //체크 이미지 및 즐겨찾기 이미지 교체
     @IBAction func checkBoxButtonClicked(_ sender: UIButton) {
+
         if checkBoxButton.currentImage == checkedImage {
             checkBoxButton.setImage(unCheckedImage, for: .normal)
+            
         }else {
             checkBoxButton.setImage(checkedImage, for: .normal)
         }
     }
-    
+
     @IBAction func starButtonClicked(_ sender: UIButton) {
         if starButton.currentImage == StarredImage {
             starButton.setImage(unStarredImage, for: .normal)

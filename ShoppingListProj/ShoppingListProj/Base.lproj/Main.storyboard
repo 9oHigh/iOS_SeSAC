@@ -80,6 +80,7 @@
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="checkBoxButtonClicked:" destination="E6X-B6-xf1" eventType="touchUpInside" id="Lw4-xo-iFc"/>
+                                                <action selector="checkButtonClicked:" destination="Lg8-7S-0j2" eventType="touchUpInside" id="jsy-bc-bIh"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx8-i7-s44">
@@ -99,6 +100,7 @@
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="starButtonClicked:" destination="E6X-B6-xf1" eventType="touchUpInside" id="Hwt-UU-Th0"/>
+                                                <action selector="starButtonClicked:" destination="Lg8-7S-0j2" eventType="touchUpInside" id="mpX-WD-HZg"/>
                                             </connections>
                                         </button>
                                     </subviews>
