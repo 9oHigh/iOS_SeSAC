@@ -18,6 +18,7 @@ class mediaInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var careLookLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     
+    @IBOutlet weak var linkButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
     

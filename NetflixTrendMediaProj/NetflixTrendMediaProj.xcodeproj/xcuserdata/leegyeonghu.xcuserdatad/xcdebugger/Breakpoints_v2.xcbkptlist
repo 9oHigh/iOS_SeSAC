@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7AC2CC3F-D62B-4F59-841E-DACD869887AA"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "18E5582E-D2DD-47B8-A77E-98BB16124FA6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetflixTrendMediaProj/mediaPeopleTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD653E26-7B34-4A11-BCC1-9BDE71BF0675"
+            shouldBeEnabled = "No"
+            condition = "```"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetflixTrendMediaProj/WebViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetflixTrendMediaProj/WebViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "WebViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2 - 6ac9edf4a45a531a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NetflixTrendMediaProj.WebViewController.webView.getter : Swift.Optional&lt;__C.WKWebView&gt;"
+                  moduleName = "NetflixTrendMediaProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leegyeonghu/iOS_SeSSAC/NetflixTrendMediaProj/NetflixTrendMediaProj/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "94">
+               </Location>
+               <Location
+                  uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2 - bc97a15d5a000f16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NetflixTrendMediaProj.WebViewController.webView.setter : Swift.Optional&lt;__C.WKWebView&gt;"
+                  moduleName = "NetflixTrendMediaProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leegyeonghu/iOS_SeSSAC/NetflixTrendMediaProj/NetflixTrendMediaProj/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2 - a71194cca6aef46a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NetflixTrendMediaProj.WebViewController.webView.modify : Swift.Optional&lt;__C.WKWebView&gt;"
+                  moduleName = "NetflixTrendMediaProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leegyeonghu/iOS_SeSSAC/NetflixTrendMediaProj/NetflixTrendMediaProj/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2 - 9949a731e8be7be0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NetflixTrendMediaProj.WebViewController.webView.modify : Swift.Optional&lt;__C.WKWebView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "NetflixTrendMediaProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leegyeonghu/iOS_SeSSAC/NetflixTrendMediaProj/NetflixTrendMediaProj/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2 - 95ef8c138546c57c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NetflixTrendMediaProj.WebViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; NetflixTrendMediaProj.WebViewController"
+                  moduleName = "NetflixTrendMediaProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leegyeonghu/iOS_SeSSAC/NetflixTrendMediaProj/NetflixTrendMediaProj/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "147">
+               </Location>
+               <Location
+                  uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2 - ac0671482f9f13cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NetflixTrendMediaProj.WebViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;NetflixTrendMediaProj.WebViewController&gt;"
+                  moduleName = "NetflixTrendMediaProj"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leegyeonghu/iOS_SeSSAC/NetflixTrendMediaProj/NetflixTrendMediaProj/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
