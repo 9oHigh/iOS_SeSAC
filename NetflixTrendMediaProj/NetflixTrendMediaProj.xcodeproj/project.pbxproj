@@ -10,6 +10,10 @@
 		4C9CDC57271D2ED000FA9021 /* mediaPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */; };
 		4C9CDC59271D526A00FA9021 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC58271D526A00FA9021 /* WebViewController.swift */; };
 		4C9CDC5C271D627200FA9021 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C9CDC5B271D627200FA9021 /* Kingfisher */; };
+		4CA279DC271EF05D00BB6F44 /* summaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA279DB271EF05D00BB6F44 /* summaryTableViewCell.swift */; };
+		4CA279DF271F01CD00BB6F44 /* bookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA279DD271F01CD00BB6F44 /* bookCollectionViewCell.swift */; };
+		4CA279E0271F01CD00BB6F44 /* bookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA279DE271F01CD00BB6F44 /* bookCollectionViewCell.xib */; };
+		4CA279E4271F038F00BB6F44 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA279E3271F038F00BB6F44 /* BookViewController.swift */; };
 		4CB5ED31271C4EED00C07E33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5ED30271C4EED00C07E33 /* AppDelegate.swift */; };
 		4CB5ED33271C4EED00C07E33 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5ED32271C4EED00C07E33 /* SceneDelegate.swift */; };
 		4CB5ED35271C4EED00C07E33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5ED34271C4EED00C07E33 /* ViewController.swift */; };
@@ -27,6 +31,10 @@
 /* Begin PBXFileReference section */
 		4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaPeopleTableViewCell.swift; sourceTree = "<group>"; };
 		4C9CDC58271D526A00FA9021 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		4CA279DB271EF05D00BB6F44 /* summaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = summaryTableViewCell.swift; sourceTree = "<group>"; };
+		4CA279DD271F01CD00BB6F44 /* bookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CA279DE271F01CD00BB6F44 /* bookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bookCollectionViewCell.xib; sourceTree = "<group>"; };
+		4CA279E3271F038F00BB6F44 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		4CB5ED2D271C4EED00C07E33 /* NetflixTrendMediaProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetflixTrendMediaProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CB5ED30271C4EED00C07E33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CB5ED32271C4EED00C07E33 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,10 +87,14 @@
 				4CB5ED34271C4EED00C07E33 /* ViewController.swift */,
 				4CB5ED48271C5AD700C07E33 /* mediaInfoTableViewCell.swift */,
 				4CB5ED52271C710300C07E33 /* mediaPeopleViewControllViewController.swift */,
+				4CA279DB271EF05D00BB6F44 /* summaryTableViewCell.swift */,
 				4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */,
 				4CB5ED4A271C65BD00C07E33 /* searchViewController.swift */,
 				4CB5ED4E271C6C9200C07E33 /* searchTableViewCell.swift */,
 				4C9CDC58271D526A00FA9021 /* WebViewController.swift */,
+				4CA279E3271F038F00BB6F44 /* BookViewController.swift */,
+				4CA279DD271F01CD00BB6F44 /* bookCollectionViewCell.swift */,
+				4CA279DE271F01CD00BB6F44 /* bookCollectionViewCell.xib */,
 				4CB5ED46271C580D00C07E33 /* myMediaInfo.swift */,
 				4CB5ED44271C57FA00C07E33 /* myMedia.swift */,
 				4CB5ED36271C4EED00C07E33 /* Main.storyboard */,
@@ -158,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB5ED3D271C4EEF00C07E33 /* LaunchScreen.storyboard in Resources */,
+				4CA279E0271F01CD00BB6F44 /* bookCollectionViewCell.xib in Resources */,
 				4CB5ED3A271C4EEF00C07E33 /* Assets.xcassets in Resources */,
 				4CB5ED38271C4EED00C07E33 /* Main.storyboard in Resources */,
 			);
@@ -170,8 +183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CA279DF271F01CD00BB6F44 /* bookCollectionViewCell.swift in Sources */,
 				4CB5ED35271C4EED00C07E33 /* ViewController.swift in Sources */,
 				4C9CDC59271D526A00FA9021 /* WebViewController.swift in Sources */,
+				4CA279E4271F038F00BB6F44 /* BookViewController.swift in Sources */,
+				4CA279DC271EF05D00BB6F44 /* summaryTableViewCell.swift in Sources */,
 				4CB5ED4B271C65BD00C07E33 /* searchViewController.swift in Sources */,
 				4CB5ED53271C710300C07E33 /* mediaPeopleViewControllViewController.swift in Sources */,
 				4CB5ED47271C580D00C07E33 /* myMediaInfo.swift in Sources */,

@@ -23,23 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD653E26-7B34-4A11-BCC1-9BDE71BF0675"
-            shouldBeEnabled = "No"
-            condition = "```"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NetflixTrendMediaProj/WebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "3FD9F04C-7513-4CFB-8BFE-8B3652330ED2"
             shouldBeEnabled = "No"
             ignoreCount = "0"

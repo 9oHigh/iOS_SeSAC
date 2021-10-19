@@ -10,30 +10,20 @@ import WebKit
 
 class WebViewController: UIViewController,WKUIDelegate {
     
-    var webView: WKWebView!
+    @IBOutlet var webView: WKWebView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     var myLink : String?
     var pageTitle: String?
-    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let myURL = URL(string: myLink ?? "https://www.apple.com")
-//        let myRequest = URLRequest(url: myURL!)
-//        webView.load(myRequest)
+        guard let url = URL(string: myLink!) else { return }
+        let request = URLRequest(url: url)
+        webView.load(request)
         
         titleLabel.text = pageTitle!
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
     }
-
-//    override func loadView() {
-//        let webConfiguration = WKWebViewConfiguration()
-//        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-//        webView.uiDelegate = self
-//        view = webView
-//    }
-    
-    
-    
-    
 }
