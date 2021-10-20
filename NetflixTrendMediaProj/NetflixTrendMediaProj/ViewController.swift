@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var ohJackView: UIView!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var shadowRoundedView: UIView!
+    @IBOutlet weak var newHeaderView: UIView!
     
     var myMediaList  = myMediaInfo()
     var myPosterList : [String] = [
@@ -43,13 +43,7 @@ class ViewController: UIViewController {
         shadowRoundedView.layer.shadowColor = UIColor.lightGray.cgColor
         shadowRoundedView.layer.shadowOpacity = 1.0
         shadowRoundedView.layer.shadowRadius = 10
-        
-        //tableView Color
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = ohJackView.bounds
-        gradientLayer.colors = [UIColor.link]
-        ohJackView.layer.addSublayer(gradientLayer)
-        
+    
     }
     
     
@@ -108,6 +102,16 @@ class ViewController: UIViewController {
         //옵션설정
         //self.navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func theaterButtonClicked(_ sender: UIButton) {
+        print(#function)
+        //스토리보드 특정
+        let myStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //가지고올 컨트롤러 특정
+        let vc = myStoryboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }
 extension ViewController :UITableViewDataSource, UITableViewDelegate{
     
@@ -145,14 +149,11 @@ extension ViewController :UITableViewDataSource, UITableViewDelegate{
     }
     //헤더 테이블 설정하기
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return ohJackView
+        return newHeaderView
     }
     //헤더 테이블 높이
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ohJackView.frame.height
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return -20
+        return newHeaderView.frame.height
     }
     //셀 선택시에
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

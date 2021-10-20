@@ -17,6 +17,7 @@ class mediaPeopleViewControllViewController: UIViewController {
     var titleName : String?
     var summary : String?
     var clicked : Bool = false
+    
     //임시로 넣을 사람들 -> 2차원 배열을 이용해서 여러 영화에 넣어주어야 한다.
     var charactorList : [String] = ["MyPerson","MyGirl","MyFriend"]
     @IBOutlet weak var peopleTableView: UITableView!
@@ -54,7 +55,7 @@ class mediaPeopleViewControllViewController: UIViewController {
     @objc func arrowButtonClicked (selectedButton : UIButton){
         //테이블 뷰가 하난데 어떻게 automatic Dimension을 사용할까..
         clicked.toggle()
-        peopleTableView.reloadRows(at: [IndexPath(item: selectedButton.tag, section: 0)], with: .fade)
+        peopleTableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
     }
     
 }
@@ -76,8 +77,8 @@ extension mediaPeopleViewControllViewController : UITableViewDelegate,UITableVie
             //테이블 뷰가 하나인데 두개의 테이블 뷰가 있어야하는 건가!
             clicked == true ? (cell.summaryLabel.numberOfLines = 0) : (cell.summaryLabel.numberOfLines = 2)
             clicked == true ?
-            cell.arrowButton.setImage(UIImage(systemName: "arrow.down"), for: .normal)
-            :cell.arrowButton.setImage(UIImage(systemName: "arrow.up"), for: .normal)
+            cell.arrowButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+            :cell.arrowButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
             
             cell.arrowButton.addTarget(self, action: #selector(arrowButtonClicked(selectedButton:)), for: .touchUpInside)
             
