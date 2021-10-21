@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>위치설정하고 싶어! 허용해줘! 부탁할게!</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>위치설정하고 싶어! 허용해줘! 부탁할게!</string>
 	<key>UIApplicationSceneManifest</key>
