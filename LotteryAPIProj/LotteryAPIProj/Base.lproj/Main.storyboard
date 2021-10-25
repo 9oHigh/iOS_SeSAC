@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LotteryAPIProj" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVw-ML-1ha">
+                                <rect key="frame" x="20" y="54" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="inputNumberClicked:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="w29-eq-U0y"/>
+                                </connections>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZC-Cw-Te6">
+                                <rect key="frame" x="0.0" y="746" width="414" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Y9v-aY-6lt"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="당첨번호 안내" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y94-qp-XR4">
+                                <rect key="frame" x="20" y="108" width="93" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Eld-KC-g8j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5R-Nk-jXg">
+                                <rect key="frame" x="360" y="108" width="34" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="e5B-wj-rnr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로또번호 + 보너스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBv-so-Rz0">
+                                <rect key="frame" x="20" y="223" width="374" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="3TY-Ho-bLf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보너스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-0L-xHB">
+                                <rect key="frame" x="349" y="288" width="45" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="0bq-6V-UUf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="***회 당첨결과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw0-7k-gQ3">
+                                <rect key="frame" x="156.5" y="173" width="101" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="NiA-FG-9iY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GVw-ML-1ha" secondAttribute="trailing" constant="20" id="3vb-XD-aYk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AjL-0L-xHB" secondAttribute="trailing" constant="20" id="8IS-t5-QHH"/>
+                            <constraint firstItem="y94-qp-XR4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="8yg-U2-P1l"/>
+                            <constraint firstItem="y94-qp-XR4" firstAttribute="top" secondItem="GVw-ML-1ha" secondAttribute="bottom" constant="20" id="ARg-fF-MFh"/>
+                            <constraint firstItem="UZC-Cw-Te6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Bns-dj-WL2"/>
+                            <constraint firstItem="UZC-Cw-Te6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CkI-pf-dy8"/>
+                            <constraint firstItem="GVw-ML-1ha" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="HhJ-85-hMm"/>
+                            <constraint firstItem="d5R-Nk-jXg" firstAttribute="top" secondItem="GVw-ML-1ha" secondAttribute="bottom" constant="20" id="KmK-mZ-4BM"/>
+                            <constraint firstItem="yBv-so-Rz0" firstAttribute="top" secondItem="Jw0-7k-gQ3" secondAttribute="bottom" constant="20" id="PG5-c2-BkE"/>
+                            <constraint firstItem="GVw-ML-1ha" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="XWm-V3-lhu"/>
+                            <constraint firstItem="AjL-0L-xHB" firstAttribute="top" secondItem="yBv-so-Rz0" secondAttribute="bottom" id="YzP-2H-8kn"/>
+                            <constraint firstItem="yBv-so-Rz0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="d5B-I8-r23"/>
+                            <constraint firstItem="yBv-so-Rz0" firstAttribute="centerX" secondItem="GVw-ML-1ha" secondAttribute="centerX" id="oBJ-UI-rZS"/>
+                            <constraint firstItem="Jw0-7k-gQ3" firstAttribute="centerX" secondItem="GVw-ML-1ha" secondAttribute="centerX" id="r3S-Co-nc7"/>
+                            <constraint firstAttribute="bottom" secondItem="UZC-Cw-Te6" secondAttribute="bottom" id="w9Z-dw-eOE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d5R-Nk-jXg" secondAttribute="trailing" constant="20" id="xyE-6B-2DS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yBv-so-Rz0" secondAttribute="trailing" constant="20" id="ykg-Zd-QY1"/>
+                            <constraint firstItem="Jw0-7k-gQ3" firstAttribute="top" secondItem="GVw-ML-1ha" secondAttribute="bottom" constant="85" id="zdz-ce-HUW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="d5R-Nk-jXg" id="IkT-KT-t1W"/>
+                        <outlet property="inputNumberTextField" destination="GVw-ML-1ha" id="IKC-FS-ju7"/>
+                        <outlet property="introNumberLabel" destination="y94-qp-XR4" id="Z6G-cQ-66G"/>
+                        <outlet property="numbersLabel" destination="yBv-so-Rz0" id="hix-Ko-vNj"/>
+                        <outlet property="pickerView" destination="UZC-Cw-Te6" id="2x1-xY-WiR"/>
+                        <outlet property="sessionLabel" destination="Jw0-7k-gQ3" id="Kl0-zk-0G3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26.086956521739133" y="103.79464285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
