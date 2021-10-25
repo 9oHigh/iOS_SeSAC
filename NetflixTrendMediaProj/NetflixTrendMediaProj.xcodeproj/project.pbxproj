@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C51916D272697DD0044876C /* alertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51916C272697DD0044876C /* alertExtension.swift */; };
 		4C9CDC57271D2ED000FA9021 /* mediaPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */; };
 		4C9CDC59271D526A00FA9021 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC58271D526A00FA9021 /* WebViewController.swift */; };
 		4C9CDC5C271D627200FA9021 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C9CDC5B271D627200FA9021 /* Kingfisher */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C51916C272697DD0044876C /* alertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alertExtension.swift; sourceTree = "<group>"; };
 		4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaPeopleTableViewCell.swift; sourceTree = "<group>"; };
 		4C9CDC58271D526A00FA9021 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4CA279DB271EF05D00BB6F44 /* summaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = summaryTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				4CB5ED32271C4EED00C07E33 /* SceneDelegate.swift */,
 				4CB5ED34271C4EED00C07E33 /* ViewController.swift */,
 				4CC49E602720322C00421026 /* MapViewController.swift */,
+				4C51916C272697DD0044876C /* alertExtension.swift */,
 				4CB5ED48271C5AD700C07E33 /* mediaInfoTableViewCell.swift */,
 				4CB5ED52271C710300C07E33 /* mediaPeopleViewControllViewController.swift */,
 				4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */,
@@ -196,6 +199,7 @@
 				4CA279DC271EF05D00BB6F44 /* summaryTableViewCell.swift in Sources */,
 				4CB5ED4B271C65BD00C07E33 /* searchViewController.swift in Sources */,
 				4CC49E63272036E500421026 /* TheaterLocation.swift in Sources */,
+				4C51916D272697DD0044876C /* alertExtension.swift in Sources */,
 				4CB5ED53271C710300C07E33 /* mediaPeopleViewControllViewController.swift in Sources */,
 				4CB5ED47271C580D00C07E33 /* myMediaInfo.swift in Sources */,
 				4CB5ED31271C4EED00C07E33 /* AppDelegate.swift in Sources */,

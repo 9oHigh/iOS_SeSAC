@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -129,7 +130,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="6Qa-HF-k2f">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="3NV-5E-L00">
@@ -200,7 +201,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mediaInfoCell" rowHeight="502" id="VcV-AA-qGy" customClass="mediaInfoTableViewCell" customModule="NetflixTrendMediaProj" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180.5" width="414" height="502"/>
+                                        <rect key="frame" x="0.0" y="199.5" width="414" height="502"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VcV-AA-qGy" id="KNL-tj-h9Y">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="502"/>
@@ -444,7 +445,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbN-ez-LCv">
-                                                    <rect key="frame" x="195" y="39" width="42" height="32.5"/>
+                                                    <rect key="frame" x="195" y="39" width="24" height="32.5"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system">
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -457,6 +458,7 @@
                                                 <constraint firstItem="6BD-ar-Q3x" firstAttribute="top" secondItem="30B-YG-Grl" secondAttribute="topMargin" id="Vra-CA-EFz"/>
                                                 <constraint firstAttribute="bottom" secondItem="PbN-ez-LCv" secondAttribute="bottom" constant="21.5" id="cZG-Ka-qRY"/>
                                                 <constraint firstItem="PbN-ez-LCv" firstAttribute="top" secondItem="6BD-ar-Q3x" secondAttribute="bottom" constant="7.5" id="fGI-e9-8BY"/>
+                                                <constraint firstItem="PbN-ez-LCv" firstAttribute="centerX" secondItem="30B-YG-Grl" secondAttribute="centerX" id="qer-ec-YvJ"/>
                                                 <constraint firstItem="6BD-ar-Q3x" firstAttribute="leading" secondItem="30B-YG-Grl" secondAttribute="leadingMargin" constant="8" id="tj3-Gd-GPE"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="6BD-ar-Q3x" secondAttribute="trailing" constant="8" id="vR8-3U-Ovr"/>
                                             </constraints>
@@ -542,17 +544,35 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4DU-eb-4ef">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZ0-4N-Y03">
+                                <rect key="frame" x="344" y="806" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="6VQ-6b-qEk"/>
+                                    <constraint firstAttribute="width" constant="60" id="mYQ-76-7Yh"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="location.circle" catalog="system" symbolScale="large"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="locationButtonClicked:" destination="jOB-gh-xbA" eventType="touchUpInside" id="wLf-bS-Igm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fYT-91-xSf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4DU-eb-4ef" firstAttribute="leading" secondItem="fYT-91-xSf" secondAttribute="leading" id="Ogr-6H-M7S"/>
+                            <constraint firstItem="fYT-91-xSf" firstAttribute="trailing" secondItem="PZ0-4N-Y03" secondAttribute="trailing" constant="10" id="RUE-gU-bJE"/>
                             <constraint firstItem="4DU-eb-4ef" firstAttribute="bottom" secondItem="fYT-91-xSf" secondAttribute="bottom" id="YLN-pz-4Kv"/>
                             <constraint firstItem="4DU-eb-4ef" firstAttribute="trailing" secondItem="fYT-91-xSf" secondAttribute="trailing" id="cez-XJ-9GF"/>
+                            <constraint firstAttribute="bottom" secondItem="PZ0-4N-Y03" secondAttribute="bottom" constant="30" id="iD2-6I-psW"/>
                             <constraint firstItem="4DU-eb-4ef" firstAttribute="top" secondItem="fYT-91-xSf" secondAttribute="top" id="wO8-lc-OJa"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="locationButton" destination="PZ0-4N-Y03" id="nlu-ku-665"/>
                         <outlet property="mapView" destination="4DU-eb-4ef" id="svM-Tr-bXM"/>
                     </connections>
                 </viewController>
@@ -688,6 +708,7 @@
         <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="link" catalog="system" width="128" height="122"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="theatermasks" catalog="system" width="128" height="85"/>
         <systemColor name="linkColor">

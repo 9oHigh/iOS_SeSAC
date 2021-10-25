@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
+    @IBOutlet weak var locationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,20 +32,6 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         
         initLocation()
-        /*  나의 기본 위치를 서울역으로 설정해두기 - 허용했을 경우 하지 않아도 됌, 허용하지 않은 경우만
-            MARK : 코드 수정 필요
-        let location = CLLocationCoordinate2D(latitude: 37.556124592490924, longitude: 126.97235991352282)
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let region = MKCoordinateRegion(center: location, span: span)
-        
-        mapView.setRegion(region, animated: true)
-        
-        let annotation = MKPointAnnotation()
-        annotation.title = "Here!"
-        annotation.coordinate = location
-        
-        mapView.addAnnotation(annotation)
-        */
         //메뉴바를 이용해서 구현해보자.
         //각각의 액션도 만들어두자.
         let theaterElem : [UIAction] = [
@@ -59,7 +46,7 @@ class MapViewController: UIViewController {
         //우측 버튼에 들어갈 메뉴
         let theaterMenu = UIMenu(title: "영화관 선택", image: .none, identifier: nil, options: .displayInline , children: theaterElem)
         //우측 버튼
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", image: UIImage(systemName: "list.bullet.circle.fill"), primaryAction: .none, menu: theaterMenu)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", image: UIImage(systemName: "list.bullet.circle"), primaryAction: .none, menu: theaterMenu)
     }
     func theaterChange(which : String){
         
@@ -70,21 +57,6 @@ class MapViewController: UIViewController {
         //전체 보기라면 초기설정으로 돌아가기
         if which == "전체보기"{
             initLocation()
-            /*
-             나의 기본 위치를 서울역으로 설정해두기
-             MARK : 전체보기의 경우 최초의 케이스와 같게 만들어야한다.
-            let location = CLLocationCoordinate2D(latitude: 37.556124592490924, longitude: 126.97235991352282)
-            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-            let region = MKCoordinateRegion(center: location, span: span)
-            
-            mapView.setRegion(region, animated: true)
-            
-            let annotation = MKPointAnnotation()
-            annotation.title = "Here!"
-            annotation.coordinate = location
-            
-            mapView.addAnnotation(annotation)
-             */
             return
         }
         //해당되는 곳만 표시(which == 영화관)
@@ -92,15 +64,15 @@ class MapViewController: UIViewController {
             if mapAnnotations[i].type == which{
                 
                 let location = CLLocationCoordinate2D(latitude: mapAnnotations[i].latitude, longitude: mapAnnotations[i].longitude)
-                let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
                 let region = MKCoordinateRegion(center: location, span: span)
                 
                 mapView.setRegion(region, animated: true)
-
+                
                 let annotation = MKPointAnnotation()
                 annotation.title = mapAnnotations[i].location
                 annotation.coordinate = location
-
+                
                 mapView.addAnnotation(annotation)
             }
         }
@@ -111,18 +83,22 @@ class MapViewController: UIViewController {
         // 영화관 위치 모두 표시
         for i in 0...mapAnnotations.count-1 {
             
-            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
             let location = CLLocationCoordinate2D(latitude: mapAnnotations[i].latitude, longitude: mapAnnotations[i].longitude)
             let region = MKCoordinateRegion(center: location, span: span)
-
+            
             mapView.setRegion(region, animated: true)
-
+            
             let annotation = MKPointAnnotation()
             annotation.title = mapAnnotations[i].location
             annotation.coordinate = location
-
+            
             mapView.addAnnotation(annotation)
         }
+    }
+    
+    @IBAction func locationButtonClicked(_ sender: UIButton) {
+        checkUserLocationServiceAuthorization()
     }
 }
 extension MapViewController : CLLocationManagerDelegate{
@@ -163,7 +139,7 @@ extension MapViewController : CLLocationManagerDelegate{
     }
     //위치를 가지고 올 수 없는 CASE
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
+       
     }
     //iOS 버전에 따른 분기 처리와 iOS 위치 서비스 여부 확인
     func checkUserLocationServiceAuthorization(){
@@ -182,37 +158,31 @@ extension MapViewController : CLLocationManagerDelegate{
             //권한 상태를 확인 및 권한 요청 가능해지므로 8번호출
             CCLAuth(auth: authStatus)
         } else {
-            //MARK: 매개변수 + extension을 화용해서 다시 만들어 볼것
-            let alert = UIAlertController(title: "위치서비스 권한설정", message: "위치서비스를 켜주세요!", preferredStyle: UIAlertController.Style.alert)
-            let checkAction = UIAlertAction(title: "OK", style: .default){(_) -> Void in
-                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {return}
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        print("Settings opened: \(success)")
-                    })
-                }
-            }
-            alert.addAction(checkAction)
-            self.present(alert,animated: false,completion: nil)
+            print("확인확인")
         }
     }
     //사용자의 권한 상태 확인 - 사용자 정의 함수
     func CCLAuth(auth: CLAuthorizationStatus){
         switch auth {
-            //정해지지 않음 + 거부
-        case .notDetermined,.restricted,.denied:
+            //정해지지 않음
+        case .notDetermined:
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             //앱을 사용하는 동안에 대한 위치 권한 요청
             locationManager.requestWhenInUseAuthorization()
             //위치접근
             locationManager.startUpdatingLocation()
+        case .restricted,.denied:
+            showAlert(title: "위치권한 설정", message: "위치권한을 허용해주세요!", okTitle: "확인") {
+                self.locationButton.setImage(UIImage(systemName: "location.circle"), for: .normal)
+            }
         case .authorizedWhenInUse:
+            locationButton.setImage(UIImage(systemName: "location.circle.fill"), for: .normal)
             //didUpateLocations가 동작한다.
             locationManager.startUpdatingLocation()
         case .authorizedAlways:
-            print("always")
+            print("ALWAYS")
         @unknown default:
-            print("default")
+            print("DEFAULT")
         }
         
         if #available(iOS 14.0, *){
@@ -224,7 +194,7 @@ extension MapViewController : CLLocationManagerDelegate{
             case .reducedAccuracy:
                 print("REDUCE")
             @unknown default:
-                print("Default")
+                print("DEFAULT")
             }
         }
     }
