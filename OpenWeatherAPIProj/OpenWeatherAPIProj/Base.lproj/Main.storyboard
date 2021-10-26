@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hsa-zZ-hvG">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="G7Y-ch-cYr">
+            <objects>
+                <viewController id="Hsa-zZ-hvG" customClass="ViewController" customModule="OpenWeatherAPIProj" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vcv-3r-lcs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10월 24일 09시 42분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMr-Ug-Qbl">
+                                <rect key="frame" x="20" y="64" width="177" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="rSY-7w-Ybp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p2o-xD-atL">
+                                <rect key="frame" x="20" y="116" width="40" height="35.5"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="RfA-Pu-tIe"/>
+                                    <constraint firstAttribute="height" constant="40" id="nFe-Tr-3wr"/>
+                                </constraints>
+                                <imageReference key="image" image="location" catalog="system" symbolScale="small"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울, 신림동" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miI-2F-Ffb">
+                                <rect key="frame" x="65" y="119" width="82.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dgP-ha-dWP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="naB-IZ-qPe">
+                                <rect key="frame" x="20" y="354" width="207" height="130"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="q9c-sg-7Pj"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금은 9도에요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43L-VF-iSZ">
+                                <rect key="frame" x="20" y="174" width="159" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="pWb-0X-sgN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1m/s의 바람이 불어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSF-OA-7el">
+                                <rect key="frame" x="20" y="294" width="177" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="zOi-mr-wx3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="78%만큼 습해요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eM-iU-irZ">
+                                <rect key="frame" x="20" y="234" width="145" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WRj-5d-zEs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘도 행복한 하루 보내세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apF-Ig-If8">
+                                <rect key="frame" x="20" y="504" width="207" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="g7W-0J-UUR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-2j-DNG">
+                                <rect key="frame" x="289" y="114" width="43" height="40"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
+                                    <color key="baseForegroundColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPc-DG-9Io">
+                                <rect key="frame" x="352" y="130" width="42" height="8"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system">
+                                    <color key="baseForegroundColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9PT-6A-K73"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="miI-2F-Ffb" firstAttribute="centerY" secondItem="p2o-xD-atL" secondAttribute="centerY" id="4wd-h6-eN8"/>
+                            <constraint firstItem="naB-IZ-qPe" firstAttribute="width" secondItem="Vcv-3r-lcs" secondAttribute="width" multiplier="0.5" id="7zf-pq-OKc"/>
+                            <constraint firstItem="miI-2F-Ffb" firstAttribute="baseline" secondItem="nPc-DG-9Io" secondAttribute="baseline" constant="6" id="8gM-yN-ZWi"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="centerX" secondItem="apF-Ig-If8" secondAttribute="centerX" constant="-83.5" id="9hT-st-kVX"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="centerX" secondItem="zMr-Ug-Qbl" secondAttribute="centerX" constant="-68.5" id="Eu1-Nf-FQ4"/>
+                            <constraint firstItem="1eM-iU-irZ" firstAttribute="top" secondItem="43L-VF-iSZ" secondAttribute="bottom" constant="20" id="G8O-AQ-4P5"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="top" secondItem="zMr-Ug-Qbl" secondAttribute="bottom" constant="20" id="KGn-Qn-Eld"/>
+                            <constraint firstItem="apF-Ig-If8" firstAttribute="top" secondItem="naB-IZ-qPe" secondAttribute="bottom" constant="20" id="OHg-nk-b75"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="bottom" secondItem="jKh-2j-DNG" secondAttribute="bottom" id="R8H-yI-khc"/>
+                            <constraint firstItem="nPc-DG-9Io" firstAttribute="centerY" secondItem="p2o-xD-atL" secondAttribute="centerY" id="SRD-7S-WHd"/>
+                            <constraint firstItem="zMr-Ug-Qbl" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="Y0R-bC-ixf"/>
+                            <constraint firstItem="43L-VF-iSZ" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="a7I-ZU-gEX"/>
+                            <constraint firstItem="NSF-OA-7el" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="aOM-rX-uTl"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="centerX" secondItem="NSF-OA-7el" secondAttribute="centerX" constant="-68.5" id="bjL-kn-svX"/>
+                            <constraint firstItem="zMr-Ug-Qbl" firstAttribute="top" secondItem="9PT-6A-K73" secondAttribute="top" constant="20" id="cWi-lt-aJO"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="cab-n0-7Ib"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="centerX" secondItem="1eM-iU-irZ" secondAttribute="centerX" constant="-52.5" id="d8e-WL-uH2"/>
+                            <constraint firstItem="jKh-2j-DNG" firstAttribute="centerY" secondItem="p2o-xD-atL" secondAttribute="centerY" id="eAm-aN-Zft"/>
+                            <constraint firstItem="NSF-OA-7el" firstAttribute="top" secondItem="1eM-iU-irZ" secondAttribute="bottom" constant="20" id="hGn-cV-TPv"/>
+                            <constraint firstItem="apF-Ig-If8" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="iZ6-be-zGK"/>
+                            <constraint firstItem="naB-IZ-qPe" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="iZH-7s-r6Q"/>
+                            <constraint firstItem="1eM-iU-irZ" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="k03-wg-hXu"/>
+                            <constraint firstItem="nPc-DG-9Io" firstAttribute="leading" secondItem="jKh-2j-DNG" secondAttribute="trailing" constant="20" id="kVx-fr-UWw"/>
+                            <constraint firstItem="p2o-xD-atL" firstAttribute="centerX" secondItem="43L-VF-iSZ" secondAttribute="centerX" constant="-59.5" id="n0T-su-5Gx"/>
+                            <constraint firstItem="43L-VF-iSZ" firstAttribute="top" secondItem="p2o-xD-atL" secondAttribute="bottom" constant="20" id="nG3-z2-9AQ"/>
+                            <constraint firstItem="9PT-6A-K73" firstAttribute="trailing" secondItem="nPc-DG-9Io" secondAttribute="trailing" constant="20" id="t1a-Il-SpU"/>
+                            <constraint firstItem="naB-IZ-qPe" firstAttribute="top" secondItem="NSF-OA-7el" secondAttribute="bottom" constant="20" id="tOv-py-ui3"/>
+                            <constraint firstItem="jKh-2j-DNG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="miI-2F-Ffb" secondAttribute="trailing" constant="8" symbolic="YES" id="x4a-RD-pjq"/>
+                            <constraint firstItem="miI-2F-Ffb" firstAttribute="leading" secondItem="p2o-xD-atL" secondAttribute="trailing" constant="5" id="yRS-Rv-3eC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="zMr-Ug-Qbl" id="92T-XX-obq"/>
+                        <outlet property="happyLabel" destination="apF-Ig-If8" id="8AS-Ll-gKY"/>
+                        <outlet property="locationLabel" destination="miI-2F-Ffb" id="sFF-hQ-hAM"/>
+                        <outlet property="locationMark" destination="p2o-xD-atL" id="rsF-AP-5Lj"/>
+                        <outlet property="tempLabel" destination="43L-VF-iSZ" id="64P-rD-a1R"/>
+                        <outlet property="weatherImageVIew" destination="naB-IZ-qPe" id="KYo-eh-uBj"/>
+                        <outlet property="wetPercentLabel" destination="1eM-iU-irZ" id="os7-cn-881"/>
+                        <outlet property="windLabel" destination="NSF-OA-7el" id="hrM-fp-pBk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xMt-rC-2hu" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-70" y="108"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="location" catalog="system" width="128" height="118"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+    </resources>
+</document>

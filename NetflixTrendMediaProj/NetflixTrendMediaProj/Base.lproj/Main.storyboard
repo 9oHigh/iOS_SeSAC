@@ -678,6 +678,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="fhD-2j-oAe" id="kPo-cv-p4d"/>
                         <outlet property="searchTableView" destination="Fkn-u9-hgL" id="si0-Cg-Zfb"/>
                     </connections>
                 </viewController>

@@ -29,6 +29,9 @@
 		4CB5ED53271C710300C07E33 /* mediaPeopleViewControllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5ED52271C710300C07E33 /* mediaPeopleViewControllViewController.swift */; };
 		4CC49E612720322C00421026 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC49E602720322C00421026 /* MapViewController.swift */; };
 		4CC49E63272036E500421026 /* TheaterLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC49E62272036E500421026 /* TheaterLocation.swift */; };
+		4CEC24A927279D2D0059C2B6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CEC24A827279D2D0059C2B6 /* Alamofire */; };
+		4CEC24AC27279D400059C2B6 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4CEC24AB27279D400059C2B6 /* SwiftyJSON */; };
+		4CEC24AE2727BCEC0059C2B6 /* movieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC24AD2727BCEC0059C2B6 /* movieModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,7 @@
 		4CB5ED52271C710300C07E33 /* mediaPeopleViewControllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaPeopleViewControllViewController.swift; sourceTree = "<group>"; };
 		4CC49E602720322C00421026 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4CC49E62272036E500421026 /* TheaterLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterLocation.swift; sourceTree = "<group>"; };
+		4CEC24AD2727BCEC0059C2B6 /* movieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CEC24AC27279D400059C2B6 /* SwiftyJSON in Frameworks */,
 				4C9CDC5C271D627200FA9021 /* Kingfisher in Frameworks */,
+				4CEC24A927279D2D0059C2B6 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +78,7 @@
 		4CB5ED24271C4EED00C07E33 = {
 			isa = PBXGroup;
 			children = (
+				4CEC24AD2727BCEC0059C2B6 /* movieModel.swift */,
 				4CB5ED2F271C4EED00C07E33 /* NetflixTrendMediaProj */,
 				4CB5ED2E271C4EED00C07E33 /* Products */,
 			);
@@ -132,6 +139,8 @@
 			name = NetflixTrendMediaProj;
 			packageProductDependencies = (
 				4C9CDC5B271D627200FA9021 /* Kingfisher */,
+				4CEC24A827279D2D0059C2B6 /* Alamofire */,
+				4CEC24AB27279D400059C2B6 /* SwiftyJSON */,
 			);
 			productName = NetflixTrendMediaProj;
 			productReference = 4CB5ED2D271C4EED00C07E33 /* NetflixTrendMediaProj.app */;
@@ -163,6 +172,8 @@
 			mainGroup = 4CB5ED24271C4EED00C07E33;
 			packageReferences = (
 				4C9CDC5A271D627200FA9021 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				4CEC24A727279D2D0059C2B6 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				4CEC24AA27279D400059C2B6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 4CB5ED2E271C4EED00C07E33 /* Products */;
 			projectDirPath = "";
@@ -196,6 +207,7 @@
 				4CB5ED35271C4EED00C07E33 /* ViewController.swift in Sources */,
 				4C9CDC59271D526A00FA9021 /* WebViewController.swift in Sources */,
 				4CA279E4271F038F00BB6F44 /* BookViewController.swift in Sources */,
+				4CEC24AE2727BCEC0059C2B6 /* movieModel.swift in Sources */,
 				4CA279DC271EF05D00BB6F44 /* summaryTableViewCell.swift in Sources */,
 				4CB5ED4B271C65BD00C07E33 /* searchViewController.swift in Sources */,
 				4CC49E63272036E500421026 /* TheaterLocation.swift in Sources */,
@@ -439,6 +451,22 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		4CEC24A727279D2D0059C2B6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		4CEC24AA27279D400059C2B6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -446,6 +474,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C9CDC5A271D627200FA9021 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		4CEC24A827279D2D0059C2B6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CEC24A727279D2D0059C2B6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		4CEC24AB27279D400059C2B6 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CEC24AA27279D400059C2B6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
