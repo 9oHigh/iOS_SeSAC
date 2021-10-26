@@ -15,6 +15,7 @@
 		4C5191A72726A0C90044876C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5191A52726A0C90044876C /* LaunchScreen.storyboard */; };
 		4C5191B02726A8920044876C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4C5191AF2726A8920044876C /* Alamofire */; };
 		4C5191B32726A89E0044876C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4C5191B22726A89E0044876C /* SwiftyJSON */; };
+		4CDBB7AA2727E07800A05119 /* LottoNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBB7A92727E07800A05119 /* LottoNumbers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		4C5191A32726A0C90044876C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C5191A62726A0C90044876C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C5191A82726A0C90044876C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CDBB7A92727E07800A05119 /* LottoNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoNumbers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				4C51919A2726A0C80044876C /* AppDelegate.swift */,
 				4C51919C2726A0C80044876C /* SceneDelegate.swift */,
 				4C51919E2726A0C80044876C /* ViewController.swift */,
+				4CDBB7A92727E07800A05119 /* LottoNumbers.swift */,
 				4C5191A02726A0C80044876C /* Main.storyboard */,
 				4C5191A32726A0C90044876C /* Assets.xcassets */,
 				4C5191A52726A0C90044876C /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				4C51919F2726A0C80044876C /* ViewController.swift in Sources */,
 				4C51919B2726A0C80044876C /* AppDelegate.swift in Sources */,
 				4C51919D2726A0C80044876C /* SceneDelegate.swift in Sources */,
+				4CDBB7AA2727E07800A05119 /* LottoNumbers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

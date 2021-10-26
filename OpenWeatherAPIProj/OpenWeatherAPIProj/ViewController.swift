@@ -59,13 +59,9 @@ class ViewController: UIViewController{
                 self.windLabel.text = "\(currentWind)m/s의 바람이 불어요!"
                 
                 var imageUrl = json["weather"][0]["icon"].stringValue
-                print(imageUrl)
                 imageUrl = "https://openweathermap.org/img/wn/\(imageUrl)@2x.png"
-                print(imageUrl)
                 let url = URL(string: imageUrl)
-                print(url!)
                 self.weatherImageVIew.kf.setImage(with: url)
-                
             case .failure(let error):
                 print(error)
             }
