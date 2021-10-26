@@ -17,6 +17,7 @@ class ViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var inputNumberTextField: UITextField!
     @IBOutlet weak var episodeLabel: UILabel!
+    
     //이렇게 해야되는거 맞나..?
     @IBOutlet weak var drwtNo1: UILabel!
     @IBOutlet weak var drwtNo2: UILabel!
@@ -36,33 +37,28 @@ class ViewController: UIViewController,UITextFieldDelegate{
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-
         //features
-        episodeList = episodeList.sorted(by: >)
         introNumberLabel.font = UIFont.boldSystemFont(ofSize: 17)
         dateLabel.text = date
-        inputNumberTextField.text = "986"
-        episodeLabel.text = "986회"
+        inputNumberTextField.text = "\(episode)"
+        episodeLabel.text = "\(episode)회"
         episodeLabel.textColor = .orange
         pickerView.isHidden = true
+        episodeList = episodeList.sorted(by: >)
         
-        getLotteryNumbers(episodeNumber: 986)
-        
+        //start
+        getLotteryNumbers(episodeNumber: episode)
         //delegate + datasource
         pickerView.delegate = self
         pickerView.dataSource = self
         
         //delegate
         inputNumberTextField.delegate = self
-        
     }
-    
     func getLotteryNumbers(episodeNumber : Int){
         //변수 데이터 변경
         pickerView.isHidden = true
         episodeLabel.text = "\(episodeNumber)회"
-        
         //API
         let url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(episodeNumber)"
         AF.request(url, method: .get).validate().responseJSON { response in
@@ -127,6 +123,7 @@ extension ViewController : UIPickerViewDelegate,UIPickerViewDataSource{
 extension UILabel {
     
     func styleLabel(label : UILabel) {
+        
         let colorSet : [UIColor] = [
             UIColor.brown,
             UIColor.red,
