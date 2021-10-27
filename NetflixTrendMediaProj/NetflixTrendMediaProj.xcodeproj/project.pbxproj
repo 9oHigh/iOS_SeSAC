@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4C198A662729896200201FE1 /* APIDocs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C198A652729896200201FE1 /* APIDocs.swift */; };
+		4C198A6A27299FE700201FE1 /* TMDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C198A6927299FE700201FE1 /* TMDBManager.swift */; };
+		4C198A6C2729A2CE00201FE1 /* mainPageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C198A6B2729A2CE00201FE1 /* mainPageInfo.swift */; };
 		4C51916D272697DD0044876C /* alertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51916C272697DD0044876C /* alertExtension.swift */; };
 		4C9CDC57271D2ED000FA9021 /* mediaPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */; };
 		4C9CDC59271D526A00FA9021 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC58271D526A00FA9021 /* WebViewController.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		4C198A652729896200201FE1 /* APIDocs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocs.swift; sourceTree = "<group>"; };
+		4C198A6927299FE700201FE1 /* TMDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBManager.swift; sourceTree = "<group>"; };
+		4C198A6B2729A2CE00201FE1 /* mainPageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageInfo.swift; sourceTree = "<group>"; };
 		4C51916C272697DD0044876C /* alertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alertExtension.swift; sourceTree = "<group>"; };
 		4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaPeopleTableViewCell.swift; sourceTree = "<group>"; };
 		4C9CDC58271D526A00FA9021 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +84,6 @@
 		4CB5ED24271C4EED00C07E33 = {
 			isa = PBXGroup;
 			children = (
-				4CEC24AD2727BCEC0059C2B6 /* movieModel.swift */,
 				4CB5ED2F271C4EED00C07E33 /* NetflixTrendMediaProj */,
 				4CB5ED2E271C4EED00C07E33 /* Products */,
 			);
@@ -100,6 +103,8 @@
 				4CB5ED30271C4EED00C07E33 /* AppDelegate.swift */,
 				4CB5ED32271C4EED00C07E33 /* SceneDelegate.swift */,
 				4CB5ED34271C4EED00C07E33 /* ViewController.swift */,
+				4C198A6927299FE700201FE1 /* TMDBManager.swift */,
+				4C198A6B2729A2CE00201FE1 /* mainPageInfo.swift */,
 				4CC49E602720322C00421026 /* MapViewController.swift */,
 				4C51916C272697DD0044876C /* alertExtension.swift */,
 				4CB5ED48271C5AD700C07E33 /* mediaInfoTableViewCell.swift */,
@@ -107,7 +112,6 @@
 				4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */,
 				4CA279DB271EF05D00BB6F44 /* summaryTableViewCell.swift */,
 				4CB5ED4A271C65BD00C07E33 /* searchViewController.swift */,
-				4C198A652729896200201FE1 /* APIDocs.swift */,
 				4CB5ED4E271C6C9200C07E33 /* searchTableViewCell.swift */,
 				4C9CDC58271D526A00FA9021 /* WebViewController.swift */,
 				4CA279E3271F038F00BB6F44 /* BookViewController.swift */,
@@ -115,7 +119,9 @@
 				4CA279DE271F01CD00BB6F44 /* bookCollectionViewCell.xib */,
 				4CB5ED46271C580D00C07E33 /* myMediaInfo.swift */,
 				4CB5ED44271C57FA00C07E33 /* myMedia.swift */,
+				4CEC24AD2727BCEC0059C2B6 /* movieModel.swift */,
 				4CC49E62272036E500421026 /* TheaterLocation.swift */,
+				4C198A652729896200201FE1 /* APIDocs.swift */,
 				4CB5ED36271C4EED00C07E33 /* Main.storyboard */,
 				4CB5ED3B271C4EEF00C07E33 /* LaunchScreen.storyboard */,
 				4CB5ED39271C4EEF00C07E33 /* Assets.xcassets */,
@@ -208,6 +214,7 @@
 			files = (
 				4CA279DF271F01CD00BB6F44 /* bookCollectionViewCell.swift in Sources */,
 				4CB5ED35271C4EED00C07E33 /* ViewController.swift in Sources */,
+				4C198A6A27299FE700201FE1 /* TMDBManager.swift in Sources */,
 				4C9CDC59271D526A00FA9021 /* WebViewController.swift in Sources */,
 				4CA279E4271F038F00BB6F44 /* BookViewController.swift in Sources */,
 				4CEC24AE2727BCEC0059C2B6 /* movieModel.swift in Sources */,
@@ -224,6 +231,7 @@
 				4CB5ED33271C4EED00C07E33 /* SceneDelegate.swift in Sources */,
 				4CB5ED4F271C6C9200C07E33 /* searchTableViewCell.swift in Sources */,
 				4CC49E612720322C00421026 /* MapViewController.swift in Sources */,
+				4C198A6C2729A2CE00201FE1 /* mainPageInfo.swift in Sources */,
 				4C9CDC57271D2ED000FA9021 /* mediaPeopleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,9 +458,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
-				kind = versionRange;
-				maximumVersion = 8.0.0;
-				minimumVersion = 7.0.0;
+				kind = exactVersion;
+				version = 7.1.0;
 			};
 		};
 		4CEC24A727279D2D0059C2B6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
