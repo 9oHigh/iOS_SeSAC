@@ -46,8 +46,12 @@ class searchViewController: UIViewController,UITableViewDataSource, UITableViewD
             return UITableViewCell()
         }
         let row = movieData[indexPath.row]
-        let url = URL(string: row.imageData)
+        //url if let 처리해두기 : 기본이미지 설정
+        if let url = URL(string: row.imageData){
         cell.posterImage.kf.setImage(with: url)
+        } else {
+            cell.posterImage.image = UIImage(systemName: "star")
+        }
         cell.titleLabel.text = row.titleData
         cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 19)
         cell.resultLabel.text = row.userRatingData

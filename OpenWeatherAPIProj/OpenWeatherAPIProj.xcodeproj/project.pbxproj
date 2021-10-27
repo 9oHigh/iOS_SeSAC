@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C198A14272977C700201FE1 /* OpenWeatherAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C198A13272977C700201FE1 /* OpenWeatherAPIManager.swift */; };
 		4CDBB78B2727DC1D00A05119 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBB78A2727DC1D00A05119 /* AppDelegate.swift */; };
 		4CDBB78D2727DC1D00A05119 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBB78C2727DC1D00A05119 /* SceneDelegate.swift */; };
 		4CDBB78F2727DC1D00A05119 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBB78E2727DC1D00A05119 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C198A13272977C700201FE1 /* OpenWeatherAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAPIManager.swift; sourceTree = "<group>"; };
 		4CDBB7872727DC1D00A05119 /* OpenWeatherAPIProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherAPIProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDBB78A2727DC1D00A05119 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CDBB78C2727DC1D00A05119 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				4CDBB78A2727DC1D00A05119 /* AppDelegate.swift */,
 				4CDBB78C2727DC1D00A05119 /* SceneDelegate.swift */,
 				4CDBB78E2727DC1D00A05119 /* ViewController.swift */,
+				4C198A13272977C700201FE1 /* OpenWeatherAPIManager.swift */,
 				4CDBB7902727DC1D00A05119 /* Main.storyboard */,
 				4CDBB7932727DC1F00A05119 /* Assets.xcassets */,
 				4CDBB7952727DC1F00A05119 /* LaunchScreen.storyboard */,
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDBB78F2727DC1D00A05119 /* ViewController.swift in Sources */,
+				4C198A14272977C700201FE1 /* OpenWeatherAPIManager.swift in Sources */,
 				4CDBB78B2727DC1D00A05119 /* AppDelegate.swift in Sources */,
 				4CDBB78D2727DC1D00A05119 /* SceneDelegate.swift in Sources */,
 			);

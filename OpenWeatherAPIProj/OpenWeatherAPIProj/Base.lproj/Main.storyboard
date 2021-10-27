@@ -22,12 +22,12 @@
                                     <constraint firstAttribute="height" constant="30" id="rSY-7w-Ybp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p2o-xD-atL">
                                 <rect key="frame" x="20" y="116" width="40" height="35.5"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="RfA-Pu-tIe"/>
                                     <constraint firstAttribute="height" constant="40" id="nFe-Tr-3wr"/>
@@ -40,12 +40,11 @@
                                     <constraint firstAttribute="height" constant="30" id="dgP-ha-dWP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="naB-IZ-qPe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="naB-IZ-qPe">
                                 <rect key="frame" x="20" y="354" width="207" height="130"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="q9c-sg-7Pj"/>
                                 </constraints>
@@ -56,7 +55,7 @@
                                     <constraint firstAttribute="height" constant="40" id="pWb-0X-sgN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1m/s의 바람이 불어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSF-OA-7el">
@@ -65,7 +64,7 @@
                                     <constraint firstAttribute="height" constant="40" id="zOi-mr-wx3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="78%만큼 습해요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eM-iU-irZ">
@@ -74,7 +73,7 @@
                                     <constraint firstAttribute="height" constant="40" id="WRj-5d-zEs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘도 행복한 하루 보내세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apF-Ig-If8">
@@ -83,37 +82,37 @@
                                     <constraint firstAttribute="height" constant="40" id="g7W-0J-UUR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-2j-DNG">
                                 <rect key="frame" x="289" y="114" width="43" height="40"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
-                                    <color key="baseForegroundColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPc-DG-9Io">
-                                <rect key="frame" x="352" y="130" width="42" height="8"/>
+                                <rect key="frame" x="352" y="114" width="42" height="44"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system">
-                                    <color key="baseForegroundColor" white="0.95294978350000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9PT-6A-K73"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="miI-2F-Ffb" firstAttribute="centerY" secondItem="p2o-xD-atL" secondAttribute="centerY" id="4wd-h6-eN8"/>
                             <constraint firstItem="naB-IZ-qPe" firstAttribute="width" secondItem="Vcv-3r-lcs" secondAttribute="width" multiplier="0.5" id="7zf-pq-OKc"/>
-                            <constraint firstItem="miI-2F-Ffb" firstAttribute="baseline" secondItem="nPc-DG-9Io" secondAttribute="baseline" constant="6" id="8gM-yN-ZWi"/>
+                            <constraint firstItem="miI-2F-Ffb" firstAttribute="baseline" secondItem="nPc-DG-9Io" secondAttribute="baseline" constant="3.5" id="8gM-yN-ZWi"/>
                             <constraint firstItem="p2o-xD-atL" firstAttribute="centerX" secondItem="apF-Ig-If8" secondAttribute="centerX" constant="-83.5" id="9hT-st-kVX"/>
                             <constraint firstItem="p2o-xD-atL" firstAttribute="centerX" secondItem="zMr-Ug-Qbl" secondAttribute="centerX" constant="-68.5" id="Eu1-Nf-FQ4"/>
                             <constraint firstItem="1eM-iU-irZ" firstAttribute="top" secondItem="43L-VF-iSZ" secondAttribute="bottom" constant="20" id="G8O-AQ-4P5"/>
                             <constraint firstItem="p2o-xD-atL" firstAttribute="top" secondItem="zMr-Ug-Qbl" secondAttribute="bottom" constant="20" id="KGn-Qn-Eld"/>
                             <constraint firstItem="apF-Ig-If8" firstAttribute="top" secondItem="naB-IZ-qPe" secondAttribute="bottom" constant="20" id="OHg-nk-b75"/>
                             <constraint firstItem="p2o-xD-atL" firstAttribute="bottom" secondItem="jKh-2j-DNG" secondAttribute="bottom" id="R8H-yI-khc"/>
-                            <constraint firstItem="nPc-DG-9Io" firstAttribute="centerY" secondItem="p2o-xD-atL" secondAttribute="centerY" id="SRD-7S-WHd"/>
+                            <constraint firstItem="nPc-DG-9Io" firstAttribute="centerY" secondItem="p2o-xD-atL" secondAttribute="centerY" constant="2" id="SRD-7S-WHd"/>
                             <constraint firstItem="zMr-Ug-Qbl" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="Y0R-bC-ixf"/>
                             <constraint firstItem="43L-VF-iSZ" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="a7I-ZU-gEX"/>
                             <constraint firstItem="NSF-OA-7el" firstAttribute="leading" secondItem="9PT-6A-K73" secondAttribute="leading" constant="20" id="aOM-rX-uTl"/>
@@ -148,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMt-rC-2hu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="108"/>
+            <point key="canvasLocation" x="259" y="236"/>
         </scene>
     </scenes>
     <resources>

@@ -39,36 +39,24 @@ class ViewController: UIViewController{
         getCurrentWeather()
     }
     
-    
     func getCurrentWeather(){
-        //세종대학교 광개토관
-        //키값 안보이게 하는 방법 알아놓기
-        let url = "https://api.openweathermap.org/data/2.5/weather?lat=37.550136619516515&lon=127."
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                                
-                let currentTemp = json["main"]["temp"].doubleValue - 273.15
-                self.tempLabel.text = "지금은 " + String(Int(currentTemp)) + "도에요."
-                
-                let currentHumidity = json["main"]["humidity"].intValue - 1
-                self.wetPercentLabel.text = "\(currentHumidity) %만큼 습해요."
-                
-                let currentWind = json["wind"]["speed"].intValue
-                self.windLabel.text = "\(currentWind)m/s의 바람이 불어요!"
-                
-                var imageUrl = json["weather"][0]["icon"].stringValue
-                imageUrl = "https://openweathermap.org/img/wn/\(imageUrl)@2x.png"
-                let url = URL(string: imageUrl)
-                self.weatherImageVIew.kf.setImage(with: url)
-            case .failure(let error):
-                print(error)
-            }
+        OpenWeatherAPIManager.shared.fetchData { code, json in
+            //온도
+            let currentTemp = json["main"]["temp"].doubleValue - 273.15
+            self.tempLabel.text = "지금은 " + String(Int(currentTemp)) + "도에요."
+            //습도
+            let currentHumidity = json["main"]["humidity"].intValue - 1
+            self.wetPercentLabel.text = "\(currentHumidity) %만큼 습해요."
+            //바람
+            let currentWind = json["wind"]["speed"].intValue
+            self.windLabel.text = "\(currentWind)m/s의 바람이 불어요!"
+            //이미지
+            var imageUrl = json["weather"][0]["icon"].stringValue
+            imageUrl = "https://openweathermap.org/img/wn/\(imageUrl)@2x.png"
+            let url = URL(string: imageUrl)
+            self.weatherImageVIew.kf.setImage(with: url)
         }
-        
     }
-    
 }
 extension ViewController : CLLocationManagerDelegate{
     
@@ -84,7 +72,6 @@ extension ViewController : CLLocationManagerDelegate{
         //iOS 위치확인 서비스
         if CLLocationManager.locationServicesEnabled(){
             //권한 상태를 이제서야 확인할 수 있는 구조
-            //권한 상태를 확인 및 권한 요청 가능해지므로 8번호출
             checkCurrentLocationAuthorization(auth: authStatus)
         } else {
             //켜져있지 않으니 알림 메세지를 띄어야한다.
