@@ -10,23 +10,28 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-class searchViewController: UIViewController,UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate {
+class searchViewController: UIViewController,UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
     var movieData : [MovieModel] = []
+    var startPage : Int = 1
+    var totalCount : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "영화 검색"
         //새로운 뷰에서 navigation Item을 컨트롤
         //버튼을 활용할 시( 거의 필수 )에 UIBarButtonItem 사용할 것
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonClicked))
         //색상 변경
         navigationItem.leftBarButtonItem?.tintColor = .black
+        //tableView delegate + dataSource
         searchTableView.delegate = self
         searchTableView.dataSource = self
+        searchTableView.prefetchDataSource = self
         
-        //delegate
+        //SearchBar delegate
         searchBar.delegate = self
         
         fetchMovieData()
@@ -37,40 +42,19 @@ class searchViewController: UIViewController,UITableViewDataSource, UITableViewD
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchInfoCell") as? searchTableViewCell else {
-            return UITableViewCell()
-        }
-        let row = movieData[indexPath.row]
-        //url if let 처리해두기 : 기본이미지 설정
-        if let url = URL(string: row.imageData){
-        cell.posterImage.kf.setImage(with: url)
-        } else {
-            cell.posterImage.image = UIImage(systemName: "star")
-        }
-        cell.titleLabel.text = row.titleData
-        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 19)
-        cell.resultLabel.text = row.userRatingData
-        cell.contentLabel.text = row.subtitle
-
-        return cell
-    }
     //영화 데이터를 가지고와보자 ( 네이버 영화 )
     func fetchMovieData(){
-        if let movieNmae = "스파이더맨".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
-            let url =  "https://openapi.naver.com/v1/search/movie.json?query=\(movieNmae)&display=15&start=1"
+        
+        if let query = "가족".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+            let url =  "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=\(startPage)"
             let header : HTTPHeaders = [
-               
+                "X-Naver-Client-Id" : APIDocs.NAVER_ID,
+                "X-Naver-Client-Secret" : APIDocs.NAVER_PASS
             ]
             AF.request(url, method: .get,headers: header).validate().responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-//                    print("JSON: \(json)")
                     for item in json["items"].arrayValue {
                         let title = item["title"].stringValue.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
                         let image = item["image"].stringValue
@@ -78,7 +62,6 @@ class searchViewController: UIViewController,UITableViewDataSource, UITableViewD
                         let userRating = item["userRating"].stringValue
                         let subtitle = item["subtitle"].stringValue
                         let data = MovieModel(titleData: title, imageData: image, linkData: link, userRatingData: userRating, subtitle: subtitle)
-                        
                         self.movieData.append(data)
                     }
                     //여기서 다시 리로드해야만해!! 가장 중요!!
@@ -91,3 +74,43 @@ class searchViewController: UIViewController,UITableViewDataSource, UITableViewD
         }
     }
 }
+extension searchViewController : UITableViewDataSource, UITableViewDelegate,UITableViewDataSourcePrefetching{
+    //셀이 화면에 보이기 전에 필요한 리소스를 미리 다운 받는 기능! 무한스크롤!
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        totalCount += 11
+        for indexPath in indexPaths {
+            if movieData.count - 1 == indexPath.row && movieData.count < totalCount{
+                startPage += 10
+                self.fetchMovieData()
+                print("prefetch: \(indexPath)")
+            }
+        }
+    }
+    //취소!
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        print("취소 : \(indexPaths)")
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movieData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchInfoCell") as? searchTableViewCell else {
+            return UITableViewCell()
+        }
+        let row = movieData[indexPath.row]
+        //url if let 처리해두기 : 기본이미지 설정
+        if let url = URL(string: row.imageData){
+            cell.posterImage.kf.setImage(with: url)
+        } else {
+            cell.posterImage.image = UIImage(systemName: "star")
+        }
+        cell.titleLabel.text = row.titleData
+        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 19)
+        cell.resultLabel.text = row.userRatingData
+        cell.contentLabel.text = row.subtitle
+        
+        return cell
+    }
+}
+

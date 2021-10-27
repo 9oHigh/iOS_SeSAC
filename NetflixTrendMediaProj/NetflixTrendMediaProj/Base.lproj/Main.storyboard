@@ -589,7 +589,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fkn-u9-hgL">
-                                <rect key="frame" x="0.0" y="146" width="414" height="750"/>
+                                <rect key="frame" x="0.0" y="125" width="414" height="771"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchInfoCell" rowHeight="128" id="uBU-Jb-g0H" customClass="searchTableViewCell" customModule="NetflixTrendMediaProj" customModuleProvider="target">
@@ -613,13 +613,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검색 결과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n95-uK-uBP">
-                                                    <rect key="frame" x="149" y="40" width="64" height="21"/>
+                                                    <rect key="frame" x="149" y="40" width="63.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="줄거리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqr-9j-JwN">
-                                                    <rect key="frame" x="149" y="69" width="45" height="21"/>
+                                                    <rect key="frame" x="149" y="69" width="44.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -649,17 +649,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영화 검색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pa-Zt-HmO">
-                                <rect key="frame" x="175" y="60" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fhD-2j-oAe">
-                                <rect key="frame" x="0.0" y="89" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="apO-6z-lXP"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="64" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -667,14 +658,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Fkn-u9-hgL" secondAttribute="bottom" id="8CW-PB-Tz4"/>
-                            <constraint firstItem="fhD-2j-oAe" firstAttribute="leading" secondItem="Cwm-TM-hFl" secondAttribute="leading" id="Hsz-CH-9Kz"/>
-                            <constraint firstItem="fhD-2j-oAe" firstAttribute="top" secondItem="2pa-Zt-HmO" secondAttribute="bottom" constant="8" id="IQn-Id-aCi"/>
-                            <constraint firstItem="2pa-Zt-HmO" firstAttribute="top" secondItem="hmW-Uw-Z8W" secondAttribute="top" constant="16" id="TDp-aS-Obu"/>
-                            <constraint firstItem="2pa-Zt-HmO" firstAttribute="centerX" secondItem="Fkn-u9-hgL" secondAttribute="centerX" id="TYl-YP-pQ0"/>
-                            <constraint firstItem="fhD-2j-oAe" firstAttribute="bottom" secondItem="Fkn-u9-hgL" secondAttribute="top" constant="-13" id="Tk9-9c-Q8Z"/>
-                            <constraint firstItem="2pa-Zt-HmO" firstAttribute="leading" secondItem="hmW-Uw-Z8W" secondAttribute="leading" constant="175" id="ubr-3k-xgt"/>
-                            <constraint firstItem="fhD-2j-oAe" firstAttribute="leading" secondItem="Fkn-u9-hgL" secondAttribute="leading" id="v0R-Ya-ast"/>
-                            <constraint firstItem="2pa-Zt-HmO" firstAttribute="centerX" secondItem="fhD-2j-oAe" secondAttribute="centerX" id="wOe-PG-4rm"/>
+                            <constraint firstItem="fhD-2j-oAe" firstAttribute="leading" secondItem="hmW-Uw-Z8W" secondAttribute="leading" id="Df6-QK-SqW"/>
+                            <constraint firstItem="Fkn-u9-hgL" firstAttribute="trailing" secondItem="fhD-2j-oAe" secondAttribute="trailing" id="Etv-fu-uAy"/>
+                            <constraint firstItem="Fkn-u9-hgL" firstAttribute="leading" secondItem="fhD-2j-oAe" secondAttribute="leading" id="Ez4-zQ-HNT"/>
+                            <constraint firstItem="fhD-2j-oAe" firstAttribute="trailing" secondItem="hmW-Uw-Z8W" secondAttribute="trailing" id="o1Y-Li-Ao3"/>
+                            <constraint firstItem="fhD-2j-oAe" firstAttribute="top" secondItem="hmW-Uw-Z8W" secondAttribute="top" constant="20" id="oHl-R8-GSI"/>
+                            <constraint firstItem="Fkn-u9-hgL" firstAttribute="top" secondItem="fhD-2j-oAe" secondAttribute="bottom" constant="10" id="ppM-OI-3bY"/>
                         </constraints>
                     </view>
                     <connections>

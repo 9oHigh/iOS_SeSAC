@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C198A662729896200201FE1 /* APIDocs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C198A652729896200201FE1 /* APIDocs.swift */; };
 		4C51916D272697DD0044876C /* alertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51916C272697DD0044876C /* alertExtension.swift */; };
 		4C9CDC57271D2ED000FA9021 /* mediaPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */; };
 		4C9CDC59271D526A00FA9021 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CDC58271D526A00FA9021 /* WebViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C198A652729896200201FE1 /* APIDocs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocs.swift; sourceTree = "<group>"; };
 		4C51916C272697DD0044876C /* alertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alertExtension.swift; sourceTree = "<group>"; };
 		4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaPeopleTableViewCell.swift; sourceTree = "<group>"; };
 		4C9CDC58271D526A00FA9021 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				4C9CDC56271D2ED000FA9021 /* mediaPeopleTableViewCell.swift */,
 				4CA279DB271EF05D00BB6F44 /* summaryTableViewCell.swift */,
 				4CB5ED4A271C65BD00C07E33 /* searchViewController.swift */,
+				4C198A652729896200201FE1 /* APIDocs.swift */,
 				4CB5ED4E271C6C9200C07E33 /* searchTableViewCell.swift */,
 				4C9CDC58271D526A00FA9021 /* WebViewController.swift */,
 				4CA279E3271F038F00BB6F44 /* BookViewController.swift */,
@@ -217,6 +220,7 @@
 				4CB5ED31271C4EED00C07E33 /* AppDelegate.swift in Sources */,
 				4CB5ED45271C57FA00C07E33 /* myMedia.swift in Sources */,
 				4CB5ED49271C5AD700C07E33 /* mediaInfoTableViewCell.swift in Sources */,
+				4C198A662729896200201FE1 /* APIDocs.swift in Sources */,
 				4CB5ED33271C4EED00C07E33 /* SceneDelegate.swift in Sources */,
 				4CB5ED4F271C6C9200C07E33 /* searchTableViewCell.swift in Sources */,
 				4CC49E612720322C00421026 /* MapViewController.swift in Sources */,
