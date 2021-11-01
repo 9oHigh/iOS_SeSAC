@@ -25,5 +25,6 @@ class WebViewController: UIViewController,WKUIDelegate {
         
         titleLabel.text = pageTitle!
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        
     }
 }

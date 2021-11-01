@@ -7,6 +7,8 @@
 
 import UIKit
 import Kingfisher
+import Alamofire
+import SwiftyJSON
 
 class mediaPeopleViewControllViewController: UIViewController {
     
@@ -16,10 +18,13 @@ class mediaPeopleViewControllViewController: UIViewController {
     var posterName : String?
     var titleName : String?
     var summary : String?
+    var movie_id : Int?
     var clicked : Bool = false
     
-    //임시로 넣을 사람들 -> 2차원 배열을 이용해서 여러 영화에 넣어주어야 한다.
-    var charactorList : [String] = ["MyPerson","MyGirl","MyFriend"]
+    var castNameList : [String] = []
+    var profileList : [String] = []
+    var characList : [String] = []
+    
     @IBOutlet weak var peopleTableView: UITableView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerImageView: UIImageView!
@@ -40,8 +45,10 @@ class mediaPeopleViewControllViewController: UIViewController {
         peopleTableView.dataSource = self
         
         //헤더뷰 - 가지고온 데이터로 didload()
-        headerImageViewPoster.image = UIImage(named: posterName ?? "squid_game")
+        let postUrl = URL(string: posterName!)
+        headerImageViewPoster.kf.setImage(with: postUrl)
         headerImageViewPoster.layer.cornerRadius = 5
+        
         //코너를 깎기위해 clipsToBounds
         headerImageViewPoster.clipsToBounds = true
         
@@ -51,6 +58,33 @@ class mediaPeopleViewControllViewController: UIViewController {
         titleLabel.text = titleName ?? "Squid Game"
         title = "등장인물"
         
+        peopleFetchData()
+    }
+    func peopleFetchData(){
+        let url = "https://api.themoviedb.org/3/movie/\( movie_id!)/credits?api_key=\(APIDocs.TMDB_KEY)&language=en-US"
+//        print(url)
+        AF.request(url, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                
+                for item in json["cast"].arrayValue {
+                    let cast = item["name"].stringValue
+                    self.castNameList.append(cast)
+                    
+                    let character = item["character"].stringValue
+                    self.characList.append(character)
+                    
+                    let profile = APIDocs.TMDB_PosterPATH + item["profile_path"].stringValue
+                    
+                    self.profileList.append(profile)
+//                    print(cast,character,profile)
+                }
+            case .failure(let error):
+                print(error)
+            }
+            self.peopleTableView.reloadData()
+        }
     }
     @objc func arrowButtonClicked (selectedButton : UIButton){
         //테이블 뷰가 하난데 어떻게 automatic Dimension을 사용할까..
@@ -63,7 +97,7 @@ extension mediaPeopleViewControllViewController : UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //임시
-        return charactorList.count + 1 //과제로 추가된 섹션넣기위함
+        return castNameList.count + 1 //과제로 추가된 섹션넣기위함
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,12 +124,17 @@ extension mediaPeopleViewControllViewController : UITableViewDelegate,UITableVie
                 return UITableViewCell()
             }
             //임시
-            cell.actorImageView.image = UIImage(named: charactorList[indexPath.row-1])
+            
+            let url =  URL(string: profileList[indexPath.row-1])
+            cell.actorImageView.kf.setImage(with: url)
             cell.actorImageView.layer.cornerRadius = 5
+            
             //임시
-            cell.actorNameLabel.text = charactorList[indexPath.row-1]
+            cell.actorNameLabel.text = castNameList[indexPath.row-1]
             cell.actorNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-            cell.actorDescriptLabel.text = "배우에 대한 설명입니다.배우에 대한 설명입니다.배우에 대한 설명입니다."
+            
+            cell.actorDescriptLabel.text = characList[indexPath.row-1]
+            cell.actorDescriptLabel.font = UIFont.systemFont(ofSize: 18)
             
             return cell
         }

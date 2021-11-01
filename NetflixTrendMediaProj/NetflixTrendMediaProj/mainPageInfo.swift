@@ -17,4 +17,5 @@ struct MainPageInfo{
     var title : String
     var people : String
     var overview : String
+    var id : Int 
 }

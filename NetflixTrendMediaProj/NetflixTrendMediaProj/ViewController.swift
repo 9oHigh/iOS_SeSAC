@@ -16,9 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var shadowRoundedView: UIView!
     @IBOutlet weak var newHeaderView: UIView!
     
+    var flag : Int = 0
     var myMediaList : [MainPageInfo] = []
-    var startPage = 1
-    var totalCount = 0
+    var link : String = ""
+    var ytUrl : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,12 +68,26 @@ class ViewController: UIViewController {
         navi.modalTransitionStyle = .coverVertical
         
         //데이터 연결
-        //웹뷰의 이미지 링크를 전달해준다. 임시로 넣을 이미지!
-        viewController.myLink = myMediaList[sender.tag].backDrop
-        //타이틀을 전달해준다!
-        viewController.pageTitle = myMediaList[sender.tag].title
+        self.ytUrl = "https://api.themoviedb.org/3/movie/\(myMediaList[sender.tag].id)/videos?api_key=\(APIDocs.TMDB_KEY)&language=en-US"
         
-        self.present(navi, animated: true, completion: nil)
+        AF.request(self.ytUrl, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                self.link = "https://www.youtube.com/watch?v=" + json["results"][0]["key"].stringValue
+                print("link:",self.link)
+            case .failure(let error):
+                print(error)
+            }
+         
+            viewController.myLink = self.link
+            print("mylink:",viewController.myLink!)
+            //타이틀을 전달해준다!
+            viewController.pageTitle = self.myMediaList[sender.tag].title
+            print("mysender :",sender.tag)
+        
+            self.present(navi, animated: true, completion: nil)
+        }
     }
     @IBAction func bookButtonClicked(_ sender: UIButton) {
         //스토리보드 특정
@@ -92,7 +107,7 @@ class ViewController: UIViewController {
         //self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func theaterButtonClicked(_ sender: UIButton) {
-    print(#function)
+    
     //스토리보드 특정
     let myStoryboard = UIStoryboard(name: "Main", bundle: nil)
     //가지고올 컨트롤러 특정
@@ -101,8 +116,15 @@ class ViewController: UIViewController {
     self.navigationController?.pushViewController(vc, animated: true)
     }
     func fetchMainPage(){
+        
         TMDBManager.shared.fetchData { code, json in
-            for item in json["results"].arrayValue{
+            if self.flag == 0 {
+                TMDBManager.startPage = 0
+                TMDBManager.totalPage = json["total_pages"].intValue
+                self.flag = 1
+            }
+            for item in json["results"].arrayValue {
+                
                 let releaseDate = item["release_date"].stringValue
                 let title = item["title"].stringValue
                 let genre = "Mystery"
@@ -111,7 +133,9 @@ class ViewController: UIViewController {
                 let grade = item["vote_average"].doubleValue
                 let people = "이건 데이터가 없네여!"
                 let overview = item["overview"].stringValue
-                let data = MainPageInfo(releaseDate: releaseDate, genre: genre, poster: poster, backDrop: backDrop, grade: grade, title: title, people: people, overview: overview)
+                let id = item["id"].intValue
+                
+                let data = MainPageInfo(releaseDate: releaseDate, genre: genre, poster: poster, backDrop: backDrop, grade: grade, title: title, people: people, overview: overview, id: id)
                 
                 self.myMediaList.append(data)
             }
@@ -122,8 +146,12 @@ class ViewController: UIViewController {
 extension ViewController :UITableViewDataSource, UITableViewDelegate,UITableViewDataSourcePrefetching{
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        //MARK: 페이지를 추가로 가지고올 수 있는 방법 알아보기
-        print("나중에 할게욤!")
+        for indexPath in indexPaths {
+            if myMediaList.count - 1 == indexPath.row && myMediaList.count < TMDBManager.totalPage{
+                TMDBManager.startPage += 10
+                fetchMainPage()
+            }
+        }
     }
     
     
@@ -177,10 +205,21 @@ extension ViewController :UITableViewDataSource, UITableViewDelegate,UITableView
         self.navigationController?.pushViewController(vc, animated: true)
         
         //새롭게 뜨는 화면(mediaPeople)의 header 이름을 전달하고 이를 이용해 이미지 적용
-        //MARK: 상세검색 페이지랑 연동해서 준비
-//        vc.posterName = myPosterList[indexPath.row]
-//        vc.titleName = myMediaList.tvShow[indexPath.row].title
-//        vc.headerImageName = myMediaList.tvShow[indexPath.row].backdropImage
-//        vc.summary = myMediaList.tvShow[indexPath.row].overview
+        
+        //Poster
+        vc.posterName = myMediaList[indexPath.row].poster
+        
+        //BackDrop
+        vc.headerImageName = myMediaList[indexPath.row].backDrop
+        
+        //Title
+        vc.titleName = myMediaList[indexPath.row].title
+        
+        //Overview
+        vc.summary = myMediaList[indexPath.row].overview
+        
+        //id
+        vc.movie_id = myMediaList[indexPath.row].id
+        
     }
 }

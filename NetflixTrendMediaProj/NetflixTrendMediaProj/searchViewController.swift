@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-class searchViewController: UIViewController,UISearchBarDelegate {
+class searchViewController: UIViewController{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
@@ -33,8 +33,6 @@ class searchViewController: UIViewController,UISearchBarDelegate {
         
         //SearchBar delegate
         searchBar.delegate = self
-        
-        fetchMovieData()
     }
     //버튼 클릭시 화면자체를 스택에서 제거
     //계속 쌓이게 되면 에러가 발생할 수 있음
@@ -43,14 +41,14 @@ class searchViewController: UIViewController,UISearchBarDelegate {
     }
     
     //영화 데이터를 가지고와보자 ( 네이버 영화 )
-    func fetchMovieData(){
-        
-        if let query = "가족".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+    func fetchMovieData(query: String){
+        if let query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
             let url =  "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=\(startPage)"
             let header : HTTPHeaders = [
                 "X-Naver-Client-Id" : APIDocs.NAVER_ID,
                 "X-Naver-Client-Secret" : APIDocs.NAVER_PASS
             ]
+            
             AF.request(url, method: .get,headers: header).validate().responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -65,14 +63,38 @@ class searchViewController: UIViewController,UISearchBarDelegate {
                         self.movieData.append(data)
                     }
                     //여기서 다시 리로드해야만해!! 가장 중요!!
-                    self.searchTableView.reloadData()
-                    
+                    DispatchQueue.main.async {
+                        self.searchTableView.reloadData()
+                    }
                 case .failure(let error):
                     print(error)
                 }
             }
         }
     }
+}
+extension searchViewController : UISearchBarDelegate{
+    //검색버튼이 눌렀을 때 ( 키보드의 리턴키! )
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        if let text = searchBar.text{
+            movieData.removeAll()
+            startPage = 1
+            fetchMovieData(query: text)
+        }
+    }
+    //취소버튼 눌렀을 때
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        movieData.removeAll()
+        searchTableView.reloadData()
+        
+    }
+    //서치바에서 커서가 깜빡이기 시작할 때
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
 }
 extension searchViewController : UITableViewDataSource, UITableViewDelegate,UITableViewDataSourcePrefetching{
     //셀이 화면에 보이기 전에 필요한 리소스를 미리 다운 받는 기능! 무한스크롤!
@@ -81,7 +103,7 @@ extension searchViewController : UITableViewDataSource, UITableViewDelegate,UITa
         for indexPath in indexPaths {
             if movieData.count - 1 == indexPath.row && movieData.count < totalCount{
                 startPage += 10
-                self.fetchMovieData()
+                self.fetchMovieData(query: self.searchBar.text!)
                 print("prefetch: \(indexPath)")
             }
         }
