@@ -39,22 +39,4 @@ class ShoppingListTableViewCell: UITableViewCell {
         contentView.layer.cornerRadius = 15
         
     }
-    //체크 이미지 및 즐겨찾기 이미지 교체
-    @IBAction func checkBoxButtonClicked(_ sender: UIButton) {
-
-        if checkBoxButton.currentImage == checkedImage {
-            checkBoxButton.setImage(unCheckedImage, for: .normal)
-            
-        }else {
-            checkBoxButton.setImage(checkedImage, for: .normal)
-        }
-    }
-
-    @IBAction func starButtonClicked(_ sender: UIButton) {
-        if starButton.currentImage == StarredImage {
-            starButton.setImage(unStarredImage, for: .normal)
-        }else {
-            starButton.setImage(StarredImage, for: .normal)
-        }
-    }
 }

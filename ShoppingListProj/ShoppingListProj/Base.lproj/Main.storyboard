@@ -79,7 +79,6 @@
                                                 <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <action selector="checkBoxButtonClicked:" destination="E6X-B6-xf1" eventType="touchUpInside" id="Lw4-xo-iFc"/>
                                                 <action selector="checkButtonClicked:" destination="Lg8-7S-0j2" eventType="touchUpInside" id="jsy-bc-bIh"/>
                                             </connections>
                                         </button>
@@ -99,7 +98,6 @@
                                                 <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <action selector="starButtonClicked:" destination="E6X-B6-xf1" eventType="touchUpInside" id="Hwt-UU-Th0"/>
                                                 <action selector="starButtonClicked:" destination="Lg8-7S-0j2" eventType="touchUpInside" id="mpX-WD-HZg"/>
                                             </connections>
                                         </button>
@@ -134,6 +132,7 @@
                     <connections>
                         <outlet property="addButton" destination="nFX-Ao-W0P" id="aJV-HA-H4Z"/>
                         <outlet property="addShopListTextField" destination="qHz-eX-XqH" id="V64-n9-fxt"/>
+                        <outlet property="mainTableView" destination="UPI-YH-FKz" id="48Q-jO-M7V"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1M-wr-j61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

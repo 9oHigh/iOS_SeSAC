@@ -9,6 +9,8 @@ import Foundation
 
 struct Bucket {
     var productName : String
-    var checkButton : Int // 0 : Unchecked , 1 : checked
-    var starButton : Int // 0 : Unchecked , 1 : checked
+    var checkButton : Int
+    // 0 : Unchecked , 1 : checked
+    var starButton : Int
+    // 0 : Unchecked , 1 : checked
 }
