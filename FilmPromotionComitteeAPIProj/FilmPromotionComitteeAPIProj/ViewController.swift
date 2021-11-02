@@ -9,13 +9,18 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import TextFieldEffects
+import RealmSwift
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var rankingTableView: UITableView!
     @IBOutlet var dateTextfield: UITextField!
     
+    let localRealm = try! Realm()
+    var tasks : Results<DailyMovie>!
     var moviesData : [MovieData] = []
+    var containDateList : [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,39 +31,75 @@ class ViewController: UIViewController {
         //featuers
         dateTextfield.placeholder = "20200401"
         
+        tasks = localRealm.objects(DailyMovie.self)
+        print("위치 :",localRealm.configuration.fileURL!)
     }
     
     @IBAction func searchButtonClicked(_ sender: UIButton) {
-        
+        //가장 먼저
+        print(self.containDateList)
         if let text = dateTextfield.text{
-            
-            let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=&targetDt=" + text
-            print(text,url)
-            AF.request(url, method: .get).validate().responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-//                    print(json)
-                    for item in 0...10{
-                        let title = json["boxOfficeResult"]["dailyBoxOfficeList"][item]["movieNm"].stringValue
-                        let date = json["boxOfficeResult"]["dailyBoxOfficeList"][item]["openDt"].stringValue
-                        let data = MovieData(title: title, releaseDate: date)
-                        self.moviesData.append(data)
+            if text == "" || text.count < 8{
+                let alert = UIAlertController(title: "오입력 안내", message: "년도/월/일 순으로 정확히 입력해주세요. ex)20201201", preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(action)
+                
+                present(alert,animated: true,completion: nil)
+                dateTextfield.text = ""
+                return
+            }
+            moviesData.removeAll()
+            // 데베에 들어가 있음
+            if self.containDateList.contains(text){
+                for item in localRealm.objects(DailyMovie.self).filter("inputDate == '\(text)'"){
+                    let name = item.name
+                    let date = item.date
+                    let data = MovieData(title: name, releaseDate: date)
+                    self.moviesData.append(data)
+                }
+                self.rankingTableView.reloadData()
+            } else {
+                // 안들어가 있음
+                // 여기서 DB에 저장필요
+                self.containDateList.append(text)
+                let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=&targetDt=" + text
+                
+                AF.request(url, method: .get).validate().responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        
+                        for item in 0...9 {
+                            let title = json["boxOfficeResult"]["dailyBoxOfficeList"][item]["movieNm"].stringValue
+                            let date = json["boxOfficeResult"]["dailyBoxOfficeList"][item]["openDt"].stringValue
+                            let data = MovieData(title: title, releaseDate: date)
+                            let task = DailyMovie(name: title, date: date, inputDate: text)
+                            try! self.localRealm.write{
+                                self.localRealm.add(task)
+                            }
+                            self.moviesData.append(data)
+                        }
+                        self.rankingTableView.reloadData()
+                    case .failure(let error):
+                        print(error)
                     }
-                    self.rankingTableView.reloadData()
-                case .failure(let error):
-                    print(error)
                 }
             }
+        } else {
+            let alert = UIAlertController(title: "오입력 안내", message: "년도/월/일 순으로 정확히 입력해주세요. ex)20201201", preferredStyle: .alert)
+            let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(action)
             
+            present(alert,animated: true,completion: nil)
         }
     }
 }
 extension ViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moviesData.count-1
+        return moviesData.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else {
@@ -78,10 +119,8 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
         cell.levelLabel.backgroundColor = .white
         
         cell.backgroundColor = .black
+        
         return cell
     }
-    
-    
-    
 }
 

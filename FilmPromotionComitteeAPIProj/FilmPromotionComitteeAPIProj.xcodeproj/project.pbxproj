@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0AEA8827312906009431F1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0AEA8727312906009431F1 /* Realm */; };
+		4C0AEA8A27312906009431F1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0AEA8927312906009431F1 /* RealmSwift */; };
+		4C0AEA8C27312B7C009431F1 /* RealmTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AEA8B27312B7C009431F1 /* RealmTable.swift */; };
 		4C14A9AE27282F14003B0753 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 4C14A9AD27282F14003B0753 /* TextFieldEffects */; };
 		4C14A9B127282F38003B0753 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4C14A9B027282F38003B0753 /* Alamofire */; };
 		4C14A9B427282F4D003B0753 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4C14A9B327282F4D003B0753 /* SwiftyJSON */; };
@@ -21,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0AEA8B27312B7C009431F1 /* RealmTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTable.swift; sourceTree = "<group>"; };
 		4C14A9B527283E13003B0753 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		4C14A9B727283F88003B0753 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		4CDBB7B42727FD0700A05119 /* FilmPromotionComitteeAPIProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmPromotionComitteeAPIProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +44,8 @@
 			files = (
 				4C14A9B427282F4D003B0753 /* SwiftyJSON in Frameworks */,
 				4C14A9AE27282F14003B0753 /* TextFieldEffects in Frameworks */,
+				4C0AEA8827312906009431F1 /* Realm in Frameworks */,
+				4C0AEA8A27312906009431F1 /* RealmSwift in Frameworks */,
 				4C14A9B127282F38003B0753 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,6 +75,7 @@
 				4CDBB7B72727FD0700A05119 /* AppDelegate.swift */,
 				4CDBB7B92727FD0700A05119 /* SceneDelegate.swift */,
 				4CDBB7BB2727FD0700A05119 /* ViewController.swift */,
+				4C0AEA8B27312B7C009431F1 /* RealmTable.swift */,
 				4C14A9B727283F88003B0753 /* MovieData.swift */,
 				4C14A9B527283E13003B0753 /* MovieTableViewCell.swift */,
 				4CDBB7BD2727FD0700A05119 /* Main.storyboard */,
@@ -99,6 +106,8 @@
 				4C14A9AD27282F14003B0753 /* TextFieldEffects */,
 				4C14A9B027282F38003B0753 /* Alamofire */,
 				4C14A9B327282F4D003B0753 /* SwiftyJSON */,
+				4C0AEA8727312906009431F1 /* Realm */,
+				4C0AEA8927312906009431F1 /* RealmSwift */,
 			);
 			productName = FilmPromotionComitteeAPIProj;
 			productReference = 4CDBB7B42727FD0700A05119 /* FilmPromotionComitteeAPIProj.app */;
@@ -132,6 +141,7 @@
 				4C14A9AC27282F14003B0753 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				4C14A9AF27282F38003B0753 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4C14A9B227282F4D003B0753 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				4C0AEA8627312906009431F1 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 4CDBB7B52727FD0700A05119 /* Products */;
 			projectDirPath = "";
@@ -160,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0AEA8C27312B7C009431F1 /* RealmTable.swift in Sources */,
 				4CDBB7BC2727FD0700A05119 /* ViewController.swift in Sources */,
 				4CDBB7B82727FD0700A05119 /* AppDelegate.swift in Sources */,
 				4C14A9B627283E13003B0753 /* MovieTableViewCell.swift in Sources */,
@@ -386,6 +397,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4C0AEA8627312906009431F1 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.18.0;
+			};
+		};
 		4C14A9AC27282F14003B0753 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
@@ -413,6 +432,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4C0AEA8727312906009431F1 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C0AEA8627312906009431F1 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		4C0AEA8927312906009431F1 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C0AEA8627312906009431F1 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		4C14A9AD27282F14003B0753 /* TextFieldEffects */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C14A9AC27282F14003B0753 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
