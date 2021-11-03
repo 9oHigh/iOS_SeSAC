@@ -31,6 +31,7 @@ class TableViewController: UITableViewController {
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet var addShopListTextField: UITextField!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet weak var settingButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class TableViewController: UITableViewController {
         addButton.tintColor = .black
         //전체 데이터 가지고오기
         tasks = localRealm.objects(ShopList.self)
+        print("위치 :",localRealm.configuration.fileURL!)
     }
     //갱신용
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +93,34 @@ class TableViewController: UITableViewController {
          }
          */
         
+    }
+    
+    @IBAction func settingButtonClicked(_ sender: UIButton) {
+        let alert = UIAlertController(title: "정렬 기준", message: "어떤 순으로 정렬하시겠어요?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "할일", style: .default, handler: { action in
+            self.alertHandler(name:action.title!)
+        }))
+        alert.addAction(UIAlertAction(title: "즐겨찾기", style: .default, handler: { action in
+            self.alertHandler(name:action.title!)
+        }))
+        alert.addAction(UIAlertAction(title: "제목", style: .default, handler: { action in
+            self.alertHandler(name:action.title!)
+        }))
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func alertHandler(name : String){
+        switch name {
+        case "할일":
+            tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "checkClicked", ascending: false)
+        case "즐겨찾기":
+            tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "starClicked", ascending: false)
+        case "제목":
+            tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "name", ascending: true)
+        default:
+            print("Nothing")
+        }
+        self.mainTableView.reloadData()
     }
     @IBAction func checkButtonClicked(_ sender: UIButton) {
         if sender.currentImage == unCheckedImage {
@@ -182,7 +212,9 @@ class TableViewController: UITableViewController {
          cell.shopListLabel.text = myShopList[indexPath.row].productName*/
         
         cell.shopListLabel.text = tasks[indexPath.row].name
-        cell.tag = indexPath.row
+        cell.starButton.tag = indexPath.row
+        cell.checkBoxButton.tag = indexPath.row
+        
         if tasks[indexPath.row].starClicked == true {
             cell.starButton.setImage(StarredImage, for: .normal)
         } else {

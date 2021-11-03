@@ -14,20 +14,11 @@ class ShoppingListTableViewCell: UITableViewCell {
     @IBOutlet var shopListLabel: UILabel!
     @IBOutlet var starButton: UIButton!
     
-    //Images
-    
-    let unCheckedImage = UIImage(systemName: "checkmark.square")
-    let checkedImage = UIImage(systemName: "checkmark.square.fill")
-    let unStarredImage = UIImage(systemName: "star")
-    let StarredImage = UIImage(systemName: "star.fill")
-    
     //default
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkBoxButton.setImage(unCheckedImage, for: .normal)
-        starButton.setImage(unStarredImage, for: .normal)
+        
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

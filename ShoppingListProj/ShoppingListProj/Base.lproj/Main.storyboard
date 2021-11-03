@@ -49,14 +49,31 @@
                                         <action selector="addButtonClickedAction:" destination="Lg8-7S-0j2" eventType="touchUpInside" id="geH-oC-iUz"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gls-Wh-rKm">
+                                    <rect key="frame" x="349" y="0.0" width="45" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="qYZ-Vj-ZSc"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="tc7-fJ-5NK"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system">
+                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="settingButtonClicked:" destination="Lg8-7S-0j2" eventType="touchUpInside" id="2iS-lr-rgh"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="nFX-Ao-W0P" firstAttribute="top" secondItem="P7k-RV-fgO" secondAttribute="top" constant="83" id="4XF-zR-z1m"/>
+                                <constraint firstItem="gls-Wh-rKm" firstAttribute="top" secondItem="P7k-RV-fgO" secondAttribute="top" id="Bbp-6m-S2k"/>
                                 <constraint firstItem="4eC-7g-Yvj" firstAttribute="leading" secondItem="P7k-RV-fgO" secondAttribute="leading" constant="191" id="GZ6-PF-dcr"/>
                                 <constraint firstItem="nFX-Ao-W0P" firstAttribute="centerY" secondItem="qHz-eX-XqH" secondAttribute="centerY" id="Jjw-h6-hqh"/>
                                 <constraint firstAttribute="trailing" secondItem="nFX-Ao-W0P" secondAttribute="trailing" constant="30" id="MJu-xN-u3v"/>
                                 <constraint firstItem="qHz-eX-XqH" firstAttribute="centerX" secondItem="4eC-7g-Yvj" secondAttribute="centerX" id="Rh6-W4-N7T"/>
+                                <constraint firstAttribute="trailing" secondItem="gls-Wh-rKm" secondAttribute="trailing" constant="20" id="fcj-pB-DSY"/>
+                                <constraint firstItem="gls-Wh-rKm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4eC-7g-Yvj" secondAttribute="trailing" constant="8" symbolic="YES" id="fcv-lH-Qpm"/>
                                 <constraint firstItem="qHz-eX-XqH" firstAttribute="leading" secondItem="P7k-RV-fgO" secondAttribute="leading" constant="20" id="fug-pJ-0Mh"/>
                                 <constraint firstItem="4eC-7g-Yvj" firstAttribute="top" secondItem="P7k-RV-fgO" secondAttribute="top" constant="28" id="iir-Rb-AGl"/>
                                 <constraint firstItem="qHz-eX-XqH" firstAttribute="bottom" secondItem="P7k-RV-fgO" secondAttribute="bottomMargin" id="q9d-A0-qmv"/>
@@ -133,6 +150,7 @@
                         <outlet property="addButton" destination="nFX-Ao-W0P" id="aJV-HA-H4Z"/>
                         <outlet property="addShopListTextField" destination="qHz-eX-XqH" id="V64-n9-fxt"/>
                         <outlet property="mainTableView" destination="UPI-YH-FKz" id="48Q-jO-M7V"/>
+                        <outlet property="settingButton" destination="gls-Wh-rKm" id="mKl-rC-4CL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1M-wr-j61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -142,6 +160,7 @@
     </scenes>
     <resources>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
