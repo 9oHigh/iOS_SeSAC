@@ -30,6 +30,8 @@ class ViewController: UIViewController {
         rankingTableView.backgroundColor = .black
         //featuers
         dateTextfield.placeholder = "20200401"
+        //해당 컬럼의 값들 넣어주기.. 너무 수동적인데
+        containDateList = []
         
         tasks = localRealm.objects(DailyMovie.self)
         print("위치 :",localRealm.configuration.fileURL!)
@@ -38,8 +40,9 @@ class ViewController: UIViewController {
     @IBAction func searchButtonClicked(_ sender: UIButton) {
         //가장 먼저
         print(self.containDateList)
+        moviesData.removeAll()
         if let text = dateTextfield.text{
-            if text == "" || text.count < 8{
+            if text == "" || text.count != 8{
                 let alert = UIAlertController(title: "오입력 안내", message: "년도/월/일 순으로 정확히 입력해주세요. ex)20201201", preferredStyle: .alert)
                 let action = UIAlertAction(title: "확인", style: .default, handler: nil)
                 alert.addAction(action)
@@ -48,7 +51,6 @@ class ViewController: UIViewController {
                 dateTextfield.text = ""
                 return
             }
-            moviesData.removeAll()
             // 데베에 들어가 있음
             if self.containDateList.contains(text){
                 for item in localRealm.objects(DailyMovie.self).filter("inputDate == '\(text)'"){
@@ -62,7 +64,7 @@ class ViewController: UIViewController {
                 // 안들어가 있음
                 // 여기서 DB에 저장필요
                 self.containDateList.append(text)
-                let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=&targetDt=" + text
+                let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\("key")&targetDt=" + text
                 
                 AF.request(url, method: .get).validate().responseJSON { response in
                     switch response.result {
