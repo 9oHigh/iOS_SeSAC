@@ -8,9 +8,12 @@
 import UIKit
 import RealmSwift
 import SwiftUI
+import JGProgressHUD
+import Zip
+import MobileCoreServices
+
 
 class TableViewController: UITableViewController {
-    
     
     let localRealm = try! Realm()
     var tasks : Results<ShopList>!
@@ -50,6 +53,98 @@ class TableViewController: UITableViewController {
     //갱신용
     override func viewWillAppear(_ animated: Bool) {
         mainTableView.reloadData()
+    }
+    
+    @IBAction func backupAndRestoreClicked(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "백업 및 복구", message: "백업/복구 당신의 선택은!", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "백업", style: .default, handler: { action in
+            self.backupOrRestore(name: action.title!)
+        }))
+        alert.addAction(UIAlertAction(title: "복구", style: .default, handler: { action in
+            self.backupOrRestore(name:action.title!)
+        }))
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func backupOrRestore(name: String){
+        switch name {
+        case "백업":
+            backUp()
+        case "복구":
+            restore()
+        default :
+            print("Key Error")
+        }
+    }
+    func backUp(){
+        /*
+         1.도큐먼트 폴더 위치
+         2.백업하고자하는 파일 확인
+         3.백업
+         */
+        //4. 백업할 파일에 대한 URL 배열
+        var urlPath = [URL]()
+        
+        //1. 도큐먼트 폴더 위치확인
+        if let path = documentDirectoryPath(){
+            //2. 백업하고자 하는 파일 URL확인
+            //타입 캐스팅 반드시 해야함 + 이미지 같은 경우 백업 편의성을 위해 폴더안에 넣어두는 것이 유리
+            let realm = (path as NSString).appendingPathComponent("default.realm")
+            //3.백업하고자 하는 파일 존재 여부 확인
+            if FileManager.default.fileExists(atPath: realm){
+                //5. URL배열에 백업 파일 URL 추가하기
+                urlPath.append(URL(string: realm)!)
+                
+            } else {
+                let alert = UIAlertController(title: "백업", message: "백업할 데이터가 없으뮤", preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(action)
+                present(alert,animated: true,completion: nil)
+            }
+        }
+        do {
+            //6. 압축파일 만들기
+            let zipFilePath = try Zip.quickZipFiles(urlPath, fileName: "ShopList")
+            print("압축 경로: \(zipFilePath)")
+            //압축파일 만들고 바로 공유할 수 있게 ( 드라이브 등등 )
+            presentActivityViewController()
+        }
+        catch {
+            print("Something went wrong")
+        }
+    }
+    func restore(){
+        //1. 파일앱 열기 + 확장자
+        //import MobileCoreServices
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeArchive as String], in: .import)
+        
+        documentPicker.delegate = self
+        //여러개 선택 못하게 하는 메소드
+        documentPicker.allowsMultipleSelection = false
+        
+        self.present(documentPicker,animated: true,completion: nil)
+    }
+    //Document 폴더 위치 가지고 오기
+    func documentDirectoryPath()->String?{
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        if let directoryPath = path.first {
+            return directoryPath
+        } else {
+            return nil
+        }
+    }
+    //7.액티비티 뷰 컨트롤러 : 공유
+    func presentActivityViewController(){
+        //압축파일 경로 가지고오기
+        let fileName = (documentDirectoryPath()! as NSString).appendingPathComponent("ShopList.zip")
+        //경로 URL 저장
+        let fileURL = URL(fileURLWithPath: fileName)
+        
+        let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
+        self.present(vc,animated: true,completion: nil)
     }
     //추가 버튼 클릭시
     @IBAction func addButtonClickedAction(_ sender: UIButton) {
@@ -266,6 +361,67 @@ extension UITextField {
         let padding = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.frame.height))
         self.leftView = padding
         self.leftViewMode = ViewMode.always
+    }
+}
+extension TableViewController : UIDocumentPickerDelegate{
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print(#function)
+    }
+    //복구 : 파일 선택
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        print(#function)
+        //2. 선택한 파일에 대한 경로를 가져와야한다.
+        // iphone/jack/fileapp/archive.zip = selectedFileURL
+        guard let selectedFileURL = urls.first else {return}
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let sandboxFileURL = directory.appendingPathComponent(selectedFileURL.lastPathComponent)
+        //3. 압축 해제
+        if FileManager.default.fileExists(atPath: sandboxFileURL.path){
+            //기존에 복구하고자 하는 zip파일을 도큐먼트에 가지고 있을 경우, 도큐먼트에 위치한 zip을 압축해제하면 된다.
+            do{
+                let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                //지금 이 프로젝트만 항상 이름이 같음!!! 유의!!!
+                let fileURL = documentDirectory.appendingPathComponent("ShopList.zip")
+                try Zip.unzipFile(fileURL, destination: documentDirectory, overwrite: true, password: nil, progress: { progress in
+                    print("progress: \(progress)")
+                    //복구완료 -> 메세지 얼럿
+                }, fileOutputHandler: { unzippedFile in
+                    print("unzippedFile : \(unzippedFile)")
+                })
+                let alert = UIAlertController(title: "재시작", message: "복구된 파일을 확인하기 위해 어플을 종료후 재시작해야합니다.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default,handler: { out in
+                    exit(0)
+                }))
+                                
+                self.present(alert, animated: true, completion: nil)
+            } catch {
+                print("ERROR")
+            }
+        } else {
+            //파일 앱의 zip-> 도큐먼트 폴더에 복사
+            do{
+                try FileManager.default.copyItem(at: selectedFileURL, to: sandboxFileURL)
+                //기존것과 동일
+                let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                let fileURL = documentDirectory.appendingPathComponent("archive.zip")
+                try Zip.unzipFile(fileURL, destination: documentDirectory, overwrite: true, password: nil, progress: { progress in
+                    print("progress: \(progress)")
+                    
+                }, fileOutputHandler: { unzippedFile in
+                    print("unzippedFile : \(unzippedFile)")
+                })
+                let alert = UIAlertController(title: "재시작", message: "복구된 파일을 확인하기 위해 어플을 종료후 재시작해야합니다.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default,handler: { out in
+                    exit(0)
+                }))
+                                
+                self.present(alert, animated: true, completion: nil)
+            } catch{
+                print("ERROR")
+            }
+        }
     }
 }
 

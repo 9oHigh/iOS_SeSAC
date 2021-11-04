@@ -10,6 +10,8 @@
 		4C0AEA80273102F1009431F1 /* RealmTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AEA7F273102F1009431F1 /* RealmTable.swift */; };
 		4C0AEA8327310324009431F1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0AEA8227310324009431F1 /* Realm */; };
 		4C0AEA8527310324009431F1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0AEA8427310324009431F1 /* RealmSwift */; };
+		4C3D4DEB273431480037C69B /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3D4DEA273431480037C69B /* JGProgressHUD */; };
+		4C3D4DEE273432270037C69B /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3D4DED273432270037C69B /* Zip */; };
 		4C97B1882716BF18000D1C98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97B1872716BF18000D1C98 /* AppDelegate.swift */; };
 		4C97B18A2716BF18000D1C98 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97B1892716BF18000D1C98 /* SceneDelegate.swift */; };
 		4C97B18C2716BF18000D1C98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97B18B2716BF18000D1C98 /* ViewController.swift */; };
@@ -42,6 +44,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0AEA8527310324009431F1 /* RealmSwift in Frameworks */,
+				4C3D4DEB273431480037C69B /* JGProgressHUD in Frameworks */,
+				4C3D4DEE273432270037C69B /* Zip in Frameworks */,
 				4C0AEA8327310324009431F1 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +114,8 @@
 			packageProductDependencies = (
 				4C0AEA8227310324009431F1 /* Realm */,
 				4C0AEA8427310324009431F1 /* RealmSwift */,
+				4C3D4DEA273431480037C69B /* JGProgressHUD */,
+				4C3D4DED273432270037C69B /* Zip */,
 			);
 			productName = ShoppingListProj;
 			productReference = 4C97B1842716BF18000D1C98 /* ShoppingListProj.app */;
@@ -141,6 +147,8 @@
 			mainGroup = 4C97B17B2716BF18000D1C98;
 			packageReferences = (
 				4C0AEA8127310324009431F1 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				4C3D4DE9273431480037C69B /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				4C3D4DEC273432270037C69B /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = 4C97B1852716BF18000D1C98 /* Products */;
 			projectDirPath = "";
@@ -405,6 +413,22 @@
 				version = 10.18.0;
 			};
 		};
+		4C3D4DE9273431480037C69B /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		4C3D4DEC273432270037C69B /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -417,6 +441,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C0AEA8127310324009431F1 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		4C3D4DEA273431480037C69B /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C3D4DE9273431480037C69B /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		4C3D4DED273432270037C69B /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C3D4DEC273432270037C69B /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
