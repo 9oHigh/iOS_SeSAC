@@ -51,7 +51,9 @@ class TableViewController: UITableViewController {
         print("위치 :",localRealm.configuration.fileURL!)
     }
     //갱신용
+    //MARK: super.viewWillAppear 반드시 하고 넘어가기
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         mainTableView.reloadData()
     }
     
@@ -59,24 +61,15 @@ class TableViewController: UITableViewController {
         
         let alert = UIAlertController(title: "백업 및 복구", message: "백업/복구 당신의 선택은!", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "백업", style: .default, handler: { action in
-            self.backupOrRestore(name: action.title!)
+            self.backUp()
         }))
         alert.addAction(UIAlertAction(title: "복구", style: .default, handler: { action in
-            self.backupOrRestore(name:action.title!)
+            self.restore()
         }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    func backupOrRestore(name: String){
-        switch name {
-        case "백업":
-            backUp()
-        case "복구":
-            restore()
-        default :
-            print("Key Error")
-        }
-    }
+    
     func backUp(){
         /*
          1.도큐먼트 폴더 위치
@@ -97,10 +90,7 @@ class TableViewController: UITableViewController {
                 urlPath.append(URL(string: realm)!)
                 
             } else {
-                let alert = UIAlertController(title: "백업", message: "백업할 데이터가 없으뮤", preferredStyle: .alert)
-                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-                alert.addAction(action)
-                present(alert,animated: true,completion: nil)
+                showAlert(title: "백업", message: "백업할 데이터가 없습니다!", actionTitle: "확인")
             }
         }
         do {
@@ -144,6 +134,7 @@ class TableViewController: UITableViewController {
         let fileURL = URL(fileURLWithPath: fileName)
         
         let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
+        
         self.present(vc,animated: true,completion: nil)
     }
     //추가 버튼 클릭시
@@ -151,10 +142,7 @@ class TableViewController: UITableViewController {
         
         if let name = addShopListTextField.text {
             if name == "" {
-                let alert = UIAlertController(title: "오입력 안내", message: "입력이 되지 않았거나 잘못된 문자를 입력하셨습니다.", preferredStyle: .alert)
-                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-                alert.addAction(action)
-                present(alert,animated: true,completion: nil)
+                showAlert(title: "오입력 안내", message: "입력이 되지 않았거나 잘못된 문자를 입력하셨습니다.", actionTitle: "확인")
             } else {
                 let task  = ShopList(name: name)
                 try! localRealm.write{
@@ -162,10 +150,7 @@ class TableViewController: UITableViewController {
                 }
             }
         } else {
-            let alert = UIAlertController(title: "오입력 안내", message: "입력이 되지 않았거나 잘못된 문자를 입력하셨습니다.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert,animated: true,completion: nil)
+            showAlert(title: "오입력안내", message: "입력이 되지 않았거나 잘못된 문자를 입력하셨습니다.", actionTitle: "확인")
         }
         addShopListTextField.text = ""
         mainTableView.reloadData()
@@ -207,9 +192,9 @@ class TableViewController: UITableViewController {
     func alertHandler(name : String){
         switch name {
         case "할일":
-            tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "checkClicked", ascending: false)
+            tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "checkClicked", ascending: false).filter("checkClicked == true")
         case "즐겨찾기":
-            tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "starClicked", ascending: false)
+            tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "starClicked", ascending: false).filter("starClicked == true")
         case "제목":
             tasks = localRealm.objects(ShopList.self).sorted(byKeyPath: "name", ascending: true)
         default:
@@ -310,16 +295,10 @@ class TableViewController: UITableViewController {
         cell.starButton.tag = indexPath.row
         cell.checkBoxButton.tag = indexPath.row
         
-        if tasks[indexPath.row].starClicked == true {
-            cell.starButton.setImage(StarredImage, for: .normal)
-        } else {
-            cell.starButton.setImage(unStarredImage,for:.normal)
-        }
-        if tasks[indexPath.row].checkClicked == true {
-            cell.checkBoxButton.setImage(checkedImage, for: .normal)
-        } else {
-            cell.checkBoxButton.setImage(unCheckedImage,for:.normal)
-        }
+        tasks[indexPath.row].starClicked  == true ? cell.starButton.setImage(StarredImage, for: .normal) :cell.starButton.setImage(unStarredImage,for:.normal)
+        
+        tasks[indexPath.row].checkClicked == true ? cell.checkBoxButton.setImage(checkedImage, for: .normal) : cell.checkBoxButton.setImage(unCheckedImage,for:.normal)
+        
         return cell
     }
     
@@ -424,4 +403,12 @@ extension TableViewController : UIDocumentPickerDelegate{
         }
     }
 }
-
+extension TableViewController {
+    func showAlert(title : String, message: String, actionTitle: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: actionTitle, style: .default, handler: nil)
+        alert.addAction(action)
+        
+        present(alert,animated: true,completion: nil)
+    }
+}
