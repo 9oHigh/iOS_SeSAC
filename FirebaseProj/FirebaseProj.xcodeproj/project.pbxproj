@@ -115,12 +115,12 @@
 				4CCD0709275DA3E00028146D /* AppDelegate.swift */,
 				4CCD070B275DA3E00028146D /* SceneDelegate.swift */,
 				4CCD070D275DA3E00028146D /* ViewController.swift */,
+				4CD4456C275DF1C300F359D0 /* SecondViewController.swift */,
 				4CCD0712275DA3E30028146D /* Assets.xcassets */,
 				4CCD070F275DA3E00028146D /* Main.storyboard */,
 				4CCD0714275DA3E30028146D /* LaunchScreen.storyboard */,
 				4CCD0717275DA3E30028146D /* Info.plist */,
 				4CCD071D275DA4450028146D /* GoogleService-Info.plist */,
-				4CD4456C275DF1C300F359D0 /* SecondViewController.swift */,
 			);
 			path = FirebaseProj;
 			sourceTree = "<group>";
