@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import SwiftUI
 import JGProgressHUD
 import Zip
 import MobileCoreServices

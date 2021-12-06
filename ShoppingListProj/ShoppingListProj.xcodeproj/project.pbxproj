@@ -20,7 +20,6 @@
 		4C97B1942716BF1D000D1C98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C97B1922716BF1D000D1C98 /* LaunchScreen.storyboard */; };
 		4C97B19C2716BF6E000D1C98 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97B19B2716BF6E000D1C98 /* TableViewController.swift */; };
 		4C97B19E2716CB1A000D1C98 /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97B19D2716CB1A000D1C98 /* ShoppingListTableViewCell.swift */; };
-		4CD52E3B2718131800A788E1 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD52E3A2718131800A788E1 /* Bucket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		4C97B1952716BF1D000D1C98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C97B19B2716BF6E000D1C98 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		4C97B19D2716CB1A000D1C98 /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
-		4CD52E3A2718131800A788E1 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +84,6 @@
 				4C97B18B2716BF18000D1C98 /* ViewController.swift */,
 				4C97B18D2716BF18000D1C98 /* Main.storyboard */,
 				4C97B19B2716BF6E000D1C98 /* TableViewController.swift */,
-				4CD52E3A2718131800A788E1 /* Bucket.swift */,
 				4C97B19D2716CB1A000D1C98 /* ShoppingListTableViewCell.swift */,
 				4C97B1902716BF1D000D1C98 /* Assets.xcassets */,
 				4C97B1922716BF1D000D1C98 /* LaunchScreen.storyboard */,
@@ -181,7 +178,6 @@
 				4C97B18C2716BF18000D1C98 /* ViewController.swift in Sources */,
 				4C0AEA80273102F1009431F1 /* RealmTable.swift in Sources */,
 				4C97B1882716BF18000D1C98 /* AppDelegate.swift in Sources */,
-				4CD52E3B2718131800A788E1 /* Bucket.swift in Sources */,
 				4C97B18A2716BF18000D1C98 /* SceneDelegate.swift in Sources */,
 				4C97B19C2716BF6E000D1C98 /* TableViewController.swift in Sources */,
 			);
