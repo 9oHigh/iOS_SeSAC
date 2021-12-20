@@ -23,20 +23,25 @@ class MainView : UIView {
     //이미지를 담을
     var imageContainer = UIView()
     
-    var imageView : UIImageView! // headerImage로 사용할 View
-    var imageHeight = NSLayoutConstraint()
-    var imageWidth = NSLayoutConstraint()
+    // headerImage로 사용할 View
+    var imageView : UIImageView = {
+        let imageViews = UIImageView()
+        imageViews.image = UIImage(systemName: "repeat")
+        imageViews.contentMode = .scaleAspectFill
+        return imageViews
+    }()
     
     // 네임 + 설명 + more, 상세설명
-    var beerName : UILabel! // 이름
-    var beerDescipt : UILabel! // 설명
-    var beerContent : UILabel! // 자세한 설명
-    var moreIndicator : UIButton! // more
+    var beerName = UILabel() // 이름
+    var beerDescipt = UILabel() // 설명
+    var beerContent = UILabel() // 자세한 설명
+    var moreIndicator = UIButton() // more
     
     override init(frame : CGRect){
         super.init(frame: frame)
         backgroundColor = .white
         setUp()//넣고 constraints
+        
     }
     
     required init?(coder: NSCoder) {
@@ -45,15 +50,22 @@ class MainView : UIView {
     }
     
     func setUp(){
+        print(#function)
         featureSetUp()
+        containerView.addSubview(imageContainer)
+        MainScrollView.addSubview(imageView)
+        MainScrollView.addSubview(containerView)
+        addSubview(MainScrollView)
         constraintSetUp()
-        
-        
     }
     func featureSetUp(){
+        print(#function)
         //라벨 폰트
+        beerName.text = "바보"
         beerName.font = UIFont.boldSystemFont(ofSize: 21)
+        beerDescipt.text = "바보"
         beerDescipt.font = UIFont.systemFont(ofSize: 18)
+        beerContent.text = "바보"
         beerContent.font = UIFont.systemFont(ofSize: 16)
         beerContent.numberOfLines = 4 // 기본적으로 4줄
         
@@ -66,9 +78,10 @@ class MainView : UIView {
 
     }
     func constraintSetUp(){
+        print(#function)
         //스크롤뷰 모든방향 0
         MainScrollView.snp.makeConstraints { make in
-            make.edges.equalTo(0)
+            make.edges.equalTo(10)
         }
         //이미지 컨테이너
         imageContainer.snp.makeConstraints { make in
@@ -87,24 +100,24 @@ class MainView : UIView {
             make.height.equalTo(1000)
             
         }
-        beerName.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //-0.25 by Y축
-            make.centerY.equalToSuperview().multipliedBy(-0.85)
-        }
-        
-        beerDescipt.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(-0.75)
-        }
-        
-        beerContent.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(-0.60)
-        }
+//        beerName.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.centerY.equalToSuperview().multipliedBy(0.15)
+//        }
+//
+//        beerDescipt.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.centerY.equalToSuperview().multipliedBy(0.25)
+//        }
+//
+//        beerContent.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.centerY.equalToSuperview().multipliedBy(0.4)
+//        }
     }
     
     @objc func moreBtnClicked(){
+        print(#function)
         if beerContent.numberOfLines == 4 {
             beerContent.numberOfLines = 0
         } else {
