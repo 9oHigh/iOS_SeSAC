@@ -22,9 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let rootViewController = MainViewController()
         
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        
-        window?.rootViewController = navigationController
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         
         guard let _ = (scene as? UIWindowScene) else { return }

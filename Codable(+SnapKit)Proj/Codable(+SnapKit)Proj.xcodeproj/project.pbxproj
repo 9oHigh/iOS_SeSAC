@@ -14,7 +14,7 @@
 		4CD4294627703A66008FD8CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CD4294427703A66008FD8CC /* LaunchScreen.storyboard */; };
 		4CD4294F27703A84008FD8CC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4CD4294E27703A84008FD8CC /* SnapKit */; };
 		4CD4295227703AAE008FD8CC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CD4295127703AAE008FD8CC /* Alamofire */; };
-		4CD429662770A1D1008FD8CC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD429652770A1D1008FD8CC /* MainView.swift */; };
+		4CE87E0F277448AE00A5C0EB /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE87E0E277448AD00A5C0EB /* SubView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		4CD4294227703A66008FD8CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CD4294527703A66008FD8CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4CD4294727703A66008FD8CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4CD429652770A1D1008FD8CC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4CE87E0E277448AD00A5C0EB /* SubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,7 @@
 				4CD4293927703A64008FD8CC /* AppDelegate.swift */,
 				4CD4293B27703A64008FD8CC /* SceneDelegate.swift */,
 				4CD4293D27703A64008FD8CC /* MainViewController.swift */,
-				4CD429652770A1D1008FD8CC /* MainView.swift */,
+				4CE87E0E277448AD00A5C0EB /* SubView.swift */,
 				4CD4294227703A66008FD8CC /* Assets.xcassets */,
 				4CD4294427703A66008FD8CC /* LaunchScreen.storyboard */,
 				4CD4294727703A66008FD8CC /* Info.plist */,
@@ -152,7 +152,7 @@
 				4CD4293E27703A64008FD8CC /* MainViewController.swift in Sources */,
 				4CD4293A27703A64008FD8CC /* AppDelegate.swift in Sources */,
 				4CD4293C27703A64008FD8CC /* SceneDelegate.swift in Sources */,
-				4CD429662770A1D1008FD8CC /* MainView.swift in Sources */,
+				4CE87E0F277448AE00A5C0EB /* SubView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
