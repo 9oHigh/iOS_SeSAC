@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Alamofire
+import SwiftUI
 
 class MainViewController: UIViewController {
     
@@ -17,16 +18,16 @@ class MainViewController: UIViewController {
     //넘어온 이미지를 담을 이미지뷰
     var imageView = UIImageView()
     var headerContainer = UIView()
-    
+
     //넘어온 이름과 내용
-    var beerName = UILabel()
-    var beerContent = UILabel()
+    var foodPairing = UILabel()
+    var pairingContents = [UILabel]()
     var bottomContainer = UIView()
     
     // 리프레시 버튼 + 공유버튼 ( 인코딩 + 전송 )
     var refreshButton = UIButton()
     var shareButton = UIButton()
-    var bottomView = UIView()
+    var buttonView = UIView()
     
     
     override func viewDidLoad() {
@@ -35,10 +36,14 @@ class MainViewController: UIViewController {
         view.backgroundColor = .lightGray
         
         mainScrollView.contentInsetAdjustmentBehavior = .never
+        
+        //이미지뷰 블러이펙트 조사조사!!
+        
+        imageView.image = UIImage(named: "flower.png")
         //콘텐트 모드를 .scaleAspectFill로 해야 사용가능
-        imageView.image = UIImage(named: "pngegg.png")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        
         
         setProperties()
         setUI()
@@ -51,27 +56,40 @@ class MainViewController: UIViewController {
         mainScrollView.addSubview(headerContainer)
         mainScrollView.addSubview(imageView)
         mainScrollView.addSubview(bottomContainer)
-        bottomContainer.addSubview(beerName)
-        //bottomContainer.addSubview(beerContent)
+        bottomContainer.addSubview(foodPairing)
+        pairingContents.forEach { label in
+            bottomContainer.addSubview(label)
+        }
 
         //버튼있는 뷰
-        bottomView.addSubview(refreshButton)
-        bottomView.addSubview(shareButton)
-        view.addSubview(bottomView)
+        buttonView.addSubview(refreshButton)
+        buttonView.addSubview(shareButton)
+        view.addSubview(buttonView)
     }
 
     func setProperties(){
         //백그라운드 뷰
         mainScrollView.backgroundColor = .white
-        headerContainer.backgroundColor = .lightGray
-        beerName.text = "이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다.이 맥주는 정말 맛있는 맥주다."
-        beerName.font = .boldSystemFont(ofSize: 30)
-        beerName.numberOfLines = 0
-        beerContent.text = "이 맥주는 정말 맛있는 맥주다."
-        beerContent.font = .systemFont(ofSize: 20)
+        headerContainer.backgroundColor = .clear // 이미지 뷰를 하나더 얹어야하나?
+        
+        //디폴트
+        foodPairing.text = "Food - Pairing"
+        foodPairing.font = .boldSystemFont(ofSize: 25)
+        
+        //임시방편
+        pairingContents.append(UILabel())
+        pairingContents.append(UILabel())
+        pairingContents.append(UILabel())
+        
+        pairingContents.forEach { label in
+            label.text = "Spicy carne asada with a pico de gallo sauce, 이거야 바보야!\nSpicy carne asada with a pico de gallo sauce, 이거야 바보야!\nSpicy carne asada with a pico de gallo sauce, 이거야 바보야!\n"
+            label.font = .systemFont(ofSize: 20)
+            label.numberOfLines = 0
+            print(label.text!)
+        }
         
         //bottomView
-        bottomView.backgroundColor = .white
+        buttonView.backgroundColor = .white
         
         //refreshButton
         refreshButton.titleLabel?.text = nil
@@ -108,29 +126,42 @@ class MainViewController: UIViewController {
             make.bottom.equalTo(mainScrollView)
         }
         imageView.snp.makeConstraints { make in
-            //version1
-//            make.top.equalTo(mainScrollView)
-//            make.left.right.equalTo(view)
-//            make.height.equalTo(imageView.snp.width).multipliedBy(0.7)
-            //version2
-//            make.left.right.equalTo(view)
-//            make.top.equalTo(view)
-//            make.bottom.equalTo(headerContainer.snp.bottom)
-            
-            //version3
             make.left.right.equalTo(view)
             make.top.equalTo(view)
             make.height.greaterThanOrEqualTo(headerContainer.snp.height).priority(.high)
             make.bottom.equalTo(headerContainer.snp.bottom)
         }
-        
-        beerName.snp.makeConstraints { make in
-            make.edges.equalTo(bottomContainer).inset(15)
+        foodPairing.snp.makeConstraints { make in
+            make.top.equalTo(150)                //여기에 추가되는 플로팅 뷰의 높이의 2/3을 더해주면될듯..?
+            make.left.right.equalTo(20)
         }
+        for content in 0...pairingContents.count - 1 {
+            print(content)
+            if content == 0 {
+                pairingContents[content].snp.makeConstraints { make in
+                    make.top.equalTo(foodPairing.snp.bottom).offset(20)
+                    make.right.left.equalTo(20)
+                }
+            } else if content == pairingContents.count - 1 {
+                pairingContents[content].snp.makeConstraints { make in
+                    make.top.equalTo(pairingContents[content-1].snp.bottom)
+                    make.right.left.equalTo(20)
+                    make.bottom.equalTo(mainScrollView).offset(-100)//버튼뷰 높이만큼
+                }
+            }
+            else {
+                pairingContents[content].snp.makeConstraints { make in
+                    make.top.equalTo(pairingContents[content-1].snp.bottom)
+                    make.right.left.equalTo(20)
+                }
+            }
+            
+        }
+        
         //버튼뷰
-        bottomView.snp.makeConstraints { make in
-            make.leading.equalTo(0)
-            make.trailing.equalTo(0)
+        buttonView.snp.makeConstraints { make in
+            make.left.equalTo(0)
+            make.right.equalTo(0)
             make.bottom.equalTo(0)
             make.height.equalTo(100)
         }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 //상단의 이미지에 붙어있는 뷰
-class SubView : UIView{
+class SubView : UIView {
 
     // 네임 + 설명 + more, 상세설명
     var beerName = UILabel() // 이름
