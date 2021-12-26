@@ -15,6 +15,10 @@
 		4CD4294F27703A84008FD8CC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4CD4294E27703A84008FD8CC /* SnapKit */; };
 		4CD4295227703AAE008FD8CC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CD4295127703AAE008FD8CC /* Alamofire */; };
 		4CE87E0F277448AE00A5C0EB /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE87E0E277448AD00A5C0EB /* SubView.swift */; };
+		4CEF0CBE2778B21C00D3EA1C /* PunkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CBD2778B21C00D3EA1C /* PunkAPI.swift */; };
+		4CEF0CC12778C5D400D3EA1C /* DecodableBeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CC02778C5D400D3EA1C /* DecodableBeer.swift */; };
+		4CEF0CC42778C6B800D3EA1C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4CEF0CC32778C6B800D3EA1C /* SwiftyJSON */; };
+		4CEF0CC62778CCF800D3EA1C /* beers.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CC52778CCF800D3EA1C /* beers.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,9 @@
 		4CD4294527703A66008FD8CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4CD4294727703A66008FD8CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE87E0E277448AD00A5C0EB /* SubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubView.swift; sourceTree = "<group>"; };
+		4CEF0CBD2778B21C00D3EA1C /* PunkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunkAPI.swift; sourceTree = "<group>"; };
+		4CEF0CC02778C5D400D3EA1C /* DecodableBeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableBeer.swift; sourceTree = "<group>"; };
+		4CEF0CC52778CCF800D3EA1C /* beers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = beers.json; path = "../../../SeSAC_자료/13주차/beers.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CEF0CC42778C6B800D3EA1C /* SwiftyJSON in Frameworks */,
 				4CD4294F27703A84008FD8CC /* SnapKit in Frameworks */,
 				4CD4295227703AAE008FD8CC /* Alamofire in Frameworks */,
 			);
@@ -60,9 +68,12 @@
 		4CD4293827703A64008FD8CC /* Codable(+SnapKit)Proj */ = {
 			isa = PBXGroup;
 			children = (
+				4CEF0CC52778CCF800D3EA1C /* beers.json */,
 				4CD4293927703A64008FD8CC /* AppDelegate.swift */,
 				4CD4293B27703A64008FD8CC /* SceneDelegate.swift */,
 				4CD4293D27703A64008FD8CC /* MainViewController.swift */,
+				4CEF0CBD2778B21C00D3EA1C /* PunkAPI.swift */,
+				4CEF0CC02778C5D400D3EA1C /* DecodableBeer.swift */,
 				4CE87E0E277448AD00A5C0EB /* SubView.swift */,
 				4CD4294227703A66008FD8CC /* Assets.xcassets */,
 				4CD4294427703A66008FD8CC /* LaunchScreen.storyboard */,
@@ -90,6 +101,7 @@
 			packageProductDependencies = (
 				4CD4294E27703A84008FD8CC /* SnapKit */,
 				4CD4295127703AAE008FD8CC /* Alamofire */,
+				4CEF0CC32778C6B800D3EA1C /* SwiftyJSON */,
 			);
 			productName = "Codable(+SnapKit)Proj";
 			productReference = 4CD4293627703A64008FD8CC /* Codable(+SnapKit)Proj.app */;
@@ -122,6 +134,7 @@
 			packageReferences = (
 				4CD4294D27703A84008FD8CC /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4CD4295027703AAE008FD8CC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				4CEF0CC22778C6B800D3EA1C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 4CD4293727703A64008FD8CC /* Products */;
 			projectDirPath = "";
@@ -139,6 +152,7 @@
 			files = (
 				4CD4294627703A66008FD8CC /* LaunchScreen.storyboard in Resources */,
 				4CD4294327703A66008FD8CC /* Assets.xcassets in Resources */,
+				4CEF0CC62778CCF800D3EA1C /* beers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +166,9 @@
 				4CD4293E27703A64008FD8CC /* MainViewController.swift in Sources */,
 				4CD4293A27703A64008FD8CC /* AppDelegate.swift in Sources */,
 				4CD4293C27703A64008FD8CC /* SceneDelegate.swift in Sources */,
+				4CEF0CC12778C5D400D3EA1C /* DecodableBeer.swift in Sources */,
 				4CE87E0F277448AE00A5C0EB /* SubView.swift in Sources */,
+				4CEF0CBE2778B21C00D3EA1C /* PunkAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +396,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4CEF0CC22778C6B800D3EA1C /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -392,6 +416,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CD4295027703AAE008FD8CC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		4CEF0CC32778C6B800D3EA1C /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CEF0CC22778C6B800D3EA1C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

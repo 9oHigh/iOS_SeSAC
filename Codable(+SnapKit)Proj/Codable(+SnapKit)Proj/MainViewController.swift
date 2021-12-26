@@ -28,17 +28,24 @@ class MainViewController: UIViewController {
     var shareButton = UIButton()
     var buttonView = UIView()
     
+    //중앙에 떠있는 뷰
     var subView = SubView()
+    
+    var punkAPI = PunkAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("여기 아이디",PunkAPI.id)
+        punkAPI.fetchData()
         
-        view.backgroundColor = .lightGray
         
         mainScrollView.contentInsetAdjustmentBehavior = .never
         
-        imageView.image = UIImage(named: "pngegg.png")
+        //fetchData가 필요하다.
+        
+        //MARK: FETCH DATA
         //콘텐트 모드를 .scaleAspectFill로 해야 사용가능
+        imageView.image = UIImage(named: "pngegg.png")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
@@ -68,7 +75,7 @@ class MainViewController: UIViewController {
         blurEffectView.snp.makeConstraints { make in
             make.edges.equalTo(imageView).inset(0)
         }
-        
+        //MARK: FETCH DATA
         let newImageView = UIImageView()
         newImageView.image = UIImage(named: "pngegg.png")
         newImageView.contentMode = .scaleAspectFill
@@ -94,6 +101,7 @@ class MainViewController: UIViewController {
         foodPairing.font = .boldSystemFont(ofSize: 25)
         
         //임시방편 - 데이터 가지고 오기 fetchdatas
+        //MARK: FETCH DATA
         pairingContents.append(UILabel())
         pairingContents.append(UILabel())
         pairingContents.append(UILabel())

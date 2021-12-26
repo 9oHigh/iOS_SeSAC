@@ -5,7 +5,6 @@
 //  Created by 이경후 on 2021/12/23.
 //
 
-import Foundation
 import UIKit
 
 //상단의 이미지에 붙어있는 뷰
@@ -28,19 +27,19 @@ class SubView : UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    //MARK: FETCH DATA
     func setProperties(){
         print(#function)
         //라벨 폰트
-        beerName.text = "바보"
+        beerName.text = "로딩.."
         beerName.font = UIFont.boldSystemFont(ofSize: 21)
         beerName.textAlignment = .center
         
-        beerDescipt.text = "바보"
+        beerDescipt.text = "로딩.."
         beerDescipt.font = UIFont.systemFont(ofSize: 18)
         beerDescipt.textAlignment = .center
         
-        beerContent.text = "바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸."
+        beerContent.text = "로딩 중입니다."
         beerContent.font = UIFont.systemFont(ofSize: 16)
         beerContent.numberOfLines = 4 // 기본적으로 4줄
         
@@ -64,13 +63,13 @@ class SubView : UIView {
         beerName.snp.makeConstraints { make in
             make.top.equalTo(10)
             make.left.right.equalTo(10)
-            make.bottom.equalTo(beerDescipt.snp.top)
+            make.bottom.equalTo(beerDescipt.snp.top).offset(-20)
         }
         
         beerDescipt.snp.makeConstraints { make in
             make.top.equalTo(beerName.snp.bottom)
             make.left.right.equalTo(10)
-            make.bottom.equalTo(beerContent.snp.top)
+            make.bottom.equalTo(beerContent.snp.top).offset(-20)
         }
         
         beerContent.snp.makeConstraints { make in
