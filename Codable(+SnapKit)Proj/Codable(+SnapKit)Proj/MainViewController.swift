@@ -1,4 +1,3 @@
-//
 //  ViewController.swift
 //  Codable(+SnapKit)Proj
 //
@@ -18,7 +17,7 @@ class MainViewController: UIViewController {
     //넘어온 이미지를 담을 이미지뷰
     var imageView = UIImageView()
     var headerContainer = UIView()
-
+    
     //넘어온 이름과 내용
     var foodPairing = UILabel()
     var pairingContents = [UILabel]()
@@ -29,6 +28,7 @@ class MainViewController: UIViewController {
     var shareButton = UIButton()
     var buttonView = UIView()
     
+    var subView = SubView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +37,10 @@ class MainViewController: UIViewController {
         
         mainScrollView.contentInsetAdjustmentBehavior = .never
         
-        //이미지뷰 블러이펙트 조사조사!!
-        
-        imageView.image = UIImage(named: "flower.png")
+        imageView.image = UIImage(named: "pngegg.png")
         //콘텐트 모드를 .scaleAspectFill로 해야 사용가능
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        
         
         setProperties()
         setUI()
@@ -60,13 +57,33 @@ class MainViewController: UIViewController {
         pairingContents.forEach { label in
             bottomContainer.addSubview(label)
         }
-
+        mainScrollView.addSubview(subView)
+        
+        //이미지뷰 블러이펙트 조사조사!!
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.contentMode = .scaleAspectFit
+        imageView.addSubview(blurEffectView)
+        
+        blurEffectView.snp.makeConstraints { make in
+            make.edges.equalTo(imageView).inset(0)
+        }
+        
+        let newImageView = UIImageView()
+        newImageView.image = UIImage(named: "pngegg.png")
+        newImageView.contentMode = .scaleAspectFill
+        imageView.addSubview(newImageView)
+        
+        newImageView.snp.makeConstraints { make in
+            make.edges.equalTo(imageView).inset(100)//임시로 엣지에 모두 인셋.. 너무 수동적쓰~
+        }
+        
         //버튼있는 뷰
         buttonView.addSubview(refreshButton)
         buttonView.addSubview(shareButton)
         view.addSubview(buttonView)
     }
-
+    
     func setProperties(){
         //백그라운드 뷰
         mainScrollView.backgroundColor = .white
@@ -76,7 +93,7 @@ class MainViewController: UIViewController {
         foodPairing.text = "Food - Pairing"
         foodPairing.font = .boldSystemFont(ofSize: 25)
         
-        //임시방편
+        //임시방편 - 데이터 가지고 오기 fetchdatas
         pairingContents.append(UILabel())
         pairingContents.append(UILabel())
         pairingContents.append(UILabel())
@@ -87,6 +104,11 @@ class MainViewController: UIViewController {
             label.numberOfLines = 0
             print(label.text!)
         }
+        //subView
+        subView.layer.cornerRadius = 10
+        subView.layer.borderColor = UIColor.black.cgColor
+        subView.layer.borderWidth = 0.1
+        subView.moreIndicator.addTarget(self, action: #selector(moreBtnClicked), for: .touchUpInside)
         
         //bottomView
         buttonView.backgroundColor = .white
@@ -100,9 +122,8 @@ class MainViewController: UIViewController {
         refreshButton.layer.borderWidth = 3
         refreshButton.layer.borderColor = UIColor.black.cgColor
         refreshButton.layer.cornerRadius = 8
-        
         refreshButton.addTarget(self, action: #selector(refreshBtnClicked), for: .touchUpInside)
-    
+        
         //shareButton
         shareButton.setTitle("Share BEER", for: .normal)
         shareButton.backgroundColor = .black
@@ -132,7 +153,7 @@ class MainViewController: UIViewController {
             make.bottom.equalTo(headerContainer.snp.bottom)
         }
         foodPairing.snp.makeConstraints { make in
-            make.top.equalTo(150)                //여기에 추가되는 플로팅 뷰의 높이의 2/3을 더해주면될듯..?
+            make.top.equalTo(subView.snp.bottom)
             make.left.right.equalTo(20)
         }
         for content in 0...pairingContents.count - 1 {
@@ -155,7 +176,13 @@ class MainViewController: UIViewController {
                     make.right.left.equalTo(20)
                 }
             }
-            
+        }
+        //플로팅뷰
+        subView.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(20)
+            make.right.equalTo(view).offset(-20)
+            make.top.equalTo(imageView.snp.bottom).multipliedBy(0.7)
+            make.bottom.equalTo(foodPairing.snp.top).offset(-20)
         }
         
         //버튼뷰
@@ -191,5 +218,15 @@ class MainViewController: UIViewController {
     @objc func refreshBtnClicked(){
         
     }
+    
+    @objc func moreBtnClicked(){
+        print(#function)
+        if subView.beerContent.numberOfLines == 4 {
+            subView.beerContent.numberOfLines = 0
+            subView.moreIndicator.setTitle("less", for: .normal)
+        } else {
+            subView.beerContent.numberOfLines = 4
+            subView.moreIndicator.setTitle("more", for: .normal)
+        }
+    }
 }
-

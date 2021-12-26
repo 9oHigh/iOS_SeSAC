@@ -20,38 +20,70 @@ class SubView : UIView {
     override init(frame : CGRect){
         super.init(frame: frame)
         backgroundColor = .white
-        featureSetUp()
-        
+        setProperties()
+        setUI()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func featureSetUp(){
+    func setProperties(){
         print(#function)
         //라벨 폰트
         beerName.text = "바보"
         beerName.font = UIFont.boldSystemFont(ofSize: 21)
+        beerName.textAlignment = .center
+        
         beerDescipt.text = "바보"
         beerDescipt.font = UIFont.systemFont(ofSize: 18)
-        beerContent.text = "바보"
+        beerDescipt.textAlignment = .center
+        
+        beerContent.text = "바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸.바보는 아닐걸."
         beerContent.font = UIFont.systemFont(ofSize: 16)
         beerContent.numberOfLines = 4 // 기본적으로 4줄
         
         //more 버튼
         moreIndicator.backgroundColor = .white
-        moreIndicator.titleLabel?.tintColor = .black
-        moreIndicator.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        moreIndicator.tintColor = .black
         moreIndicator.setTitle("more", for: .normal)
-        moreIndicator.addTarget(self, action: #selector(moreBtnClicked), for: .touchUpInside)
+        moreIndicator.setTitleColor(UIColor.black, for: .normal)
+
     }
-    @objc func moreBtnClicked(){
-        print(#function)
-        if beerContent.numberOfLines == 4 {
-            beerContent.numberOfLines = 0
-        } else {
-            beerContent.numberOfLines = 4
+    
+    func setUI(){
+        addSubview(beerName)
+        addSubview(beerDescipt)
+        addSubview(beerContent)
+        addSubview(moreIndicator)
+    }
+    
+    func setConstraints(){
+        
+        beerName.snp.makeConstraints { make in
+            make.top.equalTo(10)
+            make.left.right.equalTo(10)
+            make.bottom.equalTo(beerDescipt.snp.top)
         }
+        
+        beerDescipt.snp.makeConstraints { make in
+            make.top.equalTo(beerName.snp.bottom)
+            make.left.right.equalTo(10)
+            make.bottom.equalTo(beerContent.snp.top)
+        }
+        
+        beerContent.snp.makeConstraints { make in
+            make.top.equalTo(beerDescipt.snp.bottom)
+            make.right.left.equalTo(10)
+            make.bottom.equalTo(moreIndicator.snp.top)
+        }
+        
+        moreIndicator.snp.makeConstraints { make in
+            make.top.equalTo(beerContent.snp.bottom)
+            make.bottom.equalTo(0)
+            make.left.right.equalTo(10)
+        }
+
     }
 }
