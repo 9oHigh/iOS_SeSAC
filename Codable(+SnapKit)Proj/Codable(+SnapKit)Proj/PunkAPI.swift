@@ -7,47 +7,41 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class PunkAPI {
-
-    static var id : Int = 195
     
-    func fetchData(){
-
+    //datas
+    var id : Int = 0
+    var imageURL : String = ""
+    var tagLine : String = ""
+    var name : String = ""
+    var beerDescription : String = ""
+    var foodParing : [String] = []
+    
+    func fetchData(completion : @escaping (Beer?)->Void){
+        print(#function)
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
+        let decoder = JSONDecoder()
         
-        let url = "https://api.punkapi.com/v2/beers/\(PunkAPI.id)"
+        let url = "https://api.punkapi.com/v2/beers/\(id)"
         
         AF.request(url, method: .get).validate().responseDecodable(of: [Beer].self) { response in
-
-            switch response.result{
-
+            
+            switch response.result {
+                
             case .success:
-
+                print("SUC")
                 let jsonData = try? encoder.encode(response.value)
-                if let jsonData = jsonData, let jsonString = String(data: jsonData, encoding: .utf8){
-                    print(jsonString)
+                if let jsonData = jsonData, let beerInfo = try? decoder.decode([Beer].self, from: jsonData){
+                    print("SUCCESS")
+                    completion(beerInfo.first)
                 } else {
-                    print(response.result)
+                    print("ERROR_IN_SUCCES")
                 }
-
+                
             case .failure:
                 print("EEROR")
-
             }
         }
-//        AF.request(url, method: .get).validate().responseJSON { response in
-//            switch response.result {
-//            case .success:
-//                let json = JSON(response.value)
-//                print(json)
-//
-//            case .failure :
-//
-//            print("ERROR")
-//            }
-//        }
     }
 }

@@ -8,6 +8,7 @@ import UIKit
 import SnapKit
 import Alamofire
 import SwiftUI
+import Kingfisher
 
 class MainViewController: UIViewController {
     
@@ -31,27 +32,39 @@ class MainViewController: UIViewController {
     //중앙에 떠있는 뷰
     var subView = SubView()
     
-    var punkAPI = PunkAPI()
+    //APIs
+    var apiService = PunkAPI()
+    var beerData : Beer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("여기 아이디",PunkAPI.id)
-        punkAPI.fetchData()
-        
         
         mainScrollView.contentInsetAdjustmentBehavior = .never
         
-        //fetchData가 필요하다.
-        
         //MARK: FETCH DATA
-        //콘텐트 모드를 .scaleAspectFill로 해야 사용가능
-        imageView.image = UIImage(named: "pngegg.png")
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        apiService.id = Int.random(in: 1...200)
+        apiService.fetchData { beer in
+            self.beerData = beer
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            //콘텐트 모드를 .scaleAspectFill로 해야 사용가능
+            let url = URL(string: self.beerData!.imageURL)
+            self.imageView.kf.setImage(with: url)
+            self.imageView.contentMode = .scaleAspectFill
+            self.imageView.clipsToBounds = true
+            
+            self.subView.beerName.text = self.beerData!.name
+            self.subView.beerDescipt.text = self.beerData!.tagline
+            self.subView.beerContent.text = self.beerData!.beerDescription
+        }
         
         setProperties()
         setUI()
         setConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func setUI(){
@@ -76,15 +89,17 @@ class MainViewController: UIViewController {
             make.edges.equalTo(imageView).inset(0)
         }
         //MARK: FETCH DATA
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
         let newImageView = UIImageView()
-        newImageView.image = UIImage(named: "pngegg.png")
+            let url = URL(string: self.beerData!.imageURL)
+        newImageView.kf.setImage(with: url)
         newImageView.contentMode = .scaleAspectFill
-        imageView.addSubview(newImageView)
+            self.imageView.addSubview(newImageView)
         
         newImageView.snp.makeConstraints { make in
-            make.edges.equalTo(imageView).inset(100)//임시로 엣지에 모두 인셋.. 너무 수동적쓰~
+            make.edges.equalTo(self.imageView).inset(100)//임시로 엣지에 모두 인셋.. 너무 수동적쓰~
         }
-        
+        }
         //버튼있는 뷰
         buttonView.addSubview(refreshButton)
         buttonView.addSubview(shareButton)
@@ -107,11 +122,21 @@ class MainViewController: UIViewController {
         pairingContents.append(UILabel())
         
         pairingContents.forEach { label in
-            label.text = "Spicy carne asada with a pico de gallo sauce, 이거야 바보야!\nSpicy carne asada with a pico de gallo sauce, 이거야 바보야!\nSpicy carne asada with a pico de gallo sauce, 이거야 바보야!\n"
+            label.text = "뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!"
             label.font = .systemFont(ofSize: 20)
             label.numberOfLines = 0
             print(label.text!)
         }
+//        for item in 0...PunkAPI.shared.foodParing.count - 1 {
+//            let label = UILabel()
+//            label.text = PunkAPI.shared.foodParing[item]
+//            pairingContents.append(label)
+//        }
+//        pairingContents.forEach { label in
+//            label.font = .systemFont(ofSize: 20)
+//            label.numberOfLines = 0
+//        }
+        
         //subView
         subView.layer.cornerRadius = 10
         subView.layer.borderColor = UIColor.black.cgColor
@@ -217,6 +242,7 @@ class MainViewController: UIViewController {
             make.width.equalTo(UIScreen.main.bounds.width * 2/3)
         }
     }
+    
     // From data To JSON
     @objc func shareBtnClicked(){
         

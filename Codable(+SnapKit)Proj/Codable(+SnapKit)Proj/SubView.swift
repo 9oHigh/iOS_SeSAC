@@ -38,6 +38,7 @@ class SubView : UIView {
         beerDescipt.text = "로딩.."
         beerDescipt.font = UIFont.systemFont(ofSize: 18)
         beerDescipt.textAlignment = .center
+        beerDescipt.numberOfLines = 0
         
         beerContent.text = "로딩 중입니다."
         beerContent.font = UIFont.systemFont(ofSize: 16)
@@ -62,26 +63,30 @@ class SubView : UIView {
         
         beerName.snp.makeConstraints { make in
             make.top.equalTo(10)
-            make.left.right.equalTo(10)
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
             make.bottom.equalTo(beerDescipt.snp.top).offset(-20)
         }
         
         beerDescipt.snp.makeConstraints { make in
             make.top.equalTo(beerName.snp.bottom)
-            make.left.right.equalTo(10)
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
             make.bottom.equalTo(beerContent.snp.top).offset(-20)
         }
         
         beerContent.snp.makeConstraints { make in
             make.top.equalTo(beerDescipt.snp.bottom)
-            make.right.left.equalTo(10)
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
             make.bottom.equalTo(moreIndicator.snp.top)
         }
         
         moreIndicator.snp.makeConstraints { make in
             make.top.equalTo(beerContent.snp.bottom)
             make.bottom.equalTo(0)
-            make.left.right.equalTo(10)
+            make.left.equalTo(30)
+            make.right.equalTo(-30)
         }
 
     }
