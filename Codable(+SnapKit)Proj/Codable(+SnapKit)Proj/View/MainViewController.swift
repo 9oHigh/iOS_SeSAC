@@ -32,42 +32,78 @@ class MainViewController: UIViewController {
     //중앙에 떠있는 뷰
     var subView = SubView()
     
-    //APIs
-    var apiService = PunkAPI()
-    var beerData : Beer?
+    //beerViewModel
+    let beerViewModel = BeerViewModel()
+    var pairingCnt = 0 
+    
+    //blur Effect
+    let blurEffect = UIBlurEffect(style: .regular)
+    var blurEffectView = UIVisualEffectView()
+    
+    //newImageView for blur
+    let newImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mainScrollView.contentInsetAdjustmentBehavior = .never
         
-        //MARK: FETCH DATA
-        apiService.id = Int.random(in: 1...200)
-        apiService.fetchData { beer in
-            self.beerData = beer
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            //콘텐트 모드를 .scaleAspectFill로 해야 사용가능
-            let url = URL(string: self.beerData!.imageURL)
-            self.imageView.kf.setImage(with: url)
-            self.imageView.contentMode = .scaleAspectFill
-            self.imageView.clipsToBounds = true
-            
-            self.subView.beerName.text = self.beerData!.name
-            self.subView.beerDescipt.text = self.beerData!.tagline
-            self.subView.beerContent.text = self.beerData!.beerDescription
-        }
+        //모델 연결
+        let random = Int.random(in: 1...200)
+        beerViewModel.fetchBeerAPI(random)
+        bindViewModels()
         
         setProperties()
         setUI()
         setConstraints()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
+    func bindViewModels(){
+        print(#function)
+        //MARK: FETCH DATA / Binding
+        beerViewModel.name.bind { text in
+            self.subView.beerName.numberOfLines = 0
+            self.subView.beerName.text = text
+        }
+        beerViewModel.tagLine.bind { text in
+            self.subView.beerDescipt.text = text
+        }
+        beerViewModel.beerDescription.bind { text in
+            self.subView.beerContent.text = text
+        }
+        beerViewModel.imageURL.bind { text in
+            
+            //콘텐트 모드를 .scaleAspectFill로 해야 사용가능
+            let url = URL(string: text)
+            
+            self.imageView.kf.setImage(with: url)
+            self.imageView.contentMode = .scaleAspectFill
+            self.imageView.clipsToBounds = true
+            
+            self.newImageView.kf.setImage(with: url)
+            self.newImageView.contentMode = .scaleAspectFill
+        }
+        beerViewModel.foodPairingCnt.bind { count in
+            self.pairingCnt = count
+        }
+        
+        for item in 0...pairingCnt - 1 {
+            beerViewModel.foodPairing[item].bind { text in
+                let label = UILabel()
+                label.numberOfLines = 0
+                label.text = text
+                self.pairingContents.append(label)
+            }
+        }
+        
+    }
     func setUI(){
+        print(#function)
         //백그라운드 뷰
         view.addSubview(mainScrollView)
         mainScrollView.addSubview(headerContainer)
@@ -80,26 +116,21 @@ class MainViewController: UIViewController {
         mainScrollView.addSubview(subView)
         
         //이미지뷰 블러이펙트 조사조사!!
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.contentMode = .scaleAspectFit
         imageView.addSubview(blurEffectView)
         
         blurEffectView.snp.makeConstraints { make in
             make.edges.equalTo(imageView).inset(0)
         }
-        //MARK: FETCH DATA
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-        let newImageView = UIImageView()
-            let url = URL(string: self.beerData!.imageURL)
-        newImageView.kf.setImage(with: url)
-        newImageView.contentMode = .scaleAspectFill
-            self.imageView.addSubview(newImageView)
+        
+        imageView.addSubview(newImageView)
         
         newImageView.snp.makeConstraints { make in
-            make.edges.equalTo(self.imageView).inset(100)//임시로 엣지에 모두 인셋.. 너무 수동적쓰~
+            make.edges.equalTo(self.imageView).inset(100)
+            //임시로 엣지에 모두 인셋.. 너무 수동적쓰~
         }
-        }
+        
         //버튼있는 뷰
         buttonView.addSubview(refreshButton)
         buttonView.addSubview(shareButton)
@@ -107,6 +138,7 @@ class MainViewController: UIViewController {
     }
     
     func setProperties(){
+        print(#function)
         //백그라운드 뷰
         mainScrollView.backgroundColor = .white
         headerContainer.backgroundColor = .clear // 이미지 뷰를 하나더 얹어야하나?
@@ -116,26 +148,6 @@ class MainViewController: UIViewController {
         foodPairing.font = .boldSystemFont(ofSize: 25)
         
         //임시방편 - 데이터 가지고 오기 fetchdatas
-        //MARK: FETCH DATA
-        pairingContents.append(UILabel())
-        pairingContents.append(UILabel())
-        pairingContents.append(UILabel())
-        
-        pairingContents.forEach { label in
-            label.text = "뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!뭐랑 먹어야 맛있는데! 말해주길 바래!"
-            label.font = .systemFont(ofSize: 20)
-            label.numberOfLines = 0
-            print(label.text!)
-        }
-//        for item in 0...PunkAPI.shared.foodParing.count - 1 {
-//            let label = UILabel()
-//            label.text = PunkAPI.shared.foodParing[item]
-//            pairingContents.append(label)
-//        }
-//        pairingContents.forEach { label in
-//            label.font = .systemFont(ofSize: 20)
-//            label.numberOfLines = 0
-//        }
         
         //subView
         subView.layer.cornerRadius = 10
@@ -165,9 +177,10 @@ class MainViewController: UIViewController {
         shareButton.addTarget(self, action: #selector(shareBtnClicked), for: .touchUpInside)
     }
     func setConstraints(){
+        print(#function)
         //백그라운드 뷰
         mainScrollView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.edges.equalToSuperview()
         }
         headerContainer.snp.makeConstraints { make in
             make.top.equalTo(mainScrollView)
@@ -189,22 +202,22 @@ class MainViewController: UIViewController {
             make.top.equalTo(subView.snp.bottom)
             make.left.right.equalTo(20)
         }
-        for content in 0...pairingContents.count - 1 {
-            print(content)
+        
+        for content in 0...pairingCnt - 1 {
             if content == 0 {
-                pairingContents[content].snp.makeConstraints { make in
+                pairingContents[content].snp.remakeConstraints { make in
                     make.top.equalTo(foodPairing.snp.bottom).offset(20)
                     make.right.left.equalTo(20)
                 }
             } else if content == pairingContents.count - 1 {
-                pairingContents[content].snp.makeConstraints { make in
+                pairingContents[content].snp.remakeConstraints { make in
                     make.top.equalTo(pairingContents[content-1].snp.bottom)
                     make.right.left.equalTo(20)
                     make.bottom.equalTo(mainScrollView).offset(-100)//버튼뷰 높이만큼
                 }
             }
             else {
-                pairingContents[content].snp.makeConstraints { make in
+                pairingContents[content].snp.remakeConstraints { make in
                     make.top.equalTo(pairingContents[content-1].snp.bottom)
                     make.right.left.equalTo(20)
                 }
@@ -217,6 +230,8 @@ class MainViewController: UIViewController {
             make.top.equalTo(imageView.snp.bottom).multipliedBy(0.7)
             make.bottom.equalTo(foodPairing.snp.top).offset(-20)
         }
+        //새로운 뷰를 넣어서 스크롤뷰 길이 확장...?
+        
         
         //버튼뷰
         buttonView.snp.makeConstraints { make in
@@ -250,6 +265,16 @@ class MainViewController: UIViewController {
     
     // API Call
     @objc func refreshBtnClicked(){
+        
+        self.pairingContents.removeAll()
+        
+        let random = Int.random(in: 1...200)
+        beerViewModel.fetchBeerAPI(random)
+        
+        bindViewModels()
+        setProperties()
+        //setUI() //-> 자체 값을 바꿔야함 / 뷰가 중첩됨
+        setConstraints()
         
     }
     
