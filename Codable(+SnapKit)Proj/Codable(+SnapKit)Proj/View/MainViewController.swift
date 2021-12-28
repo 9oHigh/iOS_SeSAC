@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
     
     //beerViewModel
     let beerViewModel = BeerViewModel()
-    var pairingCnt = 0 
+    var pairingCnt = 1
     
     //blur Effect
     let blurEffect = UIBlurEffect(style: .regular)
@@ -52,11 +52,26 @@ class MainViewController: UIViewController {
         let random = Int.random(in: 1...200)
         beerViewModel.fetchBeerAPI(random)
         bindViewModels()
-        
-        setProperties()
-        setUI()
-        setConstraints()
-        
+        //MARK: 이유를 알아야함.
+        //이유를 알아야겠지만 모든 함수의 호출 순서를 기준으로 아래의 순서대로 호출 되어야하고
+        //무엇보다 배열형태의 binding은 초기의 변수 값이 정해졌을 경우 새로운 값이 들어오기전에
+        //연산을 끝내버린다. 따라서 특정시간 이후에 해야할듯 싶다. 다른 방법이 있는지 알아보자
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            for item in 0...self.pairingCnt - 1 {
+                print("ITEM + PAIR:",item,self.pairingCnt)
+                self.beerViewModel.foodPairing[item].bind { text in
+                    print("ViewDidLoad:", text)
+                    let label = UILabel()
+                    label.numberOfLines = 0
+                    label.text = "\(item + 1). " + text
+                    self.pairingContents.append(label)
+                }
+            }
+            self.setProperties()
+            self.setUI()
+            self.setConstraints()
+            print("In viewDidLoad:",self.pairingCnt)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,7 +80,7 @@ class MainViewController: UIViewController {
     
     func bindViewModels(){
         print(#function)
-        //MARK: FETCH DATA / Binding
+        
         beerViewModel.name.bind { text in
             self.subView.beerName.numberOfLines = 0
             self.subView.beerName.text = text
@@ -86,19 +101,12 @@ class MainViewController: UIViewController {
             self.imageView.clipsToBounds = true
             
             self.newImageView.kf.setImage(with: url)
-            self.newImageView.contentMode = .scaleAspectFill
-        }
-        beerViewModel.foodPairingCnt.bind { count in
-            self.pairingCnt = count
+            self.newImageView.contentMode = .scaleAspectFit
         }
         
-        for item in 0...pairingCnt - 1 {
-            beerViewModel.foodPairing[item].bind { text in
-                let label = UILabel()
-                label.numberOfLines = 0
-                label.text = text
-                self.pairingContents.append(label)
-            }
+        beerViewModel.foodPairingCnt.bind { count in
+            self.pairingCnt = count
+            print("In viewModel:",self.pairingCnt)
         }
         
     }
@@ -127,7 +135,7 @@ class MainViewController: UIViewController {
         imageView.addSubview(newImageView)
         
         newImageView.snp.makeConstraints { make in
-            make.edges.equalTo(self.imageView).inset(100)
+            make.edges.equalTo(self.imageView)
             //임시로 엣지에 모두 인셋.. 너무 수동적쓰~
         }
         
@@ -193,33 +201,38 @@ class MainViewController: UIViewController {
             make.bottom.equalTo(mainScrollView)
         }
         imageView.snp.makeConstraints { make in
-            make.left.right.equalTo(view)
+            make.leading.trailing.equalTo(view)
             make.top.equalTo(view)
             make.height.greaterThanOrEqualTo(headerContainer.snp.height).priority(.high)
             make.bottom.equalTo(headerContainer.snp.bottom)
         }
         foodPairing.snp.makeConstraints { make in
             make.top.equalTo(subView.snp.bottom)
-            make.left.right.equalTo(20)
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
         }
-        
+        print("In Constraints:",pairingCnt)
         for content in 0...pairingCnt - 1 {
+            print(pairingCnt)
             if content == 0 {
                 pairingContents[content].snp.remakeConstraints { make in
-                    make.top.equalTo(foodPairing.snp.bottom).offset(20)
-                    make.right.left.equalTo(20)
+                    make.top.equalTo(foodPairing.snp.bottom).offset(40)
+                    make.right.equalTo(-20)
+                    make.left.equalTo(20)
                 }
             } else if content == pairingContents.count - 1 {
                 pairingContents[content].snp.remakeConstraints { make in
-                    make.top.equalTo(pairingContents[content-1].snp.bottom)
-                    make.right.left.equalTo(20)
+                    make.top.equalTo(pairingContents[content-1].snp.bottom).offset(40)
+                    make.right.equalTo(-20)
+                    make.left.equalTo(20)
                     make.bottom.equalTo(mainScrollView).offset(-100)//버튼뷰 높이만큼
                 }
             }
             else {
                 pairingContents[content].snp.remakeConstraints { make in
-                    make.top.equalTo(pairingContents[content-1].snp.bottom)
-                    make.right.left.equalTo(20)
+                    make.top.equalTo(pairingContents[content-1].snp.bottom).offset(40)
+                    make.right.equalTo(-20)
+                    make.left.equalTo(20)
                 }
             }
         }
@@ -230,8 +243,6 @@ class MainViewController: UIViewController {
             make.top.equalTo(imageView.snp.bottom).multipliedBy(0.7)
             make.bottom.equalTo(foodPairing.snp.top).offset(-20)
         }
-        //새로운 뷰를 넣어서 스크롤뷰 길이 확장...?
-        
         
         //버튼뷰
         buttonView.snp.makeConstraints { make in
@@ -263,19 +274,22 @@ class MainViewController: UIViewController {
         
     }
     
-    // API Call
+    // 
     @objc func refreshBtnClicked(){
-        
-        self.pairingContents.removeAll()
         
         let random = Int.random(in: 1...200)
         beerViewModel.fetchBeerAPI(random)
-        
         bindViewModels()
-        setProperties()
-        //setUI() //-> 자체 값을 바꿔야함 / 뷰가 중첩됨
-        setConstraints()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            for item in 0...self.pairingCnt - 1 {
+                print("ITEM + PAIR:",item,self.pairingCnt)
+                self.beerViewModel.foodPairing[item].bind { text in
+                    print("ViewDidLoad:", text)
+                    self.pairingContents[item].text = "\(item + 1). " + text
+                }
+            }
+        }
     }
     
     @objc func moreBtnClicked(){

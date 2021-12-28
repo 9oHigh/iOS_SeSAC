@@ -24,18 +24,17 @@ class BeerViewModel {
             guard let beer = beer else {
                 return
             }
-            
+            for item in 0...beer.foodPairing.count - 1 {
+                self.foodPairing.append(Observable(""))
+                self.foodPairing[item].value = beer.foodPairing[item]
+                print("BeerViewModel :",self.foodPairing[item].value)
+            }
             self.id.value = beer.id
             self.name.value = beer.name
             self.imageURL.value = beer.imageURL
             self.tagLine.value = beer.tagline
             self.beerDescription.value = beer.beerDescription
             self.foodPairingCnt.value = beer.foodPairing.count
-
-            for item in 0...beer.foodPairing.count - 1 {
-                self.foodPairing.append(Observable(""))
-                self.foodPairing[item].value = beer.foodPairing[item]
-            }
         }
     }
 }
