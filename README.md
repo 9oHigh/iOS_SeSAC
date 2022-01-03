@@ -12,7 +12,6 @@
 |KakaoOCR_API_Proj| Kakao API를 이용하여 OCR 결과를 테스트|
 |FilmPromotionComitteeAPIProj| 영화진흥원의 API를 이용, Realm을 이용하여 데이터를 저장하고 클라이언트에 보여주는 방법을 학습|
 |DrinkwaterProj| 물마시기 애플리케이션으로 UserDefaults를 이용하여 값을 저장하고 활용하는 방법을 학습|
-|DramaProj| Snapkit과 Codable 심화학습|
 |CurrencyRateProj| 간단한 환율 계산기 애플리케이션으로 didSet / willSet 그리고 get / set을 학습|
 |Codable(+SnapKit)Proj| SnapKit과 Codable을 이용, beer API를 활용해 맥주 정보를 보여주는 애플리케이션 |
 
