@@ -92,6 +92,7 @@ class ProfileViewController: UIViewController {
         UserDefaults.standard.set(heightTextfield.text, forKey: "height")
         UserDefaults.standard.set(weightTextfield.text, forKey: "weight")
         UserDefaults.standard.set(intakeWater(),forKey: "intakewater")
+        self.navigationController?.popViewController(animated: true)
     }
     // 물 섭취량 목표치 계산 함수
     func intakeWater () -> Int{

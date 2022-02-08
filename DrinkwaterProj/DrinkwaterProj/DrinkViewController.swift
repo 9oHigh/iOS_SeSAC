@@ -104,7 +104,7 @@ class DrinkViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-    //viewWillAppear 돌아올 때
+    //viewWillAppear 
     override func viewWillAppear(_ animated: Bool) {
         intakeLabel.text = (UserDefaults.standard.string(forKey: "nickname") ?? "") + "님의 하루 물 권장 섭취량은 " + String(UserDefaults.standard.integer(forKey: "intakewater")) + "L입니다."
     }
@@ -126,7 +126,7 @@ class DrinkViewController: UIViewController,UITextFieldDelegate {
         
         goalPercent = (howDrinkValue/10) / UserDefaults.standard.integer(forKey: "intakewater")
         goalLabel.text = "목표의 " + String(goalPercent) + "%"
-        //이미지 다시픽
+        //이미지 선택
         pickImage(goalPercent)
         //텍스트 초기화
         mlTextField.text = ""
