@@ -7,6 +7,7 @@
  
  [2. 물마시기 프로젝트](#물마시기-프로젝트)
  
+ [3. 테이블뷰 프로젝트](#테이블뷰-)
  ---
 
 ### 프로젝트 요약
@@ -104,5 +105,71 @@ func pickImage(_ goalPercent : Int){
   </div>
 </div>
 </details>
+
+### 테이블뷰 프로젝트 
+<details>
+<summary>정리</summary>
+<div markdown="1">       
+  
+  * Core Skills : **AutoLayout,UITableViewController**
+
+  * AutoLayout을 이용해 UI를 구성 
+ 
+  |첫번 째|두번 째|
+|:---:|:---:|
+| ![Simulator Screen Shot - iPhone 12 - 2022-02-08 at 13 05 55](https://user-images.githubusercontent.com/53691249/152916562-59821324-db8f-4e3c-aa95-d034de27558d.png)|![Simulator Screen Shot - iPhone 12 - 2022-02-08 at 13 10 28](https://user-images.githubusercontent.com/53691249/152916675-20100749-9234-4f3d-9032-6a890f6a65b0.png)|
+
+  
+  * UITableViewController를 채택하여 생성
+ 
+  * 테이블뷰에 넣기 위한 프로퍼티들을 만들기 
+
+  ```swift
+  var sectionTitle : [String] = ["전체 설정","개인 설정","기타"]
+  var myTableList : [[String]] = [["공지사항","실험실","버전 정보"],["개인/보안","알림","채팅","멀티프로필"],["고객센터/도움말"]]
+  var myTableListCount : [Int] = [3,4,1]
+  ```
+
+  * Section 및 Row의 개수 함수로 정의하기
+
+  ```swift
+   //Section 개수
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 3
+    }
+    //Section의 셀 개수
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return myTableListCount[section]
+    } 
+  ```
+
+ * 각 셀들의 Configuration 부여
+
+  ```swift
+   //각각의 셀들
+   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       guard let cell = tableView.dequeueReusableCell(withIdentifier: "memoCell") else {
+           return UITableViewCell()
+       }
+
+       if indexPath.section == 0 {
+           cell.textLabel?.text = myTableList[0][indexPath.row]
+           cell.textLabel?.font = .systemFont(ofSize: 15)
+       } else if indexPath.section == 1{
+           cell.textLabel?.text = myTableList[1][indexPath.row]
+           cell.textLabel?.font = .systemFont(ofSize: 15)
+       } else if indexPath.section == 2{
+           cell.textLabel?.text = myTableList[2][indexPath.row]
+           cell.textLabel?.font = .systemFont(ofSize: 15)
+       }
+
+       return cell
+   }
+  ```
+</div>
+</details>
+
 
 
