@@ -13,6 +13,10 @@
  
  [5. 쇼핑 프로젝트](#쇼핑리스트-프로젝트)
  
+ [6. 복권 프로젝트](#복권-프로젝트)
+ 
+ [7. TMDB 프로젝트](#TMDB-프로젝트)
+ 
  ---
 
 ### 프로젝트 요약
@@ -472,10 +476,237 @@ func pickImage(_ goalPercent : Int){
 </details>
 
 
+### 복권 프로젝트
+<details>
+<summary>정리</summary>
+<div markdown="1">       
+  
+  * Core Skills : **AutoLayout, Alamofire, UIPickerView**
 
+  * AutoLayout을 이용해 UI를 구성 
+ 
+  <div Align = center> 
 
+  |구성|구동 영상|
+|:---:|:---:|
+|![스크린샷 2022-02-10 오후 4 20 36](https://user-images.githubusercontent.com/53691249/153358365-81848b53-1a80-405f-8b9a-36ac0b82700e.png)|![복권](https://user-images.githubusercontent.com/53691249/153358370-6a8656be-6e7e-46e7-8c78-488e9e9848b1.gif)|
+   
+ </div>
+     <br></br>
+ 
+  * Alamofire를 이용하여 역대 복권 당첨내역을 확인
 
+   ```swift
+   AF.request(url, method: .get).validate().responseJSON { response in 
+             switch response.result {
+             case .success(let value):
+                 let json = JSON(value)
 
+                 let date = json["drwNoDate"].stringValue
+                 self.dateLabel.text = date + " 추첨"
 
+                 self.luckyNumbers = []
+                 for item in self.drwNumbersString {
+                     self.luckyNumbers.append( json[item].stringValue)
+                 }
+                //중략
+   case .failure(let error):
+                 print(error)
+             }
+   ```
+ 
+   * UIPickerViewDelegate와 UIPickerViewDataSource를 이용하여 데이터를 넣어주고 화면에 보여주기
+ 
+   * Extension을 사용
+ 
+   ```swift
+   extension ViewController : UIPickerViewDelegate,UIPickerViewDataSource{
+     //column
+     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+         return 1
+     }
+     //column의 개수
+     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+         //데이터를 표시할 수 있는 로또의 회차수를 받아오기
+         return episodeList.count
+     }
+     //title
+     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+         return String(episodeList[row])
+     }
+     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+         inputNumberTextField.text = String(episodeList[row])
+         getLotteryNumbers(episodeNumber: episodeList[row])
+      }
+   }
+   ```
+ 
+  </div>
+</details>
 
+### TMDB 프로젝트
+<details>
+<summary>정리</summary>
+<div markdown="1">       
+  
+  * Core Skills : **Pass data, WebView, MapView, CoreLocation, Annotation, TableView, CollectionView, Pagenation, TMDB API, NWPathMonitor, KingFisher, Alamofire, SwiftyJSONw**
+ 
+  * AutoLayout을 이용해 UI를 구성 / Custom Cell
+ 
+  * TMDB(The Movie Database)의 API를 이용하여 영화 및 드라마 정보(평점, 출연진, Youtube 링크 등)를 받아와 보여주는 애플리케이션
+     * Map : MapView에 영화관 위치 정보를 보여주고 각각의 영화관들을 필터링
+     * Alamofire : 받아온 JSON 데이터를 Image, String ...으로 변환후 TableView, CollectionView에 적용
+ 
 
+ ## 메인
+ ---
+### APIManager Class 
+ * TMDB와 API통신을 하고 전달받은 값을 @escaping 클로저를 통해 외부로 전달하기 위함
+ 
+   ```swift
+    class TMDBManager{
+       static let shared = TMDBManager()
+ 
+       ...
+ 
+       func fetchData(result : @escaping (Int,JSON)->()){
+        
+           let url = "https://api.themoviedb.org/3/trending/movie/day?api_key=\(APIDocs.TMDB_KEY)&language=ko&page=\(TMDBManager.startPage)"
+           AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { response in
+               switch response.result {
+               case .success(let value):
+                   let json = JSON(value)
+                   let code = response.response?.statusCode ?? 500
+                   result(code, json)
+               case .failure(let error):
+                   print(error)
+               }
+           }
+         }
+       }
+     }
+   ```
+### Pass Data 
+ * 영화 정보를 클릭할 시에 상세정보창으로 Push, 이때 해당 ViewController의 변수에 필요한 값들을 전달한 이후 화면에 보여준다.
+ 
+   ```swift
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //스토리보드 + viewController 특정
+        let myStoryboard = UIStoryboard(name: "Main", bundle: nil)
+       
+        let vc = myStoryboard.instantiateViewController(withIdentifier: "peopleStoryboard") as! mediaPeopleViewControllViewController
+        //Poster
+        vc.posterName = myMediaList[indexPath.row].poster
+        //BackDrop
+        vc.headerImageName = myMediaList[indexPath.row].backDrop
+        //Title
+        vc.titleName = myMediaList[indexPath.row].title
+        //Overview
+        vc.summary = myMediaList[indexPath.row].overview
+        //id
+        vc.movie_id = myMediaList[indexPath.row].id
+ 
+        //PUSH
+        self.navigationController?.pushViewController(vc, animated: true)        
+    }
+   ```
+ ### Kingfisher 라이브러리를 이용하여 전달받은 URL로부터 이미지 바로 세팅하기
+   * Kingfisher는 url로 부터 이미지를 가지고오는 기능뿐 아니라 이를 디스크 혹은 메모리 캐시에 저장하여 주기 떄문에 최초 이후에는 처리가 더 빨라진다
+ 
+     ```swift
+     //기존의 이미지를 세팅하는 방법
+     let url = URL(string: "")
+     do {
+         let data = try Data(contentsOf: url!)
+         cell.postImageView.image = UIImage(data: data)
+     } catch {
+          print("이미지를 가지고 올 수 없음")
+     }
+     // BUT!!!! Kingfisher를 이용한다면
+     cell.postImageView.setImage(imageUrl: "")
+     ```
+ ### WebView 사용하기
+   * 해당 이미지뷰 상단의 링크 버튼을 누르면 Youtube로 이동하고 예고편을 자동으로 재생하는 기능
+   * API 통신을 통해 받아온 링크를 WebView를 가지고 있는 ViewController에 넘겨주기
+ 
+   ```swift
+         ytUrl = "https://api.themoviedb.org/3/movie/\(myMediaList[sender.tag].id)/videos?api_key=\(APIDocs.TMDB_KEY)&language=en-US"
+        
+        AF.request(self.ytUrl, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                self.link = "https://www.youtube.com/watch?v=" + json["results"][0]["key"].stringValue
+            case .failure(let error):
+                print(error)
+            }
+          //링크 전달
+          viewController.myLink = self.link
+   ```
+## 상세 정보
+ ---
+ ### UILabel과 상세보기 버튼
+   * UILabel의 numberOfLines를 활용하여 애니메이션 효과 주기
+ 
+     ```swift    
+      // tableView의 0번 인덱스의 0번 째 셀을 reload 해주고
+      @objc func arrowButtonClicked (selectedButton : UIButton){
+         clicked.toggle()
+         peopleTableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .fade)
+      }
+      // numberOfLines를 0 / 2(으)로 변환
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        ...
+        clicked == true ? (cell.summaryLabel.numberOfLines = 0) : (cell.summaryLabel.numberOfLines = 2)
+      }
+     ```
+## 영화관 정보
+ ---
+ ### 선택한 영화관만 보여주기
+   * 버튼 메뉴를 통해 해당 버튼의 타입을 파라미터로 전달하고 매칭
+ 
+     ```swift    
+      // 1. 모든 annotation 삭제
+      let allAnnotations = self.mapView.annotations
+      self.mapView.removeAnnotations(allAnnotations)
+
+      // 2. 지정해둔 type프로퍼티에 접근해 매개변수로 들어온 which와 비교 후 같은 것만 지도에 annotation
+      if mapAnnotations[i].type == which{
+
+         let location = CLLocationCoordinate2D(latitude: mapAnnotations[i].latitude, longitude: mapAnnotations[i].longitude)
+         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+         let region = MKCoordinateRegion(center: location, span: span)
+
+         mapView.setRegion(region, animated: true)
+
+         let annotation = MKPointAnnotation()
+         annotation.title = mapAnnotations[i].location
+         annotation.coordinate = location
+
+         mapView.addAnnotation(annotation)
+      }
+     ```
+ ## 나의 미디어
+ ---
+ ### 컬렉션뷰를 사용하여 간략하게 정보를 볼 수 있게 만든 ViewController
+   * XIB를 사용해 Custom Cell 등록
+ 
+      ```swift   
+         //XIB파일 연결
+        let nibName = UINib(nibName: bookCollectionViewCell.identifier, bundle: nil)
+        bookCollectionView.register(nibName, forCellWithReuseIdentifier: bookCollectionViewCell.identifier)
+ 
+      ```  
+## 구동 영상
+ ---
+ ### 각 기능별로 구동되는 영상
+ 
+  <div Align = center>
+   
+   |메인|지도|나의 미디어|검색|
+   |:---:|:---:|:---:|:---:|
+   |![메인](https://user-images.githubusercontent.com/53691249/153407031-cc6a59df-ca81-4774-959e-050df1fac27d.gif)|![지도](https://user-images.githubusercontent.com/53691249/153407060-2ae99cd4-2f04-4a5a-89a1-26e0aa0ee245.gif)|![마이미디어](https://user-images.githubusercontent.com/53691249/153407067-f32ecbd5-de5c-4c01-b64d-eb5adf1e91cf.gif)|![검색](https://user-images.githubusercontent.com/53691249/153407071-c626536f-f477-40c8-8bce-21dd61fe566c.gif)|
+   
+   </div>
+  </div>
+</details>
