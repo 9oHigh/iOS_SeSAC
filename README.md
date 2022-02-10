@@ -237,7 +237,7 @@ func pickImage(_ goalPercent : Int){
 </details>
 
 ### 쇼핑리스트 프로젝트 
-<details>
+<details open>
 <summary>정리</summary>
 <div markdown="1">       
   
@@ -545,7 +545,7 @@ func pickImage(_ goalPercent : Int){
 </details>
 
 ### TMDB 프로젝트
-<details>
+<details open>
 <summary>정리</summary>
 <div markdown="1">       
   
