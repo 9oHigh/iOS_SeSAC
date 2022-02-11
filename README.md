@@ -15,7 +15,11 @@
  
  [6. 복권 프로젝트](#복권-프로젝트)
  
- [7. TMDB 프로젝트](#TMDB-프로젝트)
+ [7. 트렌드미디어 프로젝트](#트렌드미디어-프로젝트)
+ 
+ [8. 오픈웨더 프로젝트](#오픈웨더-프로젝트)
+ 
+ [9. 영화진흥위원회 프로젝트](#영화진흥위원회-프로젝트)
  
  ---
 
@@ -26,11 +30,11 @@
 |TableViewProj| UITableViewController를 이용해 TableView의 기초적인 사용방법을 학습|
 |CurrencyRateProj| 간단한 환율 계산기 애플리케이션으로 didSet / willSet 그리고 get / set을 학습|
 |ShoppingListProj| 쇼핑리스트를 작성할 수 있는 간단한 애플리케이션으로 백업 / 복구 / 공유 기능을 위해 Zip과 더불어 Realm, Custom Cell을 학습|
-|OpenWeatherAPIProj| 위치권한 설정과 더불어 Alamofire와 OpenWeather API를 이용해 날씨 정보를 가지고 오는 과정을 학습|
-|NetflixTrendMediaProj| TMDB API를 이용하여 Trend Media에 대한 정보를 보여주는 애플리케이션으로 기존에 배운것들에 더불어 TableViewCell을 커스텀, 위치 권한 설정, WebView등 다양한 기술들을 학습|
 |LotteryAPIProj| PickerView를 이용하여 원하는 날짜의 로또번호를 가지고 오는 과정을 학습|
-|KakaoOCR_API_Proj| Kakao API를 이용하여 OCR 결과를 테스트|
+|NetflixTrendMediaProj| TMDB API를 이용하여 Trend Media에 대한 정보를 보여주는 애플리케이션으로 기존에 배운것들에 더불어 TableViewCell을 커스텀, 위치 권한 설정, WebView등 다양한 기술들을 학습|
+|OpenWeatherAPIProj| 위치권한 설정과 더불어 Alamofire와 OpenWeather API를 이용해 날씨 정보를 가지고 오는 과정을 학습|
 |FilmPromotionComitteeAPIProj| 영화진흥원의 API를 이용, Realm을 이용하여 데이터를 저장하고 클라이언트에 보여주는 방법을 학습|
+|KakaoOCR_API_Proj| Kakao API를 이용하여 OCR 결과를 테스트|
 |Codable(+SnapKit)Proj| SnapKit과 Codable을 이용, beer API를 활용해 맥주 정보를 보여주는 애플리케이션 |
 
 ---
@@ -115,6 +119,8 @@ func pickImage(_ goalPercent : Int){
 </div>
 </details>
 
+----
+
 ### 테이블뷰 프로젝트 
 <details>
 <summary>정리</summary>
@@ -180,6 +186,7 @@ func pickImage(_ goalPercent : Int){
 </div>
 </details>
 
+----
 
 ### 환율 프로젝트 
 <details>
@@ -235,6 +242,8 @@ func pickImage(_ goalPercent : Int){
   ```
 </div>
 </details>
+
+----
 
 ### 쇼핑리스트 프로젝트 
 <details open>
@@ -475,6 +484,7 @@ func pickImage(_ goalPercent : Int){
 </div>
 </details>
 
+----
 
 ### 복권 프로젝트
 <details>
@@ -484,15 +494,6 @@ func pickImage(_ goalPercent : Int){
   * Core Skills : **AutoLayout, Alamofire, UIPickerView**
 
   * AutoLayout을 이용해 UI를 구성 
- 
-  <div Align = center> 
-
-  |구성|구동 영상|
-|:---:|:---:|
-|![스크린샷 2022-02-10 오후 4 20 36](https://user-images.githubusercontent.com/53691249/153358365-81848b53-1a80-405f-8b9a-36ac0b82700e.png)|![복권](https://user-images.githubusercontent.com/53691249/153358370-6a8656be-6e7e-46e7-8c78-488e9e9848b1.gif)|
-   
- </div>
-     <br></br>
  
   * Alamofire를 이용하여 역대 복권 당첨내역을 확인
 
@@ -540,11 +541,23 @@ func pickImage(_ goalPercent : Int){
       }
    }
    ```
+ ---
+### UI 및 구동영상
+ 
+<div Align = center> 
+
+  |구성|구동 영상|
+|:---:|:---:|
+|![스크린샷 2022-02-10 오후 4 20 36](https://user-images.githubusercontent.com/53691249/153358365-81848b53-1a80-405f-8b9a-36ac0b82700e.png)|![복권](https://user-images.githubusercontent.com/53691249/153358370-6a8656be-6e7e-46e7-8c78-488e9e9848b1.gif)|
+   
+ </div>
  
   </div>
 </details>
 
-### TMDB 프로젝트
+----
+
+### 트렌드미디어 프로젝트
 <details open>
 <summary>정리</summary>
 <div markdown="1">       
@@ -709,4 +722,152 @@ func pickImage(_ goalPercent : Int){
    
    </div>
   </div>
+</details>
+
+----
+
+### 오픈웨더 프로젝트
+<details>
+<summary>정리</summary>
+<div markdown="1">       
+  
+  * Core Skills : **AutoLayout, Alamofire, Kingfisher, SwiftyJSON**
+
+  * AutoLayout을 이용해 UI를 구성
+ 
+  * 위치정보와 OpenWeatherAPI를 활용해 해당지역의 날씨상태를 보여주는 간단한 애플리케이션  
+  
+  * APIManager를 싱글톤 패턴을 활용하여 OpenWeatherAPI 사용
+
+  ```swift
+   class OpenWeatherAPIManager {
+       static let shared = OpenWeatherAPIManager()
+ 
+       ...
+ 
+       func fetchData(result: @escaping (Int,JSON)->()) {
+
+           let url = "https://api.openweathermap.org/data/2.5/weather?lat=37.550136619516515&lon=127.073179&appid=(KEY)"
+           AF.request(url, method: .get).validate(statusCode: 200...500).responseJSON { response in
+               switch response.result{
+
+               case .success(let value):
+                   let json = JSON(value)
+                   let code = response.response?.statusCode ?? 500
+                   result(code, json)
+               case .failure(let error):
+                   print("Error: ",error)
+               }
+           }
+       }
+   }
+  ```
+ ---
+### UI 및 구동영상
+ 
+<div Align = center> 
+   
+|UI 구성|구동 영상|
+|:---:|:---:|
+ |![스크린샷 2022-02-11 오후 10 23 24](https://user-images.githubusercontent.com/53691249/153599012-252f47c7-abfc-487d-84cb-b4c89ea91c38.png)|![ezgif com-gif-maker](https://user-images.githubusercontent.com/53691249/153597411-324221a3-a534-4246-a065-7c08af25d57c.gif)|
+   
+  </div>
+ 
+</div>
+</details>
+
+----
+
+### 영화진흥위원회 프로젝트
+<details>
+<summary>정리</summary>
+<div markdown="1">       
+  
+  * Core Skills : **AutoLayout, Alamofire, SwiftyJSON, Realm**
+
+  * AutoLayout을 이용해 UI를 구성
+ 
+  * 영화진흥위원회에서 제공하는 API를 이용해 검색한 일자에 대해 랭킹을 제공하는 애플리케이션
+    * 이용자가 같은 날짜의 데이터를 조회할 수 있기때문에 Realm을 이용해 받아온 날짜의 데이터를 저장
+    * 입력받은 날짜에 의해 TableView가 reload될 때, 이전에 저장했던 데이터 인지 확인하고 분기처리
+  
+  ### Realm
+ 
+   ```swift
+    class DailyMovie : Object{
+
+       @Persisted var name : String
+
+       @Persisted var date : String
+
+       @Persisted var inputDate : String
+
+       @Persisted(primaryKey: true) var movieId : ObjectId
+
+       convenience init(name : String, date: String, inputDate : String){
+           self.init()
+           self.name = name
+           self.date = date
+           self.inputDate = inputDate
+       }
+   }
+   ```
+ 
+ ---
+ 
+ ### 정규식
+   * 영화진흥위원회 API의 경우, 지원하는 날짜가 2004년부터 이므로 입력받는 날짜에 대한 정규식이 필요
+ 
+   ```swift
+     let pattern : String = "^20([0-2])([4-9])([0-1])([0-9])([0-1])([0-9])$"
+     var text : String
+        
+     //정규식 활용
+     if let _ = dateTextfield.text?.range(of: pattern,options: .regularExpression) {
+         text = dateTextfield.text!
+     } else {
+         showAlert(alertText: "날짜", alertMessege: "날짜를 잘못 입력하셨습니다.", alertTitle: "확인")
+         dateTextfield.text = ""
+     }
+   ```
+ ---
+  ### Realm
+   * 정보 조회시 Realm에 이미 해당 날짜의 데이터가 있는지 확인
+ 
+   ```swift
+     // 존재할 경우 TableView의 해당 데이터 reload
+     if !localRealm.objects(DailyMovie.self).filter("inputDate == '\(text)'").isEmpty {
+         newDate = text
+         self.rankingTableView.reloadData()
+     } else {
+         // 존재하지 않는 경우 -> API 호출
+         newDate = text
+         fetchData(dates: newDate)
+     }
+   ```
+ 
+   * 받아온 데이터 저장
+ 
+   ```swift
+    let title = json["boxOfficeResult"]["dailyBoxOfficeList"][item]["movieNm"].stringValue
+    let date = json["boxOfficeResult"]["dailyBoxOfficeList"][item]["openDt"].stringValue
+    let task = DailyMovie(name: title, date: date, inputDate: dates)
+ 
+    try! self.localRealm.write{
+        self.localRealm.add(task)
+    }
+  ```
+ 
+  ---
+### UI 및 구동영상
+ 
+<div Align = center> 
+   
+|UI 구성|구동 영상|
+|:---:|:---:|
+ |![스크린샷 2022-02-11 오후 11 08 02](https://user-images.githubusercontent.com/53691249/153605996-1ca0c3b5-d704-4fb9-97c9-49235a6968cb.png)|![ezgif com-gif-maker](https://user-images.githubusercontent.com/53691249/153604990-20bd9f23-0f30-4ac9-bf38-38f14f3fb07a.gif)|
+    
+  </div>
+ 
+</div>
 </details>
