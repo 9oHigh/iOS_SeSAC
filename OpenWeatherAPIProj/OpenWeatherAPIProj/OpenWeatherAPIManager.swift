@@ -27,7 +27,7 @@ class OpenWeatherAPIManager {
                 let code = response.response?.statusCode ?? 500
                 result(code, json)
             case .failure(let error):
-                print("Error")
+                print("Error: ",error)
             }
         }
     }

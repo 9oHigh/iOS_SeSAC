@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,20 +57,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="당첨결과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw0-7k-gQ3">
-                                <rect key="frame" x="209.5" y="184" width="86.5" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="5ya-Le-OaH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="986회" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bem-07-H5g">
-                                <rect key="frame" x="132" y="184" width="68.5" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="OFV-B7-INl"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="986회 당청결과" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bem-07-H5g">
+                                <rect key="frame" x="0.0" y="148" width="414" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -168,6 +156,7 @@
                         <constraints>
                             <constraint firstItem="AjL-0L-xHB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="1v5-xc-71s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GVw-ML-1ha" secondAttribute="trailing" constant="20" id="3vb-XD-aYk"/>
+                            <constraint firstItem="bem-07-H5g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7CY-uc-8he"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d5R-Nk-jXg" secondAttribute="trailing" constant="20" id="7Mn-iy-Kdo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AjL-0L-xHB" secondAttribute="trailing" constant="20" id="8IS-t5-QHH"/>
                             <constraint firstItem="y94-qp-XR4" firstAttribute="top" secondItem="GVw-ML-1ha" secondAttribute="bottom" constant="20" id="ARg-fF-MFh"/>
@@ -175,19 +164,16 @@
                             <constraint firstItem="UZC-Cw-Te6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Bns-dj-WL2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dq0-dZ-jCQ" secondAttribute="trailing" constant="20" id="CN6-Ui-L0j"/>
                             <constraint firstItem="UZC-Cw-Te6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CkI-pf-dy8"/>
-                            <constraint firstItem="Dq0-dZ-jCQ" firstAttribute="top" secondItem="Jw0-7k-gQ3" secondAttribute="bottom" constant="25" id="Ffh-G6-5Ss"/>
                             <constraint firstItem="GVw-ML-1ha" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="HhJ-85-hMm"/>
                             <constraint firstItem="d5R-Nk-jXg" firstAttribute="top" secondItem="GVw-ML-1ha" secondAttribute="bottom" constant="20" id="KmK-mZ-4BM"/>
                             <constraint firstItem="GVw-ML-1ha" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="XWm-V3-lhu"/>
                             <constraint firstItem="AjL-0L-xHB" firstAttribute="top" secondItem="Dq0-dZ-jCQ" secondAttribute="bottom" id="aKD-Fl-UDO"/>
                             <constraint firstItem="Dq0-dZ-jCQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dmV-Hf-MeM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AjL-0L-xHB" secondAttribute="trailing" constant="20" id="ewJ-Zh-hDP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jw0-7k-gQ3" secondAttribute="trailing" constant="118" id="fEM-1O-C5X"/>
-                            <constraint firstItem="Jw0-7k-gQ3" firstAttribute="baseline" secondItem="bem-07-H5g" secondAttribute="baseline" id="gMW-R4-slP"/>
-                            <constraint firstItem="Jw0-7k-gQ3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bem-07-H5g" secondAttribute="trailing" constant="8" symbolic="YES" id="i3O-Nx-Llu"/>
-                            <constraint firstItem="bem-07-H5g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="132" id="l1G-ht-7rN"/>
+                            <constraint firstItem="bem-07-H5g" firstAttribute="top" secondItem="GVw-ML-1ha" secondAttribute="bottom" constant="60" id="kbu-jR-WzP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bem-07-H5g" secondAttribute="trailing" id="lgO-yh-ipL"/>
                             <constraint firstItem="y94-qp-XR4" firstAttribute="leading" secondItem="GVw-ML-1ha" secondAttribute="leading" id="m7Y-HV-Z3P"/>
-                            <constraint firstItem="Jw0-7k-gQ3" firstAttribute="top" secondItem="GVw-ML-1ha" secondAttribute="bottom" constant="96" id="qUK-qC-7rZ"/>
+                            <constraint firstItem="Dq0-dZ-jCQ" firstAttribute="top" secondItem="bem-07-H5g" secondAttribute="bottom" constant="61" id="mLW-gc-q3T"/>
                             <constraint firstItem="d5R-Nk-jXg" firstAttribute="leading" relation="lessThanOrEqual" secondItem="y94-qp-XR4" secondAttribute="trailing" constant="242" id="veM-cq-r2L"/>
                             <constraint firstAttribute="bottom" secondItem="UZC-Cw-Te6" secondAttribute="bottom" id="w9Z-dw-eOE"/>
                         </constraints>
@@ -205,7 +191,6 @@
                         <outlet property="inputNumberTextField" destination="GVw-ML-1ha" id="IKC-FS-ju7"/>
                         <outlet property="introNumberLabel" destination="y94-qp-XR4" id="Z6G-cQ-66G"/>
                         <outlet property="pickerView" destination="UZC-Cw-Te6" id="2x1-xY-WiR"/>
-                        <outlet property="sessionLabel" destination="Jw0-7k-gQ3" id="Kl0-zk-0G3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

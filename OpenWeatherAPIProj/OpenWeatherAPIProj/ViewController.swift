@@ -38,11 +38,16 @@ class ViewController: UIViewController{
         //호출
         getCurrentWeather()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        getCurrentWeather()
+    }
     func getCurrentWeather(){
+        
         OpenWeatherAPIManager.shared.fetchData { code, json in
             //온도
             let currentTemp = json["main"]["temp"].doubleValue - 273.15
+            print(currentTemp)
             self.tempLabel.text = "지금은 " + String(Int(currentTemp)) + "도에요."
             //습도
             let currentHumidity = json["main"]["humidity"].intValue - 1

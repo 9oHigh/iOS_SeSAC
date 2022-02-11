@@ -13,7 +13,6 @@ class ViewController: UIViewController,UITextFieldDelegate{
     
     @IBOutlet weak var introNumberLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var sessionLabel: UILabel!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var inputNumberTextField: UITextField!
     @IBOutlet weak var episodeLabel: UILabel!
@@ -58,7 +57,7 @@ class ViewController: UIViewController,UITextFieldDelegate{
     func getLotteryNumbers(episodeNumber : Int){
         //변수 데이터 변경
         pickerView.isHidden = true
-        episodeLabel.text = "\(episodeNumber)회"
+        episodeLabel.text = "\(episodeNumber)회 당첨결과"
         //API
         let url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(episodeNumber)"
         AF.request(url, method: .get).validate().responseJSON { response in
@@ -72,7 +71,6 @@ class ViewController: UIViewController,UITextFieldDelegate{
                 self.luckyNumbers = []
                 for item in self.drwNumbersString {
                     self.luckyNumbers.append( json[item].stringValue)
-                    print(json[item])
                 }
                 //라벨을 꾸밀 함수
                 self.drwtNo1.text = self.luckyNumbers[0]
@@ -136,7 +134,7 @@ extension UILabel {
         
         label.textColor = .white
         label.backgroundColor = colorSet.randomElement()
-        label.layer.cornerRadius = label.frame.width/2
+        label.layer.cornerRadius = label.frame.width / 2
         label.layer.masksToBounds = true
     }
 }

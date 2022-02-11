@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         fetchData(dates: newDate)
     }
     func fetchData(dates: String){
-        let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\("key")&targetDt=\(dates)"
+        let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=a21ef4c9d70b9750b77ca59c9ab7a2ed&targetDt=\(dates)"
         
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
@@ -61,11 +61,9 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func searchButtonClicked(_ sender: UIButton) {
-        
-        
         //조금더 정확한 정규식이 필요할 것 같다.
         //2004년부터 데이터 존재
-        let pattern : String = "^20([0-2])([0-9])([0-1])([0-9])([0-1])([0-9])$"
+        let pattern : String = "^20([0-2])([4-9])([0-1])([0-9])([0-1])([0-9])$"
         var text : String
         
         //정규식 활용
@@ -94,7 +92,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else {
             return UITableViewCell()
@@ -108,14 +106,18 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
         cell.movieNameLabel.text = tasks[indexPath.row].name
         cell.movieNameLabel.font = UIFont.boldSystemFont(ofSize: 17)
         cell.movieNameLabel.textColor = .white
+        cell.movieNameLabel.textAlignment = .center
         
         cell.dateLabel.text = tasks[indexPath.row].date
         cell.dateLabel.textColor = .white
+        cell.dateLabel.numberOfLines = 0
+        cell.dateLabel.textAlignment = .center
         
         cell.levelLabel.font = UIFont.boldSystemFont(ofSize: 17)
         cell.levelLabel.textColor = UIColor.black
         cell.levelLabel.text = String(indexPath.row+1)
         cell.levelLabel.backgroundColor = .white
+        cell.levelLabel.textAlignment = .center
         
         cell.backgroundColor = .black
         

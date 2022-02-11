@@ -17,11 +17,9 @@ struct ExchangeRate {
     var currencyRate : Double {
         willSet{
             outWillSetPrint = "환율이 변동 예정 : \(currencyRate) -> \(newValue)"
-            print("환율이 변동 예정 : \(currencyRate) -> \(newValue)")
         }
         didSet{
             outDidSetPrint = "환율이 변동 완료 : \(oldValue) -> \(currencyRate)"
-            print("환율이 변동 완료 : \(oldValue) -> \(currencyRate)")
         }
     }
     var USD: Double{
@@ -29,17 +27,16 @@ struct ExchangeRate {
             outUSDWillSetPrint = "환전금액 : \(newValue)달러로 환전될 예정"
         }
         didSet{
-            outUSDDidSetPrint = "KRW: \(KRW)원 -> \(USD)로 환전될 예정"
+            outUSDDidSetPrint = "KRW: \(KRW)원 -> \(USD)달러로 환전될 예정"
         }
     }
     var WON : Double
     
     var KRW : Double {
-        //프로퍼티 감시자self.
-        get{
+        get {
             return WON
         }
-        set(newValue){
+        set {
             WON = newValue
         }
     }

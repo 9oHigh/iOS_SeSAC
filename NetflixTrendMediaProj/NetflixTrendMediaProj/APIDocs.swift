@@ -8,8 +8,8 @@
 import Foundation
 
 struct APIDocs {
-    static let NAVER_ID = ""
-    static let NAVER_PASS = ""
-    static let TMDB_KEY = ""
+    static let NAVER_ID = "H7W9QHcWXlgYvJ37coAY"
+    static let NAVER_PASS = "ZHNd1EyR9X"
+    static let TMDB_KEY = "6f1395f65536de4f860cf89133877f5c"
     static let TMDB_PosterPATH = "https://image.tmdb.org/t/p/original"
 }

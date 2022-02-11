@@ -22,14 +22,6 @@ class TableViewController: UITableViewController {
     let unStarredImage = UIImage(systemName: "star")
     let StarredImage = UIImage(systemName: "star.fill")
     
-    /* Userdefaults 코드
-     var myShopList : [Bucket] = [] {
-     didSet{
-     saveData()
-     }
-     }
-     */
-    
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet var addShopListTextField: UITextField!
     @IBOutlet var addButton: UIButton!
@@ -100,7 +92,7 @@ class TableViewController: UITableViewController {
             presentActivityViewController()
         }
         catch {
-            print("Something went wrong")
+           showAlert(title: "오류 안내", message: "압축에 실패했습니다.", actionTitle: "확인")
         }
     }
     func restore(){
@@ -138,40 +130,20 @@ class TableViewController: UITableViewController {
     }
     //추가 버튼 클릭시
     @IBAction func addButtonClickedAction(_ sender: UIButton) {
-        
-        if let name = addShopListTextField.text {
-            if name == "" {
-                showAlert(title: "오입력 안내", message: "입력이 되지 않았거나 잘못된 문자를 입력하셨습니다.", actionTitle: "확인")
-            } else {
-                let task  = ShopList(name: name)
-                try! localRealm.write{
-                    localRealm.add(task)
-                }
-            }
+        guard let text = addShopListTextField.text else {
+            showAlert(title: "입력 안내", message: "쇼핑 리스트를 추가해주세요.", actionTitle: "확인")
+            return
+        }
+        if text.isEmpty {
+            showAlert(title: "오입력 안내", message: "입력이 되지 않았거나 잘못된 문자를 입력하셨습니다.", actionTitle: "확인")
         } else {
-            showAlert(title: "오입력안내", message: "입력이 되지 않았거나 잘못된 문자를 입력하셨습니다.", actionTitle: "확인")
+            let task  = ShopList(name: text)
+            try! localRealm.write{
+                localRealm.add(task)
+            }
         }
         addShopListTextField.text = ""
         mainTableView.reloadData()
-        /* Userdefaults 코드
-         if let newList = addShopListTextField.text {
-         // 입력된 텍스트가 있다면 구조체로 만들고 전체 쇼핑리스트에 추가
-         if newList == "" {
-         return
-         }
-         let inputList = Bucket(productName: newList, checkButton: 0, starButton: 0)
-         myShopList.append(inputList)
-         //디폴트
-         addShopListTextField.text = .none
-         addShopListTextField.placeholder = "무엇을 구매하실 예정인가요?"
-         
-         } else {
-         print("새로운 리스트를 추가할 수 없음.")
-         addShopListTextField.text = .none
-         addShopListTextField.placeholder = "무엇을 구매하실 예정인가요?"
-         }
-         */
-        
     }
     
     @IBAction func settingButtonClicked(_ sender: UIButton) {
@@ -236,45 +208,7 @@ class TableViewController: UITableViewController {
             }
         }
     }
-    /*
-     func saveData(){
-     Userdefaults 코드
-     // myShopList에 넣을 inputList 생성
-     var inputList : [[String:Any]] = []
-     // 전체 리스트에서 하나씩 가져와서 넣어두자. -> UserDefaults로 넣어두자!
-     for member in myShopList {
-     let data : [ String: Any ] = [
-     "productName" : member.productName,
-     "checkButton" : member.checkButton,
-     "starButton" : member.starButton
-     ]
-     inputList.append(data)
-     }
-     //유저 디폴트에 myShopList로 저장해두자.
-     let userDefaults = UserDefaults.standard
-     userDefaults.set(inputList,forKey: "myShopList")
-     //리로드!
-     tableView.reloadData()
-     }
-     
-     func loadData(){
-     Userdefaults 코드
-     let userDefaults = UserDefaults.standard
-     
-     if let data = userDefaults.object(forKey: "myShopList") as? [[String : Any]]{
-     var inputList = [Bucket]()
-     
-     for datum in data {
-     guard let productName = datum["productName"] as? String else { return }
-     guard let checkButton = datum["checkButton"] as? Int else { return }
-     guard let starButton = datum["starButton"] as? Int else { return }
-     
-     inputList.append(Bucket(productName: productName, checkButton: checkButton, starButton: starButton))
-     }
-     self.myShopList = inputList
-     }
-     }
-     */
+    
     //섹션의 row 개수
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Userdefaults 코드
@@ -312,12 +246,6 @@ class TableViewController: UITableViewController {
     
     // 셀의 스와이프 스타일
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        /* Userdeaults 코드
-         // 딜리트 ? 해당 row 삭제
-         if editingStyle == .delete {
-         myShopList.remove(at: indexPath.row)
-         }
-         */
         if editingStyle == .delete{
             do{
                 try localRealm.write{                    localRealm.delete(tasks[indexPath.row])
@@ -371,7 +299,7 @@ extension TableViewController : UIDocumentPickerDelegate{
                 alert.addAction(UIAlertAction(title: "확인", style: .default,handler: { out in
                     exit(0)
                 }))
-                                
+                
                 self.present(alert, animated: true, completion: nil)
             } catch {
                 print("ERROR")
@@ -394,7 +322,7 @@ extension TableViewController : UIDocumentPickerDelegate{
                 alert.addAction(UIAlertAction(title: "확인", style: .default,handler: { out in
                     exit(0)
                 }))
-                                
+                
                 self.present(alert, animated: true, completion: nil)
             } catch{
                 print("ERROR")

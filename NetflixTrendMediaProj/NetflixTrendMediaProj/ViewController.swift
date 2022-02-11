@@ -75,13 +75,11 @@ class ViewController: UIViewController {
             case .success(let value):
                 let json = JSON(value)
                 self.link = "https://www.youtube.com/watch?v=" + json["results"][0]["key"].stringValue
-                print("link:",self.link)
             case .failure(let error):
                 print(error)
             }
          
             viewController.myLink = self.link
-            print("mylink:",viewController.myLink!)
             //타이틀을 전달해준다!
             viewController.pageTitle = self.myMediaList[sender.tag].title
             print("mysender :",sender.tag)
@@ -169,6 +167,7 @@ extension ViewController :UITableViewDataSource, UITableViewDelegate,UITableView
         cell.linkButton.tag = indexPath.row
         //포스터 이미지
         let posterURL = URL(string: myMediaList[indexPath.row].poster)
+        cell.posterImageView.contentMode = .scaleToFill
         cell.posterImageView.kf.setImage(with: posterURL)
         cell.posterImageView.layer.cornerRadius = 5
         //타이틀 라벨
