@@ -5,16 +5,16 @@
 ### 프로젝트 요약
 |프로젝트|설명|
 |:---:|:---:|
-|DrinkwaterProj| 물마시기 애플리케이션으로 UserDefaults를 이용하여 값을 저장하고 활용하는 방법을 학습|
-|TableViewProj| UITableViewController를 이용해 TableView의 기초적인 사용방법을 학습|
-|CurrencyRateProj| 간단한 환율 계산기 애플리케이션으로 didSet / willSet 그리고 get / set을 학습|
-|ShoppingListProj| 쇼핑리스트를 작성할 수 있는 간단한 애플리케이션으로 백업 / 복구 / 공유 기능을 위해 Zip과 더불어 Realm, Custom Cell을 학습|
-|LotteryAPIProj| PickerView를 이용하여 원하는 날짜의 로또번호를 가지고 오는 과정을 학습|
-|NetflixTrendMediaProj| TMDB API를 이용하여 Trend Media에 대한 정보를 보여주는 애플리케이션으로 기존에 배운것들에 더불어 TableViewCell을 커스텀, 위치 권한 설정, WebView등 다양한 기술들을 학습|
-|OpenWeatherAPIProj| 위치권한 설정과 더불어 Alamofire와 OpenWeather API를 이용해 날씨 정보를 가지고 오는 과정을 학습|
-|FilmPromotionComitteeAPIProj| 영화진흥원의 API를 이용, Realm을 이용하여 데이터를 저장하고 클라이언트에 보여주는 방법을 학습|
-|KakaoOCR_API_Proj| Kakao API를 이용하여 OCR 결과를 테스트|
-|Codable(+SnapKit)Proj| SnapKit과 Codable을 이용, beer API를 활용해 맥주 정보를 보여주는 애플리케이션 |
+|물마시기 프로젝트| UserDefaults를 이용하여 값을 저장하고 활용하는 방법을 학습|
+|테이블뷰 프로젝트| UITableViewController를 이용해 TableView의 기초적인 사용 방법을 학습|
+|환율 프로젝트| 간단한 환율 계산기 애플리케이션, didSet / willSet 그리고 get / set을 학습|
+|쇼핑리스트 프로젝트| 쇼핑리스트를 작성할 수 있는 간단한 애플리케이션으로 백업 / 복구 / 공유 기능을 위해 Zip과 더불어 Realm, Custom Cell등을 학습|
+|로또 프로젝트| PickerView를 이용하여 원하는 날짜의 로또번호를 가지고 오는 애플리케이션으로 Alamofire 학습|
+|트렌드 미디어 프로젝트| TMDB API를 이용하여 Trend Media에 대한 정보를 보여주는 애플리케이션으로 기존에 배운것들에 더불어 TableViewCell을 커스텀, 위치 권한 설정, WebView 등 다양한 기술들을 집중 학습|
+|오픈웨더 프로젝트| 위치권한 설정과 더불어 Alamofire와 OpenWeather API를 이용해 날씨 정보를 가지고 오는 애플리케이션|
+|영화진흥원 프로젝트| 영화진흥원의 API를 이용, Realm을 이용하여 데이터를 저장하고 클라이언트에 보여주는 방법을 학습|
+|카카오 OCR API 프로젝트| Kakao API를 이용하여 OCR 결과를 테스트|
+|Punk API | SnapKit과 Codable을 이용, beer API를 활용해 맥주와 함께먹으면 좋은 음식 정보를 보여주는 애플리케이션|
 
 ---
 
@@ -848,5 +848,149 @@ func pickImage(_ goalPercent : Int){
     
   </div>
  
+</div>
+</details>
+
+---
+
+### 카카오 OCR 프로젝트
+
+<details>
+<summary>정리</summary>
+<div markdown="1">       
+  
+  * Core Skills : **AutoLayout, Alamofire, SwiftyJSON**
+
+  * AutoLayout을 이용해 UI를 구성
+ 
+  * Kakao OCR API
+     * Header
+  
+          ```swift
+           let header : HTTPHeaders = [
+                  "Authorization" : APIDocs.KAKAO,
+                  "Content-Type" : "multipart/form-data"
+            ]
+          ```
+  
+     * 이미지를 업로드해야 하기 떄문에 Alamofire의 upload 메서드 이용
+  
+        ```swift
+
+          AF.upload(multipartFormData: { multipartFormData in
+                    multipartFormData.append(imageData, withName: "image", fileName: "image")
+                }, to: EndPoint.OcrURL,headers: header)
+                    .validate(statusCode:200...500).responseJSON { response in
+                        switch response.result{
+                        case .success(let value):
+                            let json = JSON(value)
+                            print(json)
+                            let code = response.response?.statusCode ?? 500
+                            result(code, json)
+                        case .failure(let error):
+                            print(error)
+                    }
+             }
+          ```
+  
+</div>
+</details>
+
+---
+
+### Punk API 프로젝트
+
+<details open>
+<summary>정리</summary>
+<div markdown="1">       
+  
+  * Core Skills : **SnapKit, Alamofire, Kingfisher, MVVM**
+ 
+  * [Punk API](https://punkapi.com/documentation/v2)를 이용해 맥주를 추천하는 애플리케이션
+  
+  
+  * Model
+      * Codable 프로토콜을 채택, CodingKey 프로토콜 채택 및 적용
+        ```swift
+         // MARK: - Beer
+          struct Beer: Codable {
+              var foodPairing: [String]
+              var name: String
+              var tagline: String
+              var beerDescription: String
+              var imageURL: String
+              var id: Int
+
+              enum CodingKeys: String, CodingKey {
+                  case foodPairing = "food_pairing"
+                  case name
+                  case tagline
+                  case beerDescription = "description"
+                  case imageURL = "image_url"
+                  case id
+              }
+          }
+
+        ```
+  
+  * ViewModel
+      * Observable 클래스를 정의하고 다음과 같이 ViewModel에서 사용
+  
+        ```swift
+            class BeerViewModel {
+
+                var id = Observable(0)
+                var imageURL = Observable("")
+                var tagLine = Observable("")
+                var name = Observable("")
+                var beerDescription = Observable("")
+                var foodPairing = [Observable("")]
+                var foodPairingCnt = Observable(0)
+
+              ···
+
+            }
+        ```
+  
+     * 맥주 이미지의 백그라운드 효과 : 블러
+  
+        ```swift
+         let blurEffect = UIBlurEffect(style: .regular)
+         var blurEffectView = UIVisualEffectView()
+  
+         blurEffectView = UIVisualEffectView(effect: blurEffect)
+         blurEffectView.contentMode = .scaleAspectFit
+         imageView.addSubview(blurEffectView)
+        ```
+  
+* 개발이슈
+   * Stretchy Header: Header Container & ImageView
+        ```swift
+          // 상단에 이미지를 넣을 공간을 만들기
+          headerContainer.snp.makeConstraints { make in
+                  make.top.equalTo(mainScrollView)
+                  make.leading.trailing.equalTo(view)
+                  make.height.equalTo(headerContainer.snp.width).multipliedBy(0.7)
+           }
+          //이미지의 높이를 헤더의 높이와 같거나 더 크게 주고 priority를 높게 주어야 Stretchy하게 만들어 줄 수 있음!
+          imageView.snp.makeConstraints { make in
+                  make.leading.trailing.equalTo(view)
+                  make.top.equalTo(view)
+                  make.height.greaterThanOrEqualTo(headerContainer.snp.height).priority(.high)
+                  make.bottom.equalTo(headerContainer.snp.bottom)
+           }
+  
+        ```
+  
+* 구동영상
+  
+  <div align = "left">
+    
+  |영상|
+  |:---:|
+  |![ezgif com-gif-maker](https://user-images.githubusercontent.com/53691249/153863289-34abc1a8-a0ba-4e13-b386-accbcbaa0665.gif)|
+  
+  </div>
+  
 </div>
 </details>
